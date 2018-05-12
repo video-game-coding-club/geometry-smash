@@ -1,7 +1,7 @@
 var canvas = document.getElementById("game-layer");
 var ctx = canvas.getContext("2d");
 
-var x = 0;
+var x = -10;
 
 var background = function(color) {
   ctx.fillStyle = color;
@@ -17,7 +17,7 @@ var draw = function() {
 
   x += 1;
 
-  if (x > canvas.width - 10) {
+  if (x > canvas.width) {
     x = -10;
   }
 };
