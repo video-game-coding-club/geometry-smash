@@ -21,18 +21,6 @@
     z-index: 1;
 }
 
-#stats-layer {
-    z-index: 2;
-}
-
-#messages-layer {
-    z-index: 3;
-}
-
-#ui-layer {
-    z-index: 4;
-}
-
 #footer {
     text-align: right;
 }

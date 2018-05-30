@@ -15,10 +15,10 @@ var draw = function() {
   window.requestAnimationFrame(draw);
   background("white");
 
-  ctx.fillText("x = " + x, 10, 100);
-  ctx.drawImage(car, x, 100, 100, 100);
   ctx.fillStyle = "black";
   ctx.font = '48px serif';
+  ctx.fillText("x = " + x, 10, 100);
+  ctx.drawImage(car, x, 100, 100, 100);
 
   x += 1;
 
