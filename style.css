@@ -7,7 +7,7 @@
     height: 74vh;
     display: block;
     position: relative;
-    border: 4px solid black;
+    border: 1vh solid black;
     margin: auto;
 }
 
@@ -19,18 +19,6 @@
 
 #game-layer {
     z-index: 1;
-}
-
-#stats-layer {
-    z-index: 2;
-}
-
-#messages-layer {
-    z-index: 3;
-}
-
-#ui-layer {
-    z-index: 4;
 }
 
 #footer {

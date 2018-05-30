@@ -3,6 +3,9 @@ var ctx = canvas.getContext("2d");
 
 var x = -10;
 
+var car = new Image();
+car.src = "blue-car.jpg";
+
 var background = function(color) {
   ctx.fillStyle = color;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -10,10 +13,12 @@ var background = function(color) {
 
 var draw = function() {
   window.requestAnimationFrame(draw);
-  background("cornsilk");
+  background("white");
 
   ctx.fillStyle = "black";
-  ctx.fillRect(x, 30, 10, 10);
+  ctx.font = '48px serif';
+  ctx.fillText("x = " + x, 10, 100);
+  ctx.drawImage(car, x, 100, 100, 100);
 
   x += 1;
 
