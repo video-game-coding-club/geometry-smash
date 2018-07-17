@@ -29,7 +29,7 @@ var draw = function() {
 
 draw();d
 var obstacle = function(y) {
-rect（200，200，100，25）；  
+rect（500，500，100，25）；  
   
   
 };
