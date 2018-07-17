@@ -27,4 +27,9 @@ var draw = function() {
   }
 };
 
-draw();
+draw();d
+var obstacle = function(y) {
+rect（200，200，100，25）；  
+  
+  
+};
