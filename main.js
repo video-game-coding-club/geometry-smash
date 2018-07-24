@@ -1,10 +1,6 @@
 var canvas = document.getElementById("game-layer");
 var ctx = canvas.getContext("2d");
-
-var x = -10;
-
-var car = new Image();
-car.src = "blue-car.jpg";
+var time = 0;
 
 var background = function(color) {
   ctx.fillStyle = color;
@@ -20,20 +16,19 @@ var spike = function(y) {
   ctx.fill();
 };
 
+var drawStats = function() {
+  ctx.fillStyle = "black";
+  ctx.font = '48px serif';
+  ctx.fillText("time = " + time, 10, 40);
+};
+
 var draw = function() {
   window.requestAnimationFrame(draw);
   background("white");
 
-  ctx.fillStyle = "black";
-  ctx.font = '48px serif';
-  ctx.fillText("x = " + x, 10, 100);
-  ctx.drawImage(car, x, 100, 100, 100);
+  drawStats();
 
-  x += 1;
-
-  if (x > canvas.width) {
-    x = -10;
-  }
+  time++;
 };
 
 draw();
