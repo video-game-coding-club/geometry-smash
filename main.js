@@ -11,6 +11,15 @@ var background = function(color) {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 };
 
+var spike = function(y) {
+  ctx.beginPath();
+  ctx.moveTo(100, y);
+  ctx.lineTo(160, y);
+  ctx.lineTo(130, y - 60);
+  ctx.closePath();
+  ctx.fill();
+};
+
 var draw = function() {
   window.requestAnimationFrame(draw);
   background("white");
