@@ -26,6 +26,13 @@ var drawStats = function() {
   ctx.fillText("time = " + time, 10, 40);
 };
 
+var obstacleSaw = function(y) {
+  ctx.beginPath();
+  ctx.strokeStyle = "silver";
+  ctx.ellipse(100, y, 100, 100, 0, 0, 2 * Math.PI);
+  ctx.stroke();
+};
+
 var drawFloor = function() {
   for (var i = 0; i < 4; i++) {
     ctx.beginPath();
@@ -47,6 +54,7 @@ var drawObstacles = function() {
   for (var i = 0; i < obstacles.length; i++) {
     spike(-time + obstacles[i], 900);
   }
+  obstacleSaw(200);
 };
 
 var draw = function() {
