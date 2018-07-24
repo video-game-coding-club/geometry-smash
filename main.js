@@ -27,4 +27,15 @@ var draw = function() {
   }
 };
 
-draw();
+draw();d
+var rect = function(y) { 
+  （500，500，100，25)
+  ctx.beginPath();
+  ctx.moveTo(500, y);
+  ctx.lineTo(160, y);
+  ctx.lineTo(130, y - 60);
+  ctx.closePath();
+  ctx.fill();
+ };
+  
+ 
