@@ -10,7 +10,7 @@ var background = function(color) {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 };
 
-var spike = function(x, y) {
+var obstacleSpike = function(x, y) {
   ctx.fillStyle = "black";
   ctx.beginPath();
   ctx.moveTo(x, y);
@@ -76,7 +76,7 @@ var drawFloor = function() {
 
 var drawObstacles = function() {
   for (var i = 0; i < obstacles.length; i++) {
-    spike(-time + obstacles[i], 900);
+    obstacleSpike(-time + obstacles[i], 900);
   }
   obstacleSaw(200, 200);
 };
