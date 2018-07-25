@@ -22,12 +22,29 @@ var drawStats = function() {
   ctx.fillText("time = " + time, 10, 40);
 };
 
+var drawFloor = function() {
+  for (var i = 0; i < 4; i++) {
+    ctx.beginPath();
+    ctx.fillStyle = "darkblue";
+    ctx.strokeStyle = "black";
+    ctx.rect(-time % 400 + 400 * i, 900, 200, 20);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.strokeRect(-time % 400 + 400 * i, 900, 200, 20);
+    ctx.fillStyle = "yellow";
+    ctx.strokeStyle = "black";
+    ctx.rect(-time % 400 + 400 * i + 200, 900, 200, 20);
+    ctx.fill();
+    ctx.stroke();
+  }
+};
+
 var draw = function() {
   window.requestAnimationFrame(draw);
   background("white");
 
   drawStats();
-
+  drawFloor();
   time++;
 };
 
