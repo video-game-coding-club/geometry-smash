@@ -26,11 +26,27 @@ var drawStats = function() {
   ctx.fillText("time = " + time, 10, 40);
 };
 
-var obstacleSaw = function(y) {
+var sawSpike = function(x, y) {
+  ctx.fillStyle = "black";
+  ctx.translate(0, -100);
+  for (var i = 0; i < 10; i++) {
+    ctx.rotate(2 * Math.PI / 10);
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x + 10, y);
+    ctx.lineTo(x + 5, y - 10);
+    ctx.closePath();
+    ctx.fill();
+  }
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+};
+
+var obstacleSaw = function(x, y) {
   ctx.beginPath();
-  ctx.strokeStyle = "silver";
-  ctx.ellipse(100, y, 100, 100, 0, 0, 2 * Math.PI);
-  ctx.stroke();
+  ctx.fillStyle = "silver";
+  ctx.ellipse(x, y, 100, 100, 0, 0, 2 * Math.PI);
+  ctx.fill();
+  sawSpike(x, y);
 };
 
 var drawFloor = function() {
@@ -54,7 +70,7 @@ var drawObstacles = function() {
   for (var i = 0; i < obstacles.length; i++) {
     spike(-time + obstacles[i], 900);
   }
-  obstacleSaw(200);
+  obstacleSaw(200, 200);
 };
 
 var draw = function() {
