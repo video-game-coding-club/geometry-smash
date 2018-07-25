@@ -7,11 +7,12 @@ var background = function(color) {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 };
 
-var spike = function(y) {
+var spike = function(x, y) {
+  ctx.fillStyle = "black";
   ctx.beginPath();
-  ctx.moveTo(100, y);
-  ctx.lineTo(160, y);
-  ctx.lineTo(130, y - 60);
+  ctx.moveTo(x, y);
+  ctx.lineTo(x + 60, y);
+  ctx.lineTo(x + 30, y - 60);
   ctx.closePath();
   ctx.fill();
 };
