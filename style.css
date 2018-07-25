@@ -3,8 +3,8 @@
 }
 
 #stage {
-    width: 80vw;
-    height: 74vh;
+    width: 80vmin;
+    height: 80vmin;
     display: block;
     position: relative;
     border: 1vh solid black;
