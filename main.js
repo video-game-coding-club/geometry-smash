@@ -1,39 +1,62 @@
 var canvas = document.getElementById("game-layer");
 var ctx = canvas.getContext("2d");
-
-var x = -10;
-
-var car = new Image();
-car.src = "blue-car.jpg";
+var time = 0;
+var obstacles = [
+  100, 200, 300, 500, 700, 800, 1000, 1300
+];
 
 var background = function(color) {
   ctx.fillStyle = color;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 };
 
-var spike = function(y) {
+var spike = function(x, y) {
+  ctx.fillStyle = "black";
   ctx.beginPath();
-  ctx.moveTo(100, y);
-  ctx.lineTo(160, y);
-  ctx.lineTo(130, y - 60);
+  ctx.moveTo(x, y);
+  ctx.lineTo(x + 60, y);
+  ctx.lineTo(x + 30, y - 60);
   ctx.closePath();
   ctx.fill();
+};
+
+var drawStats = function() {
+  ctx.fillStyle = "black";
+  ctx.font = '48px serif';
+  ctx.fillText("time = " + time, 10, 40);
+};
+
+var drawFloor = function() {
+  for (var i = 0; i < 4; i++) {
+    ctx.beginPath();
+    ctx.fillStyle = "darkblue";
+    ctx.strokeStyle = "black";
+    ctx.rect(-time % 400 + 400 * i, 900, 200, 20);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.strokeRect(-time % 400 + 400 * i, 900, 200, 20);
+    ctx.fillStyle = "yellow";
+    ctx.strokeStyle = "black";
+    ctx.rect(-time % 400 + 400 * i + 200, 900, 200, 20);
+    ctx.fill();
+    ctx.stroke();
+  }
+};
+
+var drawObstacles = function() {
+  for (var i = 0; i < obstacles.length; i++) {
+    spike(-time + obstacles[i], 900);
+  }
 };
 
 var draw = function() {
   window.requestAnimationFrame(draw);
   background("white");
 
-  ctx.fillStyle = "black";
-  ctx.font = '48px serif';
-  ctx.fillText("x = " + x, 10, 100);
-  ctx.drawImage(car, x, 100, 100, 100);
-
-  x += 1;
-
-  if (x > canvas.width) {
-    x = -10;
-  }
+  drawStats();
+  drawFloor();
+  drawObstacles();
+  time++;
 };
 
 draw();
