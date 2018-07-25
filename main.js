@@ -1,6 +1,9 @@
 var canvas = document.getElementById("game-layer");
 var ctx = canvas.getContext("2d");
 var time = 0;
+var obstacles = [
+  100, 200, 300, 500, 700, 800, 1000, 1300
+];
 
 var background = function(color) {
   ctx.fillStyle = color;
@@ -40,12 +43,19 @@ var drawFloor = function() {
   }
 };
 
+var drawObstacles = function() {
+  for (var i = 0; i < obstacles.length; i++) {
+    spike(-time + obstacles[i], 900);
+  }
+};
+
 var draw = function() {
   window.requestAnimationFrame(draw);
   background("white");
 
   drawStats();
   drawFloor();
+  drawObstacles();
   time++;
 };
 
