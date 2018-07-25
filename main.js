@@ -27,18 +27,26 @@ var drawStats = function() {
 };
 
 var sawSpike = function(x, y) {
-  ctx.fillStyle = "black";
-  ctx.translate(0, -100);
-  for (var i = 0; i < 10; i++) {
-    ctx.rotate(2 * Math.PI / 10);
+  var numberSpikes = 20;
+
+  for (var i = 0; i < numberSpikes; i++) {
+    ctx.save();
+
+    var alpha = -2 * Math.PI / numberSpikes * i + 0.1 * time / (2 * Math.PI) % (2 * Math.PI);
+
+    ctx.translate(x + 100 * Math.sin(alpha), y + 100 * Math.cos(alpha));
+    ctx.rotate(-alpha);
+
     ctx.beginPath();
-    ctx.moveTo(x, y);
-    ctx.lineTo(x + 10, y);
-    ctx.lineTo(x + 5, y - 10);
+    ctx.moveTo(-10, 0);
+    ctx.lineTo(10, 0);
+    ctx.lineTo(0, 20);
     ctx.closePath();
+    ctx.fillStyle = "black";
     ctx.fill();
+
+    ctx.restore();
   }
-  ctx.setTransform(1, 0, 0, 1, 0, 0);
 };
 
 var obstacleSaw = function(x, y) {
