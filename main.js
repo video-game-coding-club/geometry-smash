@@ -2,7 +2,14 @@ var canvas = document.getElementById("game-layer");
 var ctx = canvas.getContext("2d");
 var time = 0;
 var obstacles = [
-  100, 200, 300, 500, 700, 800, 1000, 1300
+  [0, 100],
+  [0, 200],
+  [0, 300],
+  [1, 500],
+  [0, 700],
+  [0, 800],
+  [0, 1000],
+  [0, 1300]
 ];
 
 var background = function(color) {
@@ -62,23 +69,27 @@ var drawFloor = function() {
     ctx.beginPath();
     ctx.fillStyle = "darkblue";
     ctx.strokeStyle = "black";
-    ctx.rect(-time % 400 + 400 * i, 900, 200, 20);
+    ctx.rect(-time % 400 + 400 * i, 950, 200, 50);
     ctx.fill();
     ctx.beginPath();
-    ctx.strokeRect(-time % 400 + 400 * i, 900, 200, 20);
+    ctx.strokeRect(-time % 400 + 400 * i, 950, 200, 50);
     ctx.fillStyle = "yellow";
     ctx.strokeStyle = "black";
-    ctx.rect(-time % 400 + 400 * i + 200, 900, 200, 20);
+    ctx.rect(-time % 400 + 400 * i + 200, 950, 200, 50);
     ctx.fill();
     ctx.stroke();
   }
 };
 
+var obstacleTypes = [
+  obstacleSpike,
+  obstacleSaw
+];
+
 var drawObstacles = function() {
   for (var i = 0; i < obstacles.length; i++) {
-    obstacleSpike(-time + obstacles[i], 900);
+    obstacleTypes[obstacles[i][0]](-time + obstacles[i][1], 950);
   }
-  obstacleSaw(200, 200);
 };
 
 var draw = function() {
@@ -86,8 +97,8 @@ var draw = function() {
   background("white");
 
   drawStats();
-  drawFloor();
   drawObstacles();
+  drawFloor();
   time++;
 };
 
