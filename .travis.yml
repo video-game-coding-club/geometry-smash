@@ -15,5 +15,19 @@ install:
 script:
   - jshint main.js
   - prettycss style.css
-  - js-beautify --indent-size 2 --end-with-newline --outfile main.js.beautified main.js
+  - |
+    js-beautify \
+      --type js \
+      --indent-size 2 \
+      --end-with-newline \
+      --outfile main.js.beautified \
+      main.js
   - diff --brief main.js main.js.beautified
+  - |
+    js-beautify \
+      --type css \
+      --indent-size 4 \
+      --end-with-newline \
+      --outfile style.css.beautified \
+      style.css
+  - diff --brief style.css style.css.beautified
