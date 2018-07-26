@@ -30,4 +30,4 @@ script:
       --end-with-newline \
       --outfile style.css.beautified \
       style.css
-  - diff --brief style.css style.css.beautified
+  - diff -Naur style.css style.css.beautified
