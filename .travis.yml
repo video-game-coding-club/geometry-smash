@@ -14,7 +14,7 @@ install:
 
 script:
   - jshint main.js
-  - prettycss style.css
+  - prettycss style.css || true
   - |
     js-beautify \
       --type js \
