@@ -10,7 +10,10 @@ node_js:
 install:
   - npm install jshint -g
   - npm install PrettyCSS -g
+  - npm install js-beautify -g
 
 script:
   - jshint main.js
   - prettycss style.css
+  - js-beautify --indent-size 2 --end-with-newline --outfile main.js.beautified main.js
+  - diff --brief main.js main.js.beautified
