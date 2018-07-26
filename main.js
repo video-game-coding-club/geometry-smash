@@ -15,7 +15,7 @@ var obstacles = [
   [0, 300],
   [1, 400],
   [0, 400],
-  [0, 550],
+  [2, 550],
   [0, 320],
   [0, 300]
 ];
@@ -72,6 +72,16 @@ var obstacleSaw = function(x, y) {
   sawSpike(x, y);
 };
 
+var obstacleRect = function(y) {
+  ctx.rect(500, 500, 100, 25);
+  ctx.beginPath();
+  ctx.moveTo(500, y);
+  ctx.lineTo(160, y);
+  ctx.lineTo(130, y - 60);
+  ctx.closePath();
+  ctx.fill();
+ };
+
 var drawFloor = function() {
   for (var i = 0; i < 4; i++) {
     ctx.beginPath();
@@ -92,7 +102,8 @@ var drawFloor = function() {
 /* The obstacle types. */
 var obstacleTypes = [
   obstacleSpike,
-  obstacleSaw
+  obstacleSaw,
+  obstacleRect
 ];
 
 var drawObstacles = function() {
