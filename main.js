@@ -1,15 +1,23 @@
 var canvas = document.getElementById("game-layer");
 var ctx = canvas.getContext("2d");
+
+/* Reset the game time. */
 var time = 0;
+
+/* Each obstacle in the level is given by two numbers:
+ *
+ * 1. The obstacle type
+ * 2. The distance to the previous obstacle
+ */
 var obstacles = [
+  [0, 500],
   [0, 100],
-  [0, 200],
   [0, 300],
-  [1, 500],
-  [0, 700],
-  [0, 800],
-  [0, 1000],
-  [0, 1300]
+  [1, 400],
+  [0, 400],
+  [0, 550],
+  [0, 320],
+  [0, 300]
 ];
 
 var background = function(color) {
@@ -81,14 +89,17 @@ var drawFloor = function() {
   }
 };
 
+/* The obstacle types. */
 var obstacleTypes = [
   obstacleSpike,
   obstacleSaw
 ];
 
 var drawObstacles = function() {
+  var position = 0;
   for (var i = 0; i < obstacles.length; i++) {
-    obstacleTypes[obstacles[i][0]](-time + obstacles[i][1], 950);
+    position += obstacles[i][1];
+    obstacleTypes[obstacles[i][0]](-time + position, 950);
   }
 };
 
