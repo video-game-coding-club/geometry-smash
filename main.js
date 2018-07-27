@@ -59,7 +59,7 @@ var obstacleSaw = function(x, y) {
   for (var i = 0; i < numberSpikes; i++) {
     ctx.save();
 
-    var alpha = -2 * Math.PI / numberSpikes * i + 0.1 * time / (2 * Math.PI) % (2 * Math.PI);
+    var alpha = -2 * Math.PI / numberSpikes * i - 0.15 * time / (2 * Math.PI) % (2 * Math.PI);
 
     ctx.translate(x + sawRadius * Math.sin(alpha), y + sawRadius * Math.cos(alpha));
     ctx.rotate(-alpha);
