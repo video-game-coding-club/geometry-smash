@@ -46,15 +46,22 @@ var drawStats = function() {
   ctx.fillText("time = " + time, 10, 40);
 };
 
-var sawSpike = function(x, y) {
+var obstacleSaw = function(x, y) {
   var numberSpikes = 20;
+  var sawRadius = 80;
+
+  ctx.beginPath();
+  ctx.fillStyle = "silver";
+  ctx.ellipse(x, y, sawRadius, sawRadius, 0, 0, 2 * Math.PI);
+  ctx.fill();
+  ctx.closePath();
 
   for (var i = 0; i < numberSpikes; i++) {
     ctx.save();
 
-    var alpha = -2 * Math.PI / numberSpikes * i + 0.1 * time / (2 * Math.PI) % (2 * Math.PI);
+    var alpha = -2 * Math.PI / numberSpikes * i - 0.15 * time / (2 * Math.PI) % (2 * Math.PI);
 
-    ctx.translate(x + 100 * Math.sin(alpha), y + 100 * Math.cos(alpha));
+    ctx.translate(x + sawRadius * Math.sin(alpha), y + sawRadius * Math.cos(alpha));
     ctx.rotate(-alpha);
 
     ctx.beginPath();
@@ -67,15 +74,6 @@ var sawSpike = function(x, y) {
 
     ctx.restore();
   }
-};
-
-var obstacleSaw = function(x, y) {
-  ctx.beginPath();
-  ctx.fillStyle = "silver";
-  ctx.ellipse(x, y, 100, 100, 0, 0, 2 * Math.PI);
-  ctx.fill();
-  ctx.closePath();
-  sawSpike(x, y);
 };
 
 var electricSign = function(x, y) {
