@@ -49,10 +49,22 @@ var drawStats = function() {
 var obstacleSaw = function(x, y) {
   var numberSpikes = 20;
   var sawRadius = 80;
+  var sawHeight = y - 50 * (2 + Math.sin(time / 70 / 2 * Math.PI));
 
   ctx.beginPath();
   ctx.fillStyle = "silver";
-  ctx.ellipse(x, y, sawRadius, sawRadius, 0, 0, 2 * Math.PI);
+  ctx.ellipse(x, sawHeight, sawRadius, sawRadius, 0, 0, 2 * Math.PI);
+  ctx.fill();
+  ctx.closePath();
+
+  ctx.beginPath();
+  ctx.fillStyle = "black";
+  ctx.ellipse(x, sawHeight, 15, 15, 0, 0, 2 * Math.PI);
+  ctx.fill();
+  ctx.closePath();
+
+  ctx.beginPath();
+  ctx.rect(x - 5, sawHeight, 10, sawHeight);
   ctx.fill();
   ctx.closePath();
 
@@ -61,7 +73,7 @@ var obstacleSaw = function(x, y) {
 
     var alpha = -2 * Math.PI / numberSpikes * i - 0.15 * time / (2 * Math.PI) % (2 * Math.PI);
 
-    ctx.translate(x + sawRadius * Math.sin(alpha), y + sawRadius * Math.cos(alpha));
+    ctx.translate(x + sawRadius * Math.sin(alpha), sawHeight + sawRadius * Math.cos(alpha));
     ctx.rotate(-alpha);
 
     ctx.beginPath();
