@@ -49,7 +49,7 @@ var drawStats = function() {
 var obstacleSaw = function(x, y) {
   var numberSpikes = 20;
   var sawRadius = 80;
-  var sawHeight = y - 50 * (2 + Math.sin(time / 70 / 2 * Math.PI));
+  var sawHeight = y - 50 * (3 + Math.sin(time / 70 / 2 * Math.PI));
 
   ctx.beginPath();
   ctx.fillStyle = "silver";
