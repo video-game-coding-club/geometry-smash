@@ -4,6 +4,10 @@ var ctx = canvas.getContext("2d");
 /* Reset the game time. */
 var time = 0;
 
+/* The toxic sign image. */
+var toxicImage = new Image();
+toxicImage.src = "toxic.jpg";
+
 /* Each obstacle in the level is given by two numbers:
  *
  * 1. The obstacle type
@@ -11,6 +15,7 @@ var time = 0;
  */
 var obstacles = [
   [0, 500],
+  [2, 200],
   [0, 100],
   [0, 300],
   [1, 400],
@@ -69,7 +74,24 @@ var obstacleSaw = function(x, y) {
   ctx.fillStyle = "silver";
   ctx.ellipse(x, y, 100, 100, 0, 0, 2 * Math.PI);
   ctx.fill();
+  ctx.closePath();
   sawSpike(x, y);
+};
+
+var electricSign = function(x, y) {
+  ctx.fillStyle = "white";
+  ctx.strokeStyle = "black";
+  ctx.lineWidth = 4;
+  ctx.beginPath();
+  ctx.strokeRect(x - 70, y - 20, 140, -120);
+  ctx.closePath();
+  ctx.fill();
+  ctx.fillStyle = "black";
+  ctx.beginPath();
+  ctx.rect(x - 10, y, 20, -20);
+  ctx.closePath();
+  ctx.fill();
+  ctx.drawImage(toxicImage, x - 70, y - 140, 140, 120);
 };
 
 var drawFloor = function() {
@@ -78,9 +100,11 @@ var drawFloor = function() {
     ctx.fillStyle = "darkblue";
     ctx.strokeStyle = "black";
     ctx.rect(-time % 400 + 400 * i, 950, 200, 50);
+    ctx.closePath();
     ctx.fill();
     ctx.beginPath();
     ctx.strokeRect(-time % 400 + 400 * i, 950, 200, 50);
+    ctx.closePath();
     ctx.fillStyle = "yellow";
     ctx.strokeStyle = "black";
     ctx.rect(-time % 400 + 400 * i + 200, 950, 200, 50);
@@ -92,7 +116,8 @@ var drawFloor = function() {
 /* The obstacle types. */
 var obstacleTypes = [
   obstacleSpike,
-  obstacleSaw
+  obstacleSaw,
+  electricSign
 ];
 
 var drawObstacles = function() {
