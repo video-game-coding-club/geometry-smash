@@ -22,7 +22,8 @@ electricImage.src = "electric.jpg";
  */
 var obstacles = [
   [0, 500],
-  [2, 200],
+  [4, 200],
+  [2, 300],
   [0, 100],
   [3, 200],
   [0, 300],
@@ -159,6 +160,12 @@ var electricSign = function(x, y) {
   ctx.drawImage(electricImage, x - 70, y - 140, 140, 120);
 };
 
+var obstacleLaser = function(x, y) {
+  ctx.fillStyle = "red";
+  ctx.strokeStyle = "black";
+  ctx.strokeRect(x, y, 100, -50);
+};
+
 var drawFloor = function() {
   let i = 0;
   while (-time % 400 + 400 * i < canvas.width) {
@@ -188,7 +195,8 @@ var obstacleTypes = [
   obstacleSpike,
   obstacleSaw,
   toxicSign,
-  electricSign
+  electricSign,
+  obstacleLaser
 ];
 
 var drawObstacles = function() {
