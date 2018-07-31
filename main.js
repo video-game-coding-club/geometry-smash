@@ -25,6 +25,28 @@ var obstacles = [
   [0, 300]
 ];
 
+(function() {
+  function initialize() {
+    window.addEventListener('resize', resizeCanvas, false);
+    canvas.style.position = "absolute";
+    canvas.style.left = "0px";
+    canvas.style.top = "0px";
+    resizeCanvas();
+  }
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    floorHeight = canvas.height - 50;
+
+    /* Style the canvas so that coordinate system is not distorted. */
+    // canvas.style.width = Math.min(canvas.width, canvas.height);
+    // canvas.style.height = Math.min(canvas.width, canvas.height);
+  }
+
+  initialize();
+})();
+
 var background = function(color) {
   ctx.fillStyle = color;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
