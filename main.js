@@ -160,26 +160,19 @@ var electricSign = function(x, y) {
 };
 
 var drawFloor = function() {
-  let i = 0;
-  while (-time % 400 + 400 * i < canvas.width) {
-    ctx.beginPath();
-    ctx.rect(-time % 400 + 400 * i, floorHeight, 200, 50);
-    ctx.closePath();
-    ctx.strokeStyle = "black";
-    ctx.fillStyle = "darkblue";
-    ctx.fill();
-    ctx.stroke();
+  let strokeColors = ["black", "black"];
+  let fillColors = ["darkblue", "yellow"];
 
-    ctx.beginPath();
-    ctx.strokeRect(-time % 400 + 400 * i, floorHeight, 200, 50);
-    ctx.closePath();
-    ctx.rect(-time % 400 + 400 * i + 200, floorHeight, 200, 50);
-    ctx.strokeStyle = "black";
-    ctx.fillStyle = "yellow";
-    ctx.fill();
-    ctx.stroke();
-
-    i++;
+  for (let i = 0; - time % 400 + 400 * i < canvas.width; i++) {
+    for (let j = 0; j < 2; j++) {
+      ctx.beginPath();
+      ctx.rect(-time % 400 + 400 * i + 200 * j, floorHeight, 200, 50);
+      ctx.closePath();
+      ctx.strokeStyle = strokeColors[j];
+      ctx.fillStyle = fillColors[j];
+      ctx.fill();
+      ctx.stroke();
+    }
   }
 };
 
