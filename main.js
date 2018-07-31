@@ -136,7 +136,8 @@ var electricSign = function(x, y) {
 };
 
 var drawFloor = function() {
-  for (var i = 0; i < 4; i++) {
+  let i = 0;
+  while (-time % 400 + 400 * i < canvas.width) {
     ctx.beginPath();
     ctx.rect(-time % 400 + 400 * i, floorHeight, 200, 50);
     ctx.closePath();
@@ -153,6 +154,8 @@ var drawFloor = function() {
     ctx.fillStyle = "yellow";
     ctx.fill();
     ctx.stroke();
+
+    i++;
   }
 };
 
