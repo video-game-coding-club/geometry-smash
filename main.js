@@ -53,6 +53,9 @@ var obstacles = [
 var background = function(color) {
   ctx.fillStyle = color;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.strokeStyle = 'black';
+  ctx.lineWidth = '5';
+  ctx.strokeRect(0, 0, canvas.width, canvas.height);
 };
 
 var obstacleSpike = function(x, y) {
