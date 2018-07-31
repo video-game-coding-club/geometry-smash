@@ -8,6 +8,10 @@ var time = 0;
 var toxicImage = new Image();
 toxicImage.src = "toxic.jpg";
 
+/* The electric sign image. */
+var electricImage = new Image();
+electricImage.src = "electric.jpg";
+
 /* Each obstacle in the level is given by two numbers:
  *
  * 1. The obstacle type
@@ -16,6 +20,7 @@ toxicImage.src = "toxic.jpg";
 var obstacles = [
   [0, 500],
   [2, 200],
+  [3, 200],
   [0, 100],
   [0, 300],
   [1, 400],
@@ -107,6 +112,25 @@ var electricSign = function(x, y) {
   ctx.drawImage(toxicImage, x - 70, y - 140, 140, 120);
 };
 
+var electricSign2 = function(x, y) {
+  ctx.beginPath();
+  ctx.rect(x - 70, y - 20, 140, -120);
+  ctx.closePath();
+  ctx.fillStyle = "white";
+  ctx.strokeStyle = "black";
+  ctx.lineWidth = 4;
+  ctx.stroke();
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.rect(x - 10, y, 20, -20);
+  ctx.closePath();
+  ctx.fillStyle = "black";
+  ctx.fill();
+
+  ctx.drawImage(electricImage, x - 70, y - 140, 140, 120);
+};
+
 var drawFloor = function() {
   for (var i = 0; i < 4; i++) {
     ctx.beginPath();
@@ -132,7 +156,8 @@ var drawFloor = function() {
 var obstacleTypes = [
   obstacleSpike,
   obstacleSaw,
-  electricSign
+  electricSign,
+  electricSign2
 ];
 
 var drawObstacles = function() {
