@@ -23,8 +23,8 @@ electricImage.src = "electric.jpg";
 var obstacles = [
   [0, 500],
   [2, 200],
-  [3, 200],
   [0, 100],
+  [3, 200],
   [0, 300],
   [1, 400],
   [0, 400],
@@ -121,7 +121,7 @@ var obstacleSaw = function(x, y) {
   }
 };
 
-var electricSign = function(x, y) {
+var toxicSign = function(x, y) {
   ctx.beginPath();
   ctx.rect(x - 70, y - 20, 140, -120);
   ctx.closePath();
@@ -140,7 +140,7 @@ var electricSign = function(x, y) {
   ctx.drawImage(toxicImage, x - 70, y - 140, 140, 120);
 };
 
-var electricSign2 = function(x, y) {
+var electricSign = function(x, y) {
   ctx.beginPath();
   ctx.rect(x - 70, y - 20, 140, -120);
   ctx.closePath();
@@ -187,8 +187,8 @@ var drawFloor = function() {
 var obstacleTypes = [
   obstacleSpike,
   obstacleSaw,
-  electricSign,
-  electricSign2
+  toxicSign,
+  electricSign
 ];
 
 var drawObstacles = function() {
