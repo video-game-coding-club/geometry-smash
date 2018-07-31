@@ -4,6 +4,9 @@ var ctx = canvas.getContext("2d");
 /* Reset the game time. */
 var time = 0;
 
+/* The position of the floor. */
+var floorHeight = 0;
+
 /* The toxic sign image. */
 var toxicImage = new Image();
 toxicImage.src = "toxic.jpg";
@@ -25,9 +28,34 @@ var obstacles = [
   [0, 300]
 ];
 
+(function() {
+  function initialize() {
+    window.addEventListener('resize', resizeCanvas, false);
+    canvas.style.position = "absolute";
+    canvas.style.left = "0px";
+    canvas.style.top = "0px";
+    resizeCanvas();
+  }
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    floorHeight = canvas.height - 50;
+
+    /* Style the canvas so that coordinate system is not distorted. */
+    // canvas.style.width = Math.min(canvas.width, canvas.height);
+    // canvas.style.height = Math.min(canvas.width, canvas.height);
+  }
+
+  initialize();
+})();
+
 var background = function(color) {
   ctx.fillStyle = color;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.strokeStyle = 'black';
+  ctx.lineWidth = '5';
+  ctx.strokeRect(0, 0, canvas.width, canvas.height);
 };
 
 var obstacleSpike = function(x, y) {
@@ -108,9 +136,10 @@ var electricSign = function(x, y) {
 };
 
 var drawFloor = function() {
-  for (var i = 0; i < 4; i++) {
+  let i = 0;
+  while (-time % 400 + 400 * i < canvas.width) {
     ctx.beginPath();
-    ctx.rect(-time % 400 + 400 * i, 950, 200, 50);
+    ctx.rect(-time % 400 + 400 * i, floorHeight, 200, 50);
     ctx.closePath();
     ctx.strokeStyle = "black";
     ctx.fillStyle = "darkblue";
@@ -118,13 +147,15 @@ var drawFloor = function() {
     ctx.stroke();
 
     ctx.beginPath();
-    ctx.strokeRect(-time % 400 + 400 * i, 950, 200, 50);
+    ctx.strokeRect(-time % 400 + 400 * i, floorHeight, 200, 50);
     ctx.closePath();
-    ctx.rect(-time % 400 + 400 * i + 200, 950, 200, 50);
+    ctx.rect(-time % 400 + 400 * i + 200, floorHeight, 200, 50);
     ctx.strokeStyle = "black";
     ctx.fillStyle = "yellow";
     ctx.fill();
     ctx.stroke();
+
+    i++;
   }
 };
 
@@ -139,7 +170,7 @@ var drawObstacles = function() {
   var position = 0;
   for (var i = 0; i < obstacles.length; i++) {
     position += obstacles[i][1];
-    obstacleTypes[obstacles[i][0]](-time + position, 950);
+    obstacleTypes[obstacles[i][0]](-time + position, floorHeight);
   }
 };
 
