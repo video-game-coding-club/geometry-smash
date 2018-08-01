@@ -46,10 +46,6 @@ var obstacles = [
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     floorHeight = canvas.height - 50;
-
-    /* Style the canvas so that coordinate system is not distorted. */
-    // canvas.style.width = Math.min(canvas.width, canvas.height);
-    // canvas.style.height = Math.min(canvas.width, canvas.height);
   }
 
   initialize();
@@ -58,6 +54,7 @@ var obstacles = [
 var background = function(color) {
   ctx.fillStyle = color;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
+
   ctx.strokeStyle = 'black';
   ctx.lineWidth = '5';
   ctx.strokeRect(0, 0, canvas.width, canvas.height);
@@ -69,6 +66,7 @@ var obstacleSpike = function(x, y) {
   ctx.lineTo(x + 60, y);
   ctx.lineTo(x + 30, y - 60);
   ctx.closePath();
+
   ctx.fillStyle = "black";
   ctx.fill();
 };
@@ -87,18 +85,22 @@ var obstacleSaw = function(x, y) {
   ctx.beginPath();
   ctx.ellipse(x, sawHeight, sawRadius, sawRadius, 0, 0, 2 * Math.PI);
   ctx.closePath();
+
   ctx.fillStyle = "silver";
   ctx.fill();
 
   ctx.beginPath();
   ctx.ellipse(x, sawHeight, 15, 15, 0, 0, 2 * Math.PI);
   ctx.closePath();
+
   ctx.fillStyle = "black";
   ctx.fill();
 
   ctx.beginPath();
   ctx.rect(x - 5, sawHeight, 10, sawHeight);
   ctx.closePath();
+
+  ctx.fillStyle = "black";
   ctx.fill();
 
   for (var i = 0; i < numberSpikes; i++) {
@@ -114,6 +116,7 @@ var obstacleSaw = function(x, y) {
     ctx.lineTo(10, 0);
     ctx.lineTo(0, 20);
     ctx.closePath();
+
     ctx.fillStyle = "black";
     ctx.fill();
 
@@ -125,6 +128,7 @@ var toxicSign = function(x, y) {
   ctx.beginPath();
   ctx.rect(x - 70, y - 20, 140, -120);
   ctx.closePath();
+
   ctx.fillStyle = "white";
   ctx.strokeStyle = "black";
   ctx.lineWidth = 4;
@@ -134,6 +138,7 @@ var toxicSign = function(x, y) {
   ctx.beginPath();
   ctx.rect(x - 10, y, 20, -20);
   ctx.closePath();
+
   ctx.fillStyle = "black";
   ctx.fill();
 
@@ -144,6 +149,7 @@ var electricSign = function(x, y) {
   ctx.beginPath();
   ctx.rect(x - 70, y - 20, 140, -120);
   ctx.closePath();
+
   ctx.fillStyle = "white";
   ctx.strokeStyle = "black";
   ctx.lineWidth = 4;
@@ -153,6 +159,7 @@ var electricSign = function(x, y) {
   ctx.beginPath();
   ctx.rect(x - 10, y, 20, -20);
   ctx.closePath();
+
   ctx.fillStyle = "black";
   ctx.fill();
 
@@ -168,6 +175,7 @@ var drawFloor = function() {
       ctx.beginPath();
       ctx.rect(-time % 400 + 400 * i + 200 * j, floorHeight, 200, 50);
       ctx.closePath();
+
       ctx.strokeStyle = strokeColors[j];
       ctx.fillStyle = fillColors[j];
       ctx.fill();
