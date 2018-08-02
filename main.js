@@ -86,21 +86,18 @@ var obstacleSaw = function(x, y) {
   ctx.beginPath();
   ctx.ellipse(x, sawHeight, sawRadius, sawRadius, 0, 0, 2 * Math.PI);
   ctx.closePath();
-
   ctx.fillStyle = "silver";
   ctx.fill();
 
   ctx.beginPath();
   ctx.ellipse(x, sawHeight, 15, 15, 0, 0, 2 * Math.PI);
   ctx.closePath();
-
   ctx.fillStyle = "black";
   ctx.fill();
 
   ctx.beginPath();
   ctx.rect(x - 5, sawHeight, 10, sawHeight);
   ctx.closePath();
-
   ctx.fillStyle = "black";
   ctx.fill();
 
@@ -117,7 +114,6 @@ var obstacleSaw = function(x, y) {
     ctx.lineTo(10, 0);
     ctx.lineTo(0, 20);
     ctx.closePath();
-
     ctx.fillStyle = "black";
     ctx.fill();
 
@@ -129,7 +125,6 @@ var toxicSign = function(x, y) {
   ctx.beginPath();
   ctx.rect(x - 70, y - 20, 140, -120);
   ctx.closePath();
-
   ctx.fillStyle = "white";
   ctx.strokeStyle = "black";
   ctx.lineWidth = 4;
@@ -139,7 +134,6 @@ var toxicSign = function(x, y) {
   ctx.beginPath();
   ctx.rect(x - 10, y, 20, -20);
   ctx.closePath();
-
   ctx.fillStyle = "black";
   ctx.fill();
 
