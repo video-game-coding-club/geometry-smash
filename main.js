@@ -25,7 +25,7 @@ var obstacles = [
   [4, 200],
   [2, 300],
   [3, 100],
-  [2, 100],
+  [2, 200],
   [0, 100],
   [3, 200],
   [0, 300],
@@ -163,9 +163,12 @@ var electricSign = function(x, y) {
 };
 
 var obstacleLaser = function(x, y) {
-  ctx.fillStyle = "red";
-  ctx.strokeStyle = "black";
-  ctx.strokeRect(x, y, 100, -50);
+  ctx.fillStyle = "black";
+  ctx.fillRect(x, y, 76, -40);
+  ctx.beginPath();
+  ctx.fillStyle = "gold";
+  ctx.arc(x + 38, y - 40, 30, Math.PI, 2 * Math.PI);
+  ctx.fill();
 };
 
 var drawFloor = function() {
@@ -211,12 +214,12 @@ var drawObstacles = function() {
 
 var draw = function() {
   window.requestAnimationFrame(draw);
-  background("white");
+  background("blue");
 
   drawStats();
   drawObstacles();
   drawFloor();
-  time++;
+  //time++;
 };
 
 draw();
