@@ -202,7 +202,7 @@ var obstacleLaser = function(x, y) {
   }
 
   ctx.fillStyle = "black";
-  ctx.fillRect(x + 16, 2, 44, 16);
+  ctx.fillRect(x + 16, 0, 44, 18);
 };
 
 var drawFloor = function() {
