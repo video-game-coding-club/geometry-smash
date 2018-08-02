@@ -171,7 +171,7 @@ var obstacleLaser = function(x, y) {
   let laserInterval = 120;
   let laserOn = 40;
   let laserSpeed = 7;
-  
+
   if (time % laserInterval > laserInterval - laserOn) {
     let laserTop = 0;
     if (time % laserInterval < laserInterval - laserOn + laserSpeed) {
