@@ -15,6 +15,10 @@ toxicImage.src = "toxic.jpg";
 var electricImage = new Image();
 electricImage.src = "electric.jpg";
 
+/* The sound effect for the laser obstacle. */
+let lightningSound = new Audio("flash.wav");
+lightningSound.loop = true;
+
 /* Each obstacle in the level is given by two numbers:
  *
  * 1. The obstacle type
@@ -174,8 +178,14 @@ var obstacleLaser = function(x, y) {
   let laserOn = 40;
   let laserSpeed = 7;
 
+  let laserSound = false;
+
   if (time % laserInterval > laserInterval - laserOn) {
     let laserTop = 0;
+
+    if (! laserSound) {
+      laserSound = lightningSound.play();
+    }
     if (time % laserInterval < laserInterval - laserOn + laserSpeed) {
       laserTop = y - 76 - (y - 76) / 10 * (time % 10);
     }
@@ -199,6 +209,11 @@ var obstacleLaser = function(x, y) {
     ctx.strokeStyle = "orangered";
     ctx.lineWidth = 4;
     ctx.stroke();
+  } else {
+    if (laserSound) {
+      laserSound.pause();
+      laserSound = false;
+    }
   }
 
   ctx.fillStyle = "black";
