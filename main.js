@@ -23,9 +23,6 @@ electricImage.src = "electric.jpg";
 var obstacles = [
   [0, 500],
   [4, 200],
-  [2, 300],
-  [3, 100],
-  [2, 200],
   [0, 100],
   [3, 200],
   [0, 300],
@@ -165,10 +162,45 @@ var electricSign = function(x, y) {
 var obstacleLaser = function(x, y) {
   ctx.fillStyle = "black";
   ctx.fillRect(x, y, 76, -40);
+
   ctx.beginPath();
-  ctx.fillStyle = "gold";
   ctx.arc(x + 38, y - 40, 30, Math.PI, 2 * Math.PI);
+  ctx.fillStyle = "gold";
   ctx.fill();
+
+  let laserInterval = 120;
+  let laserOn = 40;
+  let laserSpeed = 7;
+  
+  if (time % laserInterval > laserInterval - laserOn) {
+    let laserTop = 0;
+    if (time % laserInterval < laserInterval - laserOn + laserSpeed) {
+      laserTop = y - 76 - (y - 76) / 10 * (time % 10);
+    }
+    ctx.beginPath();
+    ctx.moveTo(x + 38, y - 76);
+    ctx.lineTo(x + 38, laserTop);
+    ctx.lineWidth = 9;
+    ctx.strokeStyle = "darkred";
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(x + 32, y - 75);
+    ctx.lineTo(x + 32, laserTop);
+    ctx.strokeStyle = "orangered";
+    ctx.lineWidth = 4;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(x + 44, y - 75);
+    ctx.lineTo(x + 44, laserTop);
+    ctx.strokeStyle = "orangered";
+    ctx.lineWidth = 4;
+    ctx.stroke();
+  }
+
+  ctx.fillStyle = "black";
+  ctx.fillRect(x + 16, 2, 44, 16);
 };
 
 var drawFloor = function() {
@@ -219,8 +251,7 @@ var draw = function() {
   drawStats();
   drawObstacles();
   drawFloor();
-  //time++;
+  time++;
 };
 
 draw();
- 
