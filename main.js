@@ -20,6 +20,9 @@ let lightningSound = new Audio("flash.wav");
 lightningSound.loop = true;
 lightningSound.muted = true;
 
+/* The state of the laser sound. */
+let laserSound = undefined;
+
 /* Each obstacle in the level is given by two numbers:
  *
  * 1. The obstacle type
@@ -178,8 +181,6 @@ var obstacleLaser = function(x, y) {
   let laserInterval = 120;
   let laserOn = 40;
   let laserSpeed = 7;
-
-  let laserSound = undefined;
 
   if (time % laserInterval > laserInterval - laserOn) {
     /* The current height of the laser beam. */
