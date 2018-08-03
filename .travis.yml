@@ -32,4 +32,12 @@ script:
       --outfile style.css.beautified \
       style.css
   - diff -Naur style.css style.css.beautified
+  - |
+    html-beautify \
+      --type html \
+      --indent-size 2 \
+      --end-with-newline \
+      --outfile index.html.beautified \
+      index.html
+  - diff -Naur index.html index.html.beautified
   - html-linter --config html-linter.json
