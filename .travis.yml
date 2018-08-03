@@ -11,6 +11,7 @@ install:
   - npm install jshint -g
   - npm install PrettyCSS -g
   - npm install js-beautify -g
+  - npm install html-linter -g
 
 script:
   - jshint main.js
@@ -31,3 +32,4 @@ script:
       --outfile style.css.beautified \
       style.css
   - diff -Naur style.css style.css.beautified
+  - html-linter --config html-linter.json
