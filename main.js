@@ -284,10 +284,15 @@ let drawSoundButton = function() {
 };
 
 let mouseClickedSoundButton = function(event) {
-  if (event.clientX > canvas.width - 110 && event.clientX < canvas.width - 10 &&
-      event.clientY > 10 && event.clientY < 110) {
-    console.log("turn sound on");
-    lightningSound.mute = false;
+  if (event.clientX > canvas.width - 230 && event.clientX < canvas.width - 10 &&
+    event.clientY > 10 && event.clientY < 110) {
+    if (lightningSound.muted) {
+      console.log("turn sound on");
+      lightningSound.muted = false;
+    } else {
+      console.log("turn sound off");
+      lightningSound.muted = true;
+    }
   }
 };
 
