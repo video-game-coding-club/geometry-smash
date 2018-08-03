@@ -186,8 +186,16 @@ var obstacleLaser = function(x, y) {
     /* The current height of the laser beam. */
     let laserTop = 0;
 
-    if (! laserSound) {
+    if (laserSound === undefined) {
       laserSound = lightningSound.play();
+      if (laserSound !== undefined) {
+        laserSound.then(_ => {
+          console.log("playing sound");
+        }).catch(error => {
+          console.log("could not play sound");
+          console.log(error);
+        });
+      }
     }
     if (time % laserInterval < laserInterval - laserOn + laserSpeed) {
       laserTop = y - 76 - (y - 76) / 10 * (time % 10);
