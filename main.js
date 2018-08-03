@@ -178,9 +178,10 @@ var obstacleLaser = function(x, y) {
   let laserOn = 40;
   let laserSpeed = 7;
 
-  let laserSound = false;
+  let laserSound = undefined;
 
   if (time % laserInterval > laserInterval - laserOn) {
+    /* The current height of the laser beam. */
     let laserTop = 0;
 
     if (! laserSound) {
@@ -189,6 +190,7 @@ var obstacleLaser = function(x, y) {
     if (time % laserInterval < laserInterval - laserOn + laserSpeed) {
       laserTop = y - 76 - (y - 76) / 10 * (time % 10);
     }
+
     ctx.beginPath();
     ctx.moveTo(x + 38, y - 76);
     ctx.lineTo(x + 38, laserTop);
