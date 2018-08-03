@@ -16,6 +16,7 @@ install:
 script:
   - jshint main.js
   - prettycss style.css
+  - html-linter --config html-linter.json
   - |
     js-beautify \
       --type js \
@@ -40,4 +41,11 @@ script:
       --outfile index.html.beautified \
       index.html
   - diff -Naur index.html index.html.beautified
-  - html-linter --config html-linter.json
+  - |
+    html-beautify \
+      --type html \
+      --indent-size 2 \
+      --end-with-newline \
+      --outfile game.html.beautified \
+      game.html
+  - diff -Naur game.html game.html.beautified
