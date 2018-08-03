@@ -21,7 +21,7 @@ lightningSound.loop = true;
 lightningSound.muted = true;
 
 /* The state of the laser sound. */
-let laserSound = undefined;
+let laserSound;
 
 /* Each obstacle in the level is given by two numbers:
  *
@@ -222,9 +222,9 @@ var obstacleLaser = function(x, y) {
     ctx.lineWidth = 4;
     ctx.stroke();
   } else {
-    if (laserSound) {
-      laserSound.pause();
-      laserSound = false;
+    if (laserSound !== undefined) {
+      lightningSound.pause();
+      laserSound = undefined;
     }
   }
 
