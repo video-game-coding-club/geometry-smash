@@ -39,19 +39,19 @@ var obstacles = [
 ];
 
 (function() {
-  function initialize() {
-    window.addEventListener('resize', resizeCanvas, false);
+  let initialize = function() {
+    window.addEventListener('resize', resizeCanvas);
     canvas.style.position = "absolute";
     canvas.style.left = "0px";
     canvas.style.top = "0px";
     resizeCanvas();
-  }
+  };
 
-  function resizeCanvas() {
+  let resizeCanvas = function() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     floorHeight = canvas.height - 50;
-  }
+  };
 
   initialize();
 })();
