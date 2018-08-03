@@ -269,11 +269,49 @@ var drawObstacles = function() {
   }
 };
 
+let drawSoundButton = function() {
+  ctx.fillStyle = "yellow";
+  ctx.rect(canvas.width - 110, 10, 100, 100);
+  ctx.fill();
+
+  ctx.fillStyle = "black";
+  ctx.font = '48px serif';
+  ctx.fillText("On", canvas.width - 100, 80);
+};
+
+let mouseClickedSoundButton = function(event) {
+  if (event.clientX > canvas.width - 110 && event.clientX < canvas.width - 10 &&
+      event.clientY > 10 && event.clientY < 110) {
+    console.log("turn sound on");
+    lightningSound.mute = false;
+  }
+};
+
+let mouseClickedListeners = [
+  mouseClickedSoundButton
+];
+
+(function() {
+  let initialize = function() {
+    canvas.addEventListener('click', mouseClick);
+  };
+
+  let mouseClick = function(event) {
+    console.log("mouse clicked");
+    for (let i = 0; i < mouseClickedListeners.length; i++) {
+      mouseClickedListeners[i](event);
+    }
+  };
+
+  initialize();
+})();
+
 var draw = function() {
   window.requestAnimationFrame(draw);
   background("blue");
 
   drawStats();
+  drawSoundButton();
   drawObstacles();
   drawFloor();
   time++;
