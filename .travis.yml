@@ -11,10 +11,12 @@ install:
   - npm install jshint -g
   - npm install PrettyCSS -g
   - npm install js-beautify -g
+  - npm install html-linter -g
 
 script:
   - jshint main.js
   - prettycss style.css
+  - html-linter --config html-linter.json
   - |
     js-beautify \
       --type js \
@@ -31,3 +33,21 @@ script:
       --outfile style.css.beautified \
       style.css
   - diff -Naur style.css style.css.beautified
+  - |
+    html-beautify \
+      --type html \
+      --indent-size 2 \
+      --indent-inner-html \
+      --end-with-newline \
+      --outfile index.html.beautified \
+      index.html
+  - diff -Naur index.html index.html.beautified
+  - |
+    html-beautify \
+      --type html \
+      --indent-size 2 \
+      --indent-inner-html \
+      --end-with-newline \
+      --outfile game.html.beautified \
+      game.html
+  - diff -Naur game.html game.html.beautified
