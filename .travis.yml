@@ -37,6 +37,7 @@ script:
     html-beautify \
       --type html \
       --indent-size 2 \
+      --indent-inner-html \
       --end-with-newline \
       --outfile index.html.beautified \
       index.html
@@ -45,6 +46,7 @@ script:
     html-beautify \
       --type html \
       --indent-size 2 \
+      --indent-inner-html \
       --end-with-newline \
       --outfile game.html.beautified \
       game.html
