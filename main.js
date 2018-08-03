@@ -18,6 +18,7 @@ electricImage.src = "electric.jpg";
 /* The sound effect for the laser obstacle. */
 let lightningSound = new Audio("flash.wav");
 lightningSound.loop = true;
+lightningSound.muted = true;
 
 /* Each obstacle in the level is given by two numbers:
  *
