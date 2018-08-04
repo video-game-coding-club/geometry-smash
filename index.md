@@ -2,9 +2,13 @@
 
 ## The Game
 
-A game written by students of Mountain Elementary in Los Alamos, NM.
+A video game coding project by Mountain Elementary students in Los
+Alamos, NM.
 
-[The game](game.html)
+Contributions are very welcome. If you would like to help please
+create a new issue or submit a pull request.
+
+You can check out and play the game right here: [**Gemetry Smash**](game.html)
 
 ## Authors
 
