@@ -11,7 +11,7 @@ PATH=${PATH}:node_modules/.bin/
 
 jshint main.js
 prettycss style.css
-html-linter --config html-linter.json
+html-linter --config html-linter.json *.html
 js-beautify \
     --type js \
     --indent-size 2 \
