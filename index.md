@@ -2,7 +2,11 @@
 
 ## The Game
 
-A game written by students of Mountain Elementary in Los Alamos, NM.
+A video game coding project by Mountain Elementary students in Los
+Alamos, NM.
+
+Contributions are very welcome. If you would like to help please
+create a new issue or submit a pull request.
 
 [The game](game.html)
 
