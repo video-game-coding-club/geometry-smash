@@ -2,12 +2,14 @@
 
 set -e -x
 
-npm install jshint
-npm install PrettyCSS
-npm install js-beautify
-npm install html-linter
+if [[ ${TRAVIS} != "true" ]]; then
+    npm install jshint
+    npm install PrettyCSS
+    npm install js-beautify
+    npm install html-linter
 
-PATH=${PATH}:node_modules/.bin/
+    PATH=${PATH}:node_modules/.bin/
+fi
 
 jshint main.js
 prettycss style.css
