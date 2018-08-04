@@ -263,7 +263,9 @@ var drawObstacles = function() {
   var position = 0;
   for (var i = 0; i < obstacles.length; i++) {
     position += obstacles[i][1];
-    obstacleTypes[obstacles[i][0]](-time + position, floorHeight);
+    if (-time + position - 100 > 0 && -time + position < canvas.width) {
+      obstacleTypes[obstacles[i][0]](-time + position, floorHeight);
+    }
   }
 };
 
