@@ -271,12 +271,16 @@ var drawObstacles = function() {
 
 let drawSoundButton = function() {
   ctx.fillStyle = "yellow";
-  ctx.rect(canvas.width - 110, 10, 100, 100);
+  ctx.rect(canvas.width - 230, 10, 220, 100);
   ctx.fill();
 
   ctx.fillStyle = "black";
   ctx.font = '48px serif';
-  ctx.fillText("On", canvas.width - 100, 80);
+  if (lightningSound.muted) {
+    ctx.fillText("Sound On", canvas.width - 220, 80);
+  } else {
+    ctx.fillText("Sound Off", canvas.width - 220, 80);
+  }
 };
 
 let mouseClickedSoundButton = function(event) {
