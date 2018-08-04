@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -e -x
 
 npm install jshint
 npm install PrettyCSS
