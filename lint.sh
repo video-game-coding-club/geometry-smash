@@ -31,14 +31,6 @@ html-beautify \
     --indent-size 2 \
     --indent-inner-html \
     --end-with-newline \
-    --outfile index.html.beautified \
-    index.html
-diff -Naur index.html index.html.beautified
-html-beautify \
-    --type html \
-    --indent-size 2 \
-    --indent-inner-html \
-    --end-with-newline \
     --outfile game.html.beautified \
     game.html
 diff -Naur game.html game.html.beautified
