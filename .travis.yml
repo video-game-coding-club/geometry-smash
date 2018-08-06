@@ -12,6 +12,7 @@ install:
   - npm install PrettyCSS -g
   - npm install js-beautify -g
   - npm install html-linter -g
+  - bundle install
 
 script:
   - ./lint.sh
