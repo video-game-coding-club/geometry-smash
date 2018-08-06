@@ -265,6 +265,10 @@ var drawObstacles = function() {
     position += obstacles[i][1];
     if (-time + position - 100 > 0 && -time + position < canvas.width) {
       obstacleTypes[obstacles[i][0]](-time + position, floorHeight);
+    } else {
+      if (obstacles[i][0] === 4) {
+        lightningSound.muted = true;
+      }
     }
   }
 };
