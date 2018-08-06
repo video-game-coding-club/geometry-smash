@@ -240,11 +240,58 @@ var drawObstacles = function() {
   }
 };
 
+let drawSoundButton = function() {
+  ctx.fillStyle = "yellow";
+  ctx.rect(canvas.width - 230, 10, 220, 100);
+  ctx.fill();
+
+  ctx.fillStyle = "black";
+  ctx.font = '48px serif';
+  if (lightningSound.muted) {
+    ctx.fillText("Sound On", canvas.width - 220, 80);
+  } else {
+    ctx.fillText("Sound Off", canvas.width - 220, 80);
+  }
+};
+
+let mouseClickedSoundButton = function(event) {
+  if (event.clientX > canvas.width - 230 && event.clientX < canvas.width - 10 &&
+    event.clientY > 10 && event.clientY < 110) {
+    if (lightningSound.muted) {
+      console.log("turn sound on");
+      lightningSound.muted = false;
+    } else {
+      console.log("turn sound off");
+      lightningSound.muted = true;
+    }
+  }
+};
+
+let mouseClickedListeners = [
+  mouseClickedSoundButton
+];
+
+(function() {
+  let initialize = function() {
+    canvas.addEventListener('click', mouseClick);
+  };
+
+  let mouseClick = function(event) {
+    console.log("mouse clicked");
+    for (let i = 0; i < mouseClickedListeners.length; i++) {
+      mouseClickedListeners[i](event);
+    }
+  };
+
+  initialize();
+})();
+
 var draw = function() {
   window.requestAnimationFrame(draw);
   background("blue");
 
   drawStats();
+  drawSoundButton();
   drawObstacles();
   drawFloor();
   time++;
