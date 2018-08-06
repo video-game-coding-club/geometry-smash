@@ -13,6 +13,9 @@ warn("Big PR") if git.lines_of_code > 500
 fail("fdescribe left in tests") if `grep -r fdescribe specs/ `.length > 1
 fail("fit left in tests") if `grep -r fit specs/ `.length > 1
 
+prose.lint_files
+prose.check_spelling
+
 # Local Variables:
 # mode: ruby
 # End:
