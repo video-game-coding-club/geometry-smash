@@ -15,6 +15,14 @@ toxicImage.src = "toxic.jpg";
 var electricImage = new Image();
 electricImage.src = "electric.jpg";
 
+/* The sound effect for the laser obstacle. */
+let lightningSound = new Audio("flash.wav");
+lightningSound.loop = true;
+lightningSound.muted = true;
+
+/* The state of the laser sound. */
+let laserSound;
+
 /* Each obstacle in the level is given by two numbers:
  *
  * 1. The obstacle type
@@ -22,11 +30,11 @@ electricImage.src = "electric.jpg";
  */
 var obstacles = [
   [0, 500],
-  [4, 200],
   [0, 100],
   [3, 200],
   [2, 200],
   [0, 300],
+  [4, 200],
   [1, 400],
   [0, 400],
   [0, 550],
@@ -35,19 +43,19 @@ var obstacles = [
 ];
 
 (function() {
-  function initialize() {
-    window.addEventListener('resize', resizeCanvas, false);
+  let initialize = function() {
+    window.addEventListener('resize', resizeCanvas);
     canvas.style.position = "absolute";
     canvas.style.left = "0px";
     canvas.style.top = "0px";
     resizeCanvas();
-  }
+  };
 
-  function resizeCanvas() {
+  let resizeCanvas = function() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     floorHeight = canvas.height - 50;
-  }
+  };
 
   initialize();
 })();
@@ -175,10 +183,24 @@ var obstacleLaser = function(x, y) {
   let laserSpeed = 7;
 
   if (time % laserInterval > laserInterval - laserOn) {
+    /* The current height of the laser beam. */
     let laserTop = 0;
+
+    if (laserSound === undefined) {
+      laserSound = lightningSound.play();
+      if (laserSound !== undefined) {
+        laserSound.then(_ => {
+          console.log("playing sound");
+        }).catch(error => {
+          console.log("could not play sound");
+          console.log(error);
+        });
+      }
+    }
     if (time % laserInterval < laserInterval - laserOn + laserSpeed) {
       laserTop = y - 76 - (y - 76) / 10 * (time % 10);
     }
+
     ctx.beginPath();
     ctx.moveTo(x + 38, y - 76);
     ctx.lineTo(x + 38, laserTop);
@@ -199,6 +221,11 @@ var obstacleLaser = function(x, y) {
     ctx.strokeStyle = "orangered";
     ctx.lineWidth = 4;
     ctx.stroke();
+  } else {
+    if (laserSound !== undefined) {
+      lightningSound.pause();
+      laserSound = undefined;
+    }
   }
 
   ctx.fillStyle = "black";
@@ -236,15 +263,68 @@ var drawObstacles = function() {
   var position = 0;
   for (var i = 0; i < obstacles.length; i++) {
     position += obstacles[i][1];
-    obstacleTypes[obstacles[i][0]](-time + position, floorHeight);
+    if (-time + position - 100 > 0 && -time + position < canvas.width) {
+      obstacleTypes[obstacles[i][0]](-time + position, floorHeight);
+    } else {
+      if (obstacles[i][0] === 4) {
+        lightningSound.muted = true;
+      }
+    }
   }
 };
+
+let drawSoundButton = function() {
+  ctx.fillStyle = "yellow";
+  ctx.rect(canvas.width - 230, 10, 220, 100);
+  ctx.fill();
+
+  ctx.fillStyle = "black";
+  ctx.font = '48px serif';
+  if (lightningSound.muted) {
+    ctx.fillText("Sound On", canvas.width - 220, 80);
+  } else {
+    ctx.fillText("Sound Off", canvas.width - 220, 80);
+  }
+};
+
+let mouseClickedSoundButton = function(event) {
+  if (event.clientX > canvas.width - 230 && event.clientX < canvas.width - 10 &&
+    event.clientY > 10 && event.clientY < 110) {
+    if (lightningSound.muted) {
+      console.log("turn sound on");
+      lightningSound.muted = false;
+    } else {
+      console.log("turn sound off");
+      lightningSound.muted = true;
+    }
+  }
+};
+
+let mouseClickedListeners = [
+  mouseClickedSoundButton
+];
+
+(function() {
+  let initialize = function() {
+    canvas.addEventListener('click', mouseClick);
+  };
+
+  let mouseClick = function(event) {
+    console.log("mouse clicked");
+    for (let i = 0; i < mouseClickedListeners.length; i++) {
+      mouseClickedListeners[i](event);
+    }
+  };
+
+  initialize();
+})();
 
 var draw = function() {
   window.requestAnimationFrame(draw);
   background("blue");
 
   drawStats();
+  drawSoundButton();
   drawObstacles();
   drawFloor();
   time++;
