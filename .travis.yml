@@ -12,8 +12,8 @@ install:
   - npm install PrettyCSS -g
   - npm install js-beautify -g
   - npm install html-linter -g
-  - npm install danger -g
+  - bundle install
 
 script:
   - ./lint.sh
-  - danger ci
+  - bundle exec danger
