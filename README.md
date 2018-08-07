@@ -8,8 +8,7 @@ This video game is under active development by Mountain Elementary
 students in Los Alamos, NM. It started as a summer break coding
 project in 2018.
 
-You can check out and play the game right here: [**Play Geometry
-Smash**](game.html)
+You can play the game right here: [**Play Geometry Smash**](game.html)
 
 # Contribute
 
