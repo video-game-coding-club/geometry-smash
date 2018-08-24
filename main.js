@@ -30,7 +30,7 @@ let laserSound;
  */
 var obstacles = [
   [0, 500],
-  [0, 100],
+  [5, 200],
   [3, 200],
   [2, 200],
   [0, 300],
@@ -232,6 +232,16 @@ var obstacleLaser = function(x, y) {
   ctx.fillRect(x + 16, 0, 44, 18);
 };
 
+var obstacleRect = function(x, y) {
+  ctx.rect(500, 500, 100, 25);
+  ctx.beginPath();
+  ctx.moveTo(500, y);
+  ctx.lineTo(160, y);
+  ctx.lineTo(130, y - 60);
+  ctx.closePath();
+  ctx.fill();
+};
+
 var drawFloor = function() {
   let strokeColors = ["black", "black"];
   let fillColors = ["darkblue", "yellow"];
@@ -256,7 +266,8 @@ var obstacleTypes = [
   obstacleSaw,
   toxicSign,
   electricSign,
-  obstacleLaser
+  obstacleLaser,
+  obstacleRect
 ];
 
 var drawObstacles = function() {
@@ -281,7 +292,7 @@ let drawSoundButton = function() {
   ctx.fillStyle = "black";
   ctx.font = '48px serif';
   if (lightningSound.muted) {
-    ctx.fillText("Sound On", canvas.width - 220, 80);
+    ctx.fillText("Sound OnTop", canvas.width - 220, 80);
   } else {
     ctx.fillText("Sound Off", canvas.width - 220, 80);
   }
