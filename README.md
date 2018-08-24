@@ -2,7 +2,7 @@
 
 [![Build Status](https://www.travis-ci.com/video-game-coding-club/geometry-smash.svg?branch=master)](https://www.travis-ci.com/video-game-coding-club/geometry-smash)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/video-game-coding-club/geometry-smash.svg)](https://github.com/video-game-coding-club/geometry-smash/pulls)
-[![GitHub issues](https://img.shields.io/github/issues/video-game-coding-club/geometry-smash.svg)](https://github.com/video-game-coding-club/geometry-smash/issues)
+[![GitHub issues](https://img.shields.io/github/issues/video-game-coding-club/geometry-smash.svg)](https://github.com/video-game-coding-club/geometry-smash/issues) [![Join the chat at https://gitter.im/video-game-coding-club/geometry-smash](https://badges.gitter.im/video-game-coding-club/geometry-smash.svg)](https://gitter.im/video-game-coding-club/geometry-smash?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 This video game is under active development by Mountain Elementary
 students in Los Alamos, NM. It started as a summer break coding
