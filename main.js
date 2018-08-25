@@ -30,8 +30,8 @@ let laserSound;
  */
 var obstacles = [
   [0, 500],
-  [0, 100],
-  [3, 200],
+  [5, 200],
+  [3, 400],
   [2, 200],
   [0, 300],
   [4, 200],
@@ -232,6 +232,19 @@ var obstacleLaser = function(x, y) {
   ctx.fillRect(x + 16, 0, 44, 18);
 };
 
+var obstaclePole = function(x, y) {
+  let speed = 2;
+  let height = Math.max(0.5 * canvas.height, y - speed * time);
+  ctx.beginPath();
+  ctx.moveTo(x, y);
+  ctx.lineTo(x + 100, y);
+  ctx.lineTo(x + 80, height);
+  ctx.lineTo(x + 20, height);
+  ctx.closePath();
+  ctx.fillStyle = "red";
+  ctx.fill();
+};
+
 var drawFloor = function() {
   let strokeColors = ["black", "black"];
   let fillColors = ["darkblue", "yellow"];
@@ -256,7 +269,8 @@ var obstacleTypes = [
   obstacleSaw,
   toxicSign,
   electricSign,
-  obstacleLaser
+  obstacleLaser,
+  obstaclePole
 ];
 
 var drawObstacles = function() {
