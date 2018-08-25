@@ -23,25 +23,6 @@ lightningSound.muted = true;
 /* The state of the laser sound. */
 let laserSound;
 
-/* Each obstacle in the level is given by two numbers:
- *
- * 1. The obstacle type
- * 2. The distance to the previous obstacle
- */
-var obstacles = [
-  [0, 500],
-  [5, 200],
-  [3, 400],
-  [2, 200],
-  [0, 300],
-  [4, 200],
-  [1, 400],
-  [0, 400],
-  [0, 550],
-  [0, 320],
-  [0, 300]
-];
-
 (function() {
   let initialize = function() {
     window.addEventListener('resize', resizeCanvas);
@@ -263,14 +244,23 @@ var drawFloor = function() {
   }
 };
 
-/* The obstacle types. */
-var obstacleTypes = [
-  obstacleSpike,
-  obstacleSaw,
-  toxicSign,
-  electricSign,
-  obstacleLaser,
-  obstaclePole
+/* Each obstacle in the level is given by two things:
+ *
+ * 1. The obstacle type
+ * 2. The distance to the previous obstacle
+ */
+var obstacles = [
+  [obstacleSpike, 500],
+  [obstaclePole, 200],
+  [electricSign, 400],
+  [toxicSign, 200],
+  [obstacleSpike, 300],
+  [obstacleLaser, 200],
+  [obstacleSaw, 400],
+  [obstacleSpike, 400],
+  [obstacleSpike, 550],
+  [obstacleSpike, 320],
+  [obstacleSpike, 300]
 ];
 
 var drawObstacles = function() {
@@ -278,7 +268,7 @@ var drawObstacles = function() {
   for (var i = 0; i < obstacles.length; i++) {
     position += obstacles[i][1];
     if (-time + position - 100 > 0 && -time + position < canvas.width) {
-      obstacleTypes[obstacles[i][0]](-time + position, floorHeight);
+      obstacles[i][0](-time + position, floorHeight);
     } else {
       if (obstacles[i][0] === 4) {
         lightningSound.muted = true;
