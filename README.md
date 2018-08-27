@@ -27,7 +27,7 @@ with some useful information on how to contribute.
 
 In alphabetical order:
 
-- Adis Bock
+- @adisbock
 - Lucas Price
 - Zach Gibson
 
