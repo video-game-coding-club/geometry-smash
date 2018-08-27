@@ -2,6 +2,8 @@
 
 set -e -x
 
+npm install npm
+
 if [[ ${TRAVIS} != "true" ]]; then
     npm install jshint
     npm install PrettyCSS
