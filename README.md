@@ -13,11 +13,14 @@ You can play the game right here: [**Play Geometry Smash**](game.html)
 
 # Contribute
 
-- Contributions are very welcome. If you would like to help please
+Contributions are very welcome. If you would like to help please
   create a [new
   issue](https://github.com/video-game-coding-club/geometry-smash/issues)
   or submit a [pull
   request](https://github.com/video-game-coding-club/geometry-smash/pulls).
+
+Please see also:
+
 - Our [Kanban
   board](https://github.com/video-game-coding-club/geometry-smash/projects/1)
   is tracking what we are currently working on. Feel free to pick up
