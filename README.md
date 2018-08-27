@@ -27,9 +27,9 @@ with some useful information on how to contribute.
 
 In alphabetical order:
 
-- @adisbock
-- Lucas Price
-- Zach Gibson
+- Adis Bock (@adisbock)
+- Lucas Price (@lucasprice)
+- Zach Gibson (@togibson)
 
 # CodeAnywhere
 
