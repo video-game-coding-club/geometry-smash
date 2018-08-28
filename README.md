@@ -23,6 +23,10 @@ You might also want to check out our
 [wiki](https://github.com/video-game-coding-club/geometry-smash/wiki)
 with some useful information on how to contribute.
 
+Or you can use
+[GitPod](https://gitpod.io#https://github.com/video-game-coding-club/geometry-smash)
+as your fully featured IDE.
+
 # Authors
 
 In alphabetical order:
