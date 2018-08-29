@@ -14,14 +14,23 @@ You can play the game right here: [**Play Geometry Smash**](game.html)
 # Contribute
 
 Contributions are very welcome. If you would like to help please
-create a [new
-issue](https://github.com/video-game-coding-club/geometry-smash/issues)
-or submit a [pull
-request](https://github.com/video-game-coding-club/geometry-smash/pulls).
+  create a [new
+  issue](https://github.com/video-game-coding-club/geometry-smash/issues)
+  or submit a [pull
+  request](https://github.com/video-game-coding-club/geometry-smash/pulls).
 
-You might also want to check out our
-[wiki](https://github.com/video-game-coding-club/geometry-smash/wiki)
-with some useful information on how to contribute.
+Please see also:
+
+- Our [Kanban
+  board](https://github.com/video-game-coding-club/geometry-smash/projects/1)
+  is tracking what we are currently working on. Feel free to pick up
+  any of the open issues and start working on it.
+- We also use
+  [Gitter](https://gitter.im/video-game-coding-club/geometry-smash)
+  for real time chat. Drop by and say hi!
+- You might also want to check out our
+  [wiki](https://github.com/video-game-coding-club/geometry-smash/wiki)
+  with some useful information on how to contribute.
 
 # Authors
 
