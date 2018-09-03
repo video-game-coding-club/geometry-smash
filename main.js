@@ -82,38 +82,39 @@ var obstacleSpike = function(x, y) {
 /*I am making a program on github
 and this is my game hero !!! */
 
-
-var y = 10;
+var hero = function(x, y) {
+  var x = 10;
 
 /*body
 and color*/
 
 ctx.fill(105, 73, 75);
-ctx.ellipse(y + 190, 350, 93, 93);
+ctx.ellipse(x + 190, 350, 93, 93);
 
 /*big
 smile*/
 
 ctx.fill(245, 240, 240);
-ctx.arc(y + 192, 350, 71, 77, 1, 180);
+ctx.arc(x + 192, 350, 71, 77, 1, 180);
 
 /*eyes and
 pupils*/
 
-ctx.ellipse(y + 179, 332, 24, 24);
-ctx.ellipse(y + 200, 332, 24, 24);
+ctx.ellipse(x + 179, 332, 24, 24);
+ctx.ellipse(x + 200, 332, 24, 24);
 ctx.fill(0, 0, 255);
-ctx.ellipse(y + 179, 332, 10, 10);
-ctx.ellipse(y + 200, 332, 10, 10);
+ctx.ellipse(x + 179, 332, 10, 10);
+ctx.ellipse(x + 200, 332, 10, 10);
 
 /*arms and
 fists*/
 
-ctx.line(y + 236, 351, 270, 304);
-ctx.line(y + 144, 350, 130, 304);
+ctx.line(x + 236, 351, 270, 304);
+ctx.line(x + 144, 350, 130, 304);
 ctx.fill(255, 0, 0);
-ctx.ellipse(y + 120, 307, 10, 10);
-ctx.ellipse(y + 260, 307, 10, 10);
+ctx.ellipse(x + 120, 307, 10, 10);
+ctx.ellipse(x + 260, 307, 10, 10);
+};
 
 
 
