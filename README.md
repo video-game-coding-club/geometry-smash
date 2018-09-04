@@ -1,3 +1,8 @@
+---
+title: "Welcome to Geometry Smash"
+toc: true
+---
+
 # The Game
 
 [![Build Status](https://www.travis-ci.com/video-game-coding-club/geometry-smash.svg?branch=master)](https://www.travis-ci.com/video-game-coding-club/geometry-smash)

@@ -3,3 +3,4 @@ title: Geometry Smash
 google_analytics: UA-123354485-1
 plugins:
   - jekyll-mentions
+  - jekyll-toc
