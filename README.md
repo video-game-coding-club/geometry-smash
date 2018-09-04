@@ -52,6 +52,8 @@ list of files instead of the game. The game itself was moved from
 `index.html` to `game.html`. Just click on the file `game.html` and
 the game should start.
 
+[[CodeAnywhere]]
+
 ## More details
 
 The game script was loaded in `index.html` but recently we introduced
