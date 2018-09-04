@@ -1,4 +1,5 @@
 ---
+layout: page
 title: "Welcome to Geometry Smash"
 toc: true
 ---
@@ -72,3 +73,5 @@ platform,
 [GitPod](https://gitpod.io#https://github.com/video-game-coding-club/geometry-smash)
 offers tighter GitHub integration. All necessary `git` commands can be
 run via the GUI instead of the command line.
+
+{% include footer.md %}
