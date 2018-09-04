@@ -31,11 +31,10 @@ Please see also:
 - You might also want to check out our
   [wiki](https://github.com/video-game-coding-club/geometry-smash/wiki)
   with some useful information on how to contribute.
-
-Or you can use
-[GitPod](https://gitpod.io#https://github.com/video-game-coding-club/geometry-smash)
-as your fully featured IDE (the free plan is limited currently to 10
-hours of usage per month).
+- Or you can use
+  [GitPod](https://gitpod.io#https://github.com/video-game-coding-club/geometry-smash)
+  as your fully featured IDE (the free plan is limited currently to 10
+  hours of usage per month).
 
 # Authors
 
