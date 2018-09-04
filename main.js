@@ -61,7 +61,7 @@ var obstacleSpike = function(x, y) {
 
 var heroPosition = 20;
 var hero = function(y) {
-  let x0 = 20;      // distance from right side
+  let x0 = 20; // distance from right side
   ctx.beginPath();
   ctx.moveTo(x0, y);
   ctx.lineTo(x0 + 60, y);
@@ -276,7 +276,7 @@ var obstacles = [
 
 var drawObstacles = function() {
   var position = 0;
-  var rightside = 20
+  var rightside = 20;
   for (var i = 0; i < obstacles.length; i++) {
     position += obstacles[i][1];
     // draw if coordinates are within the canvas
@@ -291,9 +291,9 @@ var drawObstacles = function() {
 };
 
 var drawHero = function(y) {
-  let y0 = floorHeight;   // initial location
-     hero(y0-y);
-}
+  let y0 = floorHeight; // initial location
+  hero(y0 - y);
+};
 
 let drawSoundButton = function() {
   ctx.fillStyle = "yellow";
@@ -323,7 +323,7 @@ let mouseClickedSoundButton = function(event) {
 };
 
 let mouseClickedMoveHero = function(event) {
-   heroPosition += 20; 
+  heroPosition += 20;
 };
 
 let mouseClickedListeners = [
@@ -346,14 +346,14 @@ let mouseClickedListeners = [
   initialize();
 })();
 
-                          
+
 var draw = function() {
   window.requestAnimationFrame(draw);
   background("blue");
 
   drawStats();
   drawSoundButton();
-  drawObstacles();                      
+  drawObstacles();
   drawHero(heroPosition);
   drawFloor();
   time++;
