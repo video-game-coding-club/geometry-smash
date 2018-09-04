@@ -32,6 +32,11 @@ Please see also:
   [wiki](https://github.com/video-game-coding-club/geometry-smash/wiki)
   with some useful information on how to contribute.
 
+Or you can use
+[GitPod](https://gitpod.io#https://github.com/video-game-coding-club/geometry-smash)
+as your fully featured IDE (the free plan is limited currently to 10
+hours of usage per month).
+
 # Authors
 
 In alphabetical order:
@@ -47,6 +52,14 @@ platform, please note that the "**Run Project**" button will serve a
 list of files instead of the game. The game itself was moved from
 `index.html` to `game.html`. Just click on the file `game.html` and
 the game should start.
+
+# GitPod
+
+An alternative to using the [CodeAnywhere](https://codeanywhere.com/)
+platform,
+[GitPod](https://gitpod.io#https://github.com/video-game-coding-club/geometry-smash)
+offers tighter GitHub integration. All necessary `git` commands can be
+run via the GUI instead of the command line.
 
 ## More details
 
