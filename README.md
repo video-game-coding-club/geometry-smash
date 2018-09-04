@@ -52,6 +52,14 @@ list of files instead of the game. The game itself was moved from
 `index.html` to `game.html`. Just click on the file `game.html` and
 the game should start.
 
+## More details
+
+The game script was loaded in `index.html` but recently we introduced
+a landing page and split the game code into a separate page,
+`game.html`.  This change was introduced with commit
+[4107049a6ea0ce925b2e28b5087470ea0b4658dd](https://github.com/video-game-coding-club/geometry-smash/commit/4107049a6ea0ce925b2e28b5087470ea0b4658dd)
+and the introduction of using GitHub Pages to build our website.
+
 # GitPod
 
 An alternative to using the [CodeAnywhere](https://codeanywhere.com/)
@@ -59,9 +67,3 @@ platform,
 [GitPod](https://gitpod.io#https://github.com/video-game-coding-club/geometry-smash)
 offers tighter GitHub integration. All necessary `git` commands can be
 run via the GUI instead of the command line.
-
-## More details
-
-This change was introduced with commit
-[4107049a6ea0ce925b2e28b5087470ea0b4658dd](https://github.com/video-game-coding-club/geometry-smash/commit/4107049a6ea0ce925b2e28b5087470ea0b4658dd)
-and the introduction of using GitHub Pages to build our website.
