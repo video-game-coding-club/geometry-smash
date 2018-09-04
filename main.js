@@ -44,7 +44,6 @@ let laserSound;
 var background = function(color) {
   ctx.fillStyle = color;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-
   ctx.strokeStyle = 'black';
   ctx.lineWidth = '5';
   ctx.strokeRect(0, 0, canvas.width, canvas.height);
@@ -56,8 +55,20 @@ var obstacleSpike = function(x, y) {
   ctx.lineTo(x + 60, y);
   ctx.lineTo(x + 30, y - 60);
   ctx.closePath();
-
   ctx.fillStyle = "black";
+  ctx.fill();
+};
+
+var heroPosition = 20;
+var hero = function(y) {
+  let x0 = 20;      // distance from right side
+  ctx.beginPath();
+  ctx.moveTo(x0, y);
+  ctx.lineTo(x0 + 60, y);
+  ctx.lineTo(x0 + 60, y - 60);
+  ctx.lineTo(x0, y - 60);
+  ctx.closePath();
+  ctx.fillStyle = "yellow";
   ctx.fill();
 };
 
@@ -265,9 +276,11 @@ var obstacles = [
 
 var drawObstacles = function() {
   var position = 0;
+  var rightside = 20
   for (var i = 0; i < obstacles.length; i++) {
     position += obstacles[i][1];
-    if (-time + position - 100 > 0 && -time + position < canvas.width) {
+    // draw if coordinates are within the canvas
+    if (-time + position - rightside > 0 && -time + position < canvas.width) {
       obstacles[i][0](-time + position, floorHeight);
     } else {
       if (obstacles[i][0] === 4) {
@@ -276,6 +289,11 @@ var drawObstacles = function() {
     }
   }
 };
+
+var drawHero = function(y) {
+  let y0 = floorHeight;   // initial location
+     hero(y0-y);
+}
 
 let drawSoundButton = function() {
   ctx.fillStyle = "yellow";
@@ -304,8 +322,13 @@ let mouseClickedSoundButton = function(event) {
   }
 };
 
+let mouseClickedMoveHero = function(event) {
+   heroPosition += 20; 
+};
+
 let mouseClickedListeners = [
-  mouseClickedSoundButton
+  mouseClickedSoundButton,
+  mouseClickedMoveHero
 ];
 
 (function() {
@@ -323,13 +346,15 @@ let mouseClickedListeners = [
   initialize();
 })();
 
+                          
 var draw = function() {
   window.requestAnimationFrame(draw);
   background("blue");
 
   drawStats();
   drawSoundButton();
-  drawObstacles();
+  drawObstacles();                      
+  drawHero(heroPosition);
   drawFloor();
   time++;
 };
