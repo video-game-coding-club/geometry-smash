@@ -88,7 +88,7 @@ var hero = function(x, y) {
 
   /*body and color*/
 
-  ctx.fill(105, 73, 75);
+  ctx.fillStyle = (105, 73, 75);
   ctx.ellipse(x + 190, y + 350, 93, 93);
 
   /*big smile*/
