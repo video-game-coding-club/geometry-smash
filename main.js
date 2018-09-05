@@ -59,19 +59,6 @@ var obstacleSpike = function(x, y) {
   ctx.fill();
 };
 
-var heroPosition = 20;
-var hero = function(y) {
-  let x0 = 20; // distance from right side
-  ctx.beginPath();
-  ctx.moveTo(x0, y);
-  ctx.lineTo(x0 + 60, y);
-  ctx.lineTo(x0 + 60, y - 60);
-  ctx.lineTo(x0, y - 60);
-  ctx.closePath();
-  ctx.fillStyle = "yellow";
-  ctx.fill();
-};
-
 var drawStats = function() {
   ctx.fillStyle = "black";
   ctx.font = '48px serif';
@@ -290,11 +277,6 @@ var drawObstacles = function() {
   }
 };
 
-var drawHero = function(y) {
-  let y0 = floorHeight; // initial location
-  hero(y0 - y);
-};
-
 let drawSoundButton = function() {
   ctx.fillStyle = "yellow";
   ctx.rect(canvas.width - 230, 10, 220, 100);
@@ -322,8 +304,37 @@ let mouseClickedSoundButton = function(event) {
   }
 };
 
+// The "hero" (just a square for now...)
+var hero = function(y) {
+  let x0 = 20; // distance from right side
+  ctx.beginPath();
+  ctx.moveTo(x0, y);
+  ctx.lineTo(x0 + 60, y);
+  ctx.lineTo(x0 + 60, y - 60);
+  ctx.lineTo(x0, y - 60);
+  ctx.closePath();
+  ctx.fillStyle = "yellow";
+  ctx.fill();
+};
+
+// initial position and velocity
+var heroPosition = floorHeight;
+var t0 = 0; // jump start time
+var vel = 0; // initial velocity
+var g = -0.01; // "gravity" acceleration term
+var drawHero = function(vel) {
+  dt = time - t0; // time (from start of jump)
+  vel = vel + g * dt;
+  heroPosition = heroPosition - vel * dt;
+  if (heroPosition > floorHeight) {
+    heroPosition = floorHeight;
+  }
+  hero(heroPosition);
+};
+
 let mouseClickedMoveHero = function(event) {
-  heroPosition += 20;
+  vel = 0.6; // jump velocity
+  t0 = time; // record the start time of the jump action
 };
 
 let mouseClickedListeners = [
@@ -354,7 +365,7 @@ var draw = function() {
   drawStats();
   drawSoundButton();
   drawObstacles();
-  drawHero(heroPosition);
+  drawHero(vel);
   drawFloor();
   time++;
 };
