@@ -290,6 +290,10 @@ var drawFloor = function() {
   }
 };
 
+var drawHero = function() {
+  hero();
+};
+
 /* The obstacle types. */
 var obstacleTypes = [
   obstacleSpike,
@@ -367,6 +371,7 @@ var draw = function() {
   drawSoundButton();
   drawObstacles();
   drawFloor();
+  drawHero();
   time++;
 };
 
