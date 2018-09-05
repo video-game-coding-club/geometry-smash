@@ -320,17 +320,17 @@ var hero = function(y) {
 // initial position and velocity
 var heroPosition = floorHeight;
 var t0 = 0; // jump start time
-var vel = 0; // initial velocity  
+var vel = 0; // initial velocity
 var g = -0.01; // "gravity" acceleration term
 var drawHero = function(vel) {
-  dt = time - t0 // time (from start of jump)
-  vel = vel + g * dt
+  dt = time - t0; // time (from start of jump)
+  vel = vel + g * dt;
   heroPosition = heroPosition - vel * dt;
   if (heroPosition > floorHeight) {
-    heroPosition = floorHeight
+    heroPosition = floorHeight;
   }
   hero(heroPosition);
-}
+};
 
 let mouseClickedMoveHero = function(event) {
   vel = 0.6; // jump velocity
