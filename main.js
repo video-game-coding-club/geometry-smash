@@ -58,6 +58,46 @@ var obstacleSpike = function(x, y) {
   ctx.fillStyle = "black";
   ctx.fill();
 };
+/*I am making a program on github
+and this is my game hero !!! */
+
+var hero = function(x, y) {
+  var x = 10;
+  var y = 0;
+
+/*body
+and color*/
+
+ctx.fill(105, 73, 75);
+ctx.ellipse(x + 190, y + 350, 93, 93);
+
+/*big
+smile*/
+
+ctx.fillStyle = "brown";
+ctx.arc(x + 192, y + 350, 71, 77, 1, 180);
+
+/*eyes and
+pupils*/
+
+ctx.ellipse(x + 179, y + 332, 24, 24);
+ctx.ellipse(x + 200, y + 332, 24, 24);
+ctx.fillStyle = "blue";
+ctx.ellipse(x + 179, y + 332, 10, 10);
+ctx.ellipse(x + 200, y + 332, 10, 10);
+
+/*arms and
+fists*/
+
+ctx.line(x + 236, y + 351, 270, 304);
+ctx.line(x + 144, y + 350, 130, 304);
+ctx.fillStyle = "red";
+ctx.ellipse(x + 120, y + 307, 10, 10);
+ctx.ellipse(x + 260, y + 307, 10, 10);
+};
+
+
+
 
 var heroPosition = 20;
 var hero = function(y) {
