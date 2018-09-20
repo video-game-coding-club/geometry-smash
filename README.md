@@ -16,6 +16,14 @@ project in 2018.
 
 You can play the game right here: [**Play Geometry Smash**](game.html)
 
+# Authors
+
+In alphabetical order:
+
+- Adis Bock (@adisbock)
+- Lucas Price (@lucasprice)
+- Zach Gibson (@togibson)
+
 # Contribute
 
 Contributions are very welcome. If you would like to help please
@@ -40,14 +48,6 @@ Please see also:
   [GitPod](https://gitpod.io#https://github.com/video-game-coding-club/geometry-smash)
   as your fully featured IDE (the free plan is limited currently to 10
   hours of usage per month).
-
-# Authors
-
-In alphabetical order:
-
-- Adis Bock (@adisbock)
-- Lucas Price (@lucasprice)
-- Zach Gibson (@togibson)
 
 # CodeAnywhere
 
