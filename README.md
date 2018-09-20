@@ -16,6 +16,14 @@ project in 2018.
 
 You can play the game right here: [**Play Geometry Smash**](game.html)
 
+# Authors
+
+In alphabetical order:
+
+- Adis Bock (@adisbock)
+- Lucas Price (@lucasprice)
+- Zach Gibson (@togibson)
+
 # Contribute
 
 Contributions are very welcome. If you would like to help please
@@ -41,13 +49,11 @@ Please see also:
   as your fully featured IDE (the free plan is limited currently to 10
   hours of usage per month).
 
-# Authors
+# Online JavaScript Editor
 
-In alphabetical order:
-
-- Adis Bock (@adisbock)
-- Lucas Price (@lucasprice)
-- Zach Gibson (@togibson)
+You can use our [online JavaScript
+editor](https://video-game-coding-club.github.io/online-editor/) to
+develop JavaScript graphics. The editor and game environments are identical so that you simply cut and paste working code from the editor into the game.
 
 # CodeAnywhere
 
