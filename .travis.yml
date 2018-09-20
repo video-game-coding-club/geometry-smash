@@ -22,3 +22,4 @@ install:
 script:
   - ./lint.sh
   - bundle exec danger
+  - bundle exec jekyll build
