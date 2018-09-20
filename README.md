@@ -49,6 +49,12 @@ Please see also:
   as your fully featured IDE (the free plan is limited currently to 10
   hours of usage per month).
 
+# Online JavaScript Editor
+
+You can use our [online JavaScript
+editor](https://video-game-coding-club.github.io/online-editor/) to
+develop JavaScript graphics. The editor and game environments are identical so that you simply cut and paste working code from the editor into the game.
+
 # CodeAnywhere
 
 If you develop using the [CodeAnywhere](https://codeanywhere.com/)
