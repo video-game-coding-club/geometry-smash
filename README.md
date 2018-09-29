@@ -22,7 +22,7 @@ In alphabetical order:
 
 - Adis Bock (@adisbock)
 - Lucas Price (@lucasprice)
-- Zach Gibson (@togibson)
+- Zach Gibson (@zachgib)
 
 # Contribute
 
