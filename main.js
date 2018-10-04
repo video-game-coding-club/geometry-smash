@@ -306,14 +306,12 @@ let mouseClickedSoundButton = function(event) {
 
 // The "hero" (just a square for now...)
 var hero = function(y) {
-  let x0 = 20; // distance from right side
+
+  /*body and color*/
+
+  ctx.fillStyle = "brown";
   ctx.beginPath();
-  ctx.moveTo(x0, y);
-  ctx.lineTo(x0 + 60, y);
-  ctx.lineTo(x0 + 60, y - 60);
-  ctx.lineTo(x0, y - 60);
-  ctx.closePath();
-  ctx.fillStyle = "yellow";
+  ctx.ellipse(190, y - 40, 50, 50, 0, 0, 2 * Math.PI);
   ctx.fill();
 };
 
