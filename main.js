@@ -211,6 +211,11 @@ var obstacleLaser = function(x, y) {
   ctx.fillRect(x + 16, 0, 44, 18);
 };
 
+var obstacleTrapdoor = function(x, y) {
+  ctx.fillStyle = "black";
+  ctx.fillRect(x, y, 350, -100);
+};
+
 var obstaclePole = function(x, y) {
   let speed = 2;
   let height = Math.max(0.5 * canvas.height, y - speed * time);
@@ -248,6 +253,7 @@ var drawFloor = function() {
  * 2. The distance to the previous obstacle
  */
 var obstacles = [
+  [obstacleTrapdoor, 600],
   [obstacleSpike, 500],
   [obstaclePole, 200],
   [electricSign, 400],
