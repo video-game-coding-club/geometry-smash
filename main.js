@@ -310,7 +310,6 @@ let mouseClickedSoundButton = function(event) {
   }
 };
 
-// The "hero" (just a square for now...)
 var hero = function(y) {
 
   /*body and color*/
