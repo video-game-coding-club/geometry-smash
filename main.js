@@ -229,6 +229,18 @@ var obstaclePole = function(x, y) {
   ctx.fill();
 };
 
+var explodingWallBricks = [];
+var obstacleExplodingWall = function(x, y) {
+  if (explodingWallBricks.length === 0) {
+    ctx.strokeStyle = "black";
+    for (let i = 0; 35 * i < floorHeight; i++) {
+      ctx.beginPath();
+      ctx.rect(x, 10 + 35 * i, 10, -30);
+      ctx.stroke();
+    }
+  }
+};
+
 var drawFloor = function() {
   let strokeColors = ["black", "black"];
   let fillColors = ["darkblue", "yellow"];
@@ -255,6 +267,7 @@ var drawFloor = function() {
 var obstacles = [
   [obstacleTrapdoor, 600],
   [obstacleSpike, 500],
+  [obstacleExplodingWall, 200],
   [obstaclePole, 200],
   [electricSign, 400],
   [toxicSign, 200],
