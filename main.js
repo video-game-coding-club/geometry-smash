@@ -323,38 +323,40 @@ let mouseClickedSoundButton = function(event) {
   }
 };
 
-var hero = function(y) {
+var hero = {
+  draw: function(y) {
 
-  /*body and color*/
+    /*body and color*/
 
-  ctx.fillStyle = "brown";
-  ctx.beginPath();
-  ctx.ellipse(190, y - 40, 50, 50, 0, 0, 2 * Math.PI);
-  ctx.fill();
+    ctx.fillStyle = "brown";
+    ctx.beginPath();
+    ctx.ellipse(190, y - 40, 50, 50, 0, 0, 2 * Math.PI);
+    ctx.fill();
+  },
+  position: floorHeight,
+  is_jumping: false,
+  velocity: 0,
+  jump_velocity: 6, // The jump velocity.
+  g: -0.1 // "gravity" acceleration term
 };
 
-// initial position and velocity
-var heroPosition = floorHeight;
-var vel = 0; // initial velocity
-var g = -0.1; // "gravity" acceleration term
-var is_jumping = false;
 var drawHero = function() {
-  if (is_jumping) {
-    heroPosition += vel;
-    vel -= g;
-    if (heroPosition > floorHeight) {
-      heroPosition = floorHeight;
-      vel = 0;
-      is_jumping = false;
+  if (hero.is_jumping) {
+    hero.position += hero.velocity;
+    hero.velocity -= hero.g;
+    if (hero.position > floorHeight) {
+      hero.position = floorHeight;
+      hero.velocity = 0;
+      hero.is_jumping = false;
     }
   }
-  hero(heroPosition);
+  hero.draw(hero.position);
 };
 
 let mouseClickedMoveHero = function(event) {
-  if (!is_jumping) {
-    vel = -6; // jump velocity
-    is_jumping = true;
+  if (!hero.is_jumping) {
+    hero.velocity = -hero.jump_velocity;
+    hero.is_jumping = true;
   }
 };
 
