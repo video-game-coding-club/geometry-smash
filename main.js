@@ -335,22 +335,27 @@ var hero = function(y) {
 
 // initial position and velocity
 var heroPosition = floorHeight;
-var t0 = 0; // jump start time
 var vel = 0; // initial velocity
-var g = -0.01; // "gravity" acceleration term
-var drawHero = function(vel) {
-  dt = time - t0; // time (from start of jump)
-  vel = vel + g * dt;
-  heroPosition = heroPosition - vel * dt;
-  if (heroPosition > floorHeight) {
-    heroPosition = floorHeight;
+var g = -0.1; // "gravity" acceleration term
+var is_jumping = false;
+var drawHero = function() {
+  if (is_jumping) {
+    heroPosition += vel;
+    vel -= g;
+    if (heroPosition > floorHeight) {
+      heroPosition = floorHeight;
+      vel = 0;
+      is_jumping = false;
+    }
   }
   hero(heroPosition);
 };
 
 let mouseClickedMoveHero = function(event) {
-  vel = 0.6; // jump velocity
-  t0 = time; // record the start time of the jump action
+  if (!is_jumping) {
+    vel = -6; // jump velocity
+    is_jumping = true;
+  }
 };
 
 let mouseClickedListeners = [
@@ -381,7 +386,7 @@ var draw = function() {
   drawStats();
   drawSoundButton();
   drawObstacles();
-  drawHero(vel);
+  drawHero();
   drawFloor();
   time++;
 };
