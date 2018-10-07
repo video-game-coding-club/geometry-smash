@@ -72,6 +72,9 @@ list of files instead of the game. The game itself was moved from
 `index.html` to `game.html`. Just click on the file `game.html` and
 the game should start.
 
+Accessing the project's webserver might be blocked by your school's
+firewall. If you run into this issue please have a look at GitPod.
+
 # More details on where the game lives
 
 The game script was loaded in `index.html` but recently we introduced
