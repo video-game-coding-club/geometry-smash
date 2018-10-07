@@ -48,6 +48,9 @@ Please see also:
   as your fully featured IDE (Note that the free plan is limited
   currently to 10 hours of usage per month).
 
+You can find more information on a suggested workflow on our
+[Developer Workflow](DeveloperWorkflow.md) page.
+
 # GitPod
 
 [GitPod](https://gitpod.io#https://github.com/video-game-coding-club/geometry-smash)
