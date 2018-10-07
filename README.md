@@ -27,10 +27,8 @@ In alphabetical order:
 # Contribute
 
 Contributions are very welcome. If you would like to help please
-  create a [new
-  issue](https://github.com/video-game-coding-club/geometry-smash/issues)
-  or submit a [pull
-  request](https://github.com/video-game-coding-club/geometry-smash/pulls).
+create a [new issue](https://github.com/video-game-coding-club/geometry-smash/issues)
+or submit a [pull request](https://github.com/video-game-coding-club/geometry-smash/pulls).
 
 Please see also:
 
@@ -62,7 +60,9 @@ the "Mini Browser" and the game should start.
 
 You can use our [online JavaScript
 editor](https://video-game-coding-club.github.io/online-editor/) to
-develop JavaScript graphics. The editor and game environments are identical so that you simply cut and paste working code from the editor into the game.
+develop JavaScript graphics. The editor and game environments are
+identical so that you simply cut and paste working code from the
+editor into the game.
 
 # CodeAnywhere
 
