@@ -67,7 +67,7 @@ develop JavaScript graphics. The editor and game environments are
 identical so that you simply cut and paste working code from the
 editor into the game.
 
-# CodeAnywhere
+# [CodeAnywhere](CodeAnywhere.md)
 
 If you develop using the [CodeAnywhere](https://codeanywhere.com/)
 platform, please note that the "**Run Project**" button will serve a
