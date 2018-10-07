@@ -51,6 +51,8 @@ Please see also:
 You can find more information on a suggested workflow on our
 [Developer Workflow](DeveloperWorkflow.md) page.
 
+More information on git can be found on our [git](Git.md) page.
+
 # GitPod
 
 [GitPod](https://gitpod.io#https://github.com/video-game-coding-club/geometry-smash)
