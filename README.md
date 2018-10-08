@@ -24,6 +24,11 @@ In alphabetical order:
 - Lucas Price (@lucasprice)
 - Zach Gibson (@zachgib)
 
+# Hacktoberfest
+
+We are participating in Hacktoberfest. Look for issues tagged with
+#hacktoberfest and send us your pull requests!
+
 # Contribute
 
 Contributions are very welcome. If you would like to help please
