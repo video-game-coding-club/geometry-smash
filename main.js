@@ -108,6 +108,15 @@ var obstacleSaw = function(x, y) {
   }
 };
 
+var obstacleThorns = function(x, y) {
+  ctx.beginPath();
+  ctx.moveTo(x, y);
+  ctx.lineTo(x + 10, y - 10);
+  ctx.lineTo(x + 20, y);
+  ctx.closePath();
+  ctx.stroke();
+};
+
 var toxicSign = function(x, y) {
   ctx.beginPath();
   ctx.rect(x - 70, y - 20, 140, -120);
@@ -267,6 +276,7 @@ var drawFloor = function() {
 var obstacles = [
   [obstacleTrapdoor, 600],
   [obstacleSpike, 500],
+  [obstacleThorns, 300],
   [obstacleExplodingWall, 200],
   [obstaclePole, 200],
   [electricSign, 400],
