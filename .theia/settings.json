@@ -1,3 +1,4 @@
 {
-   "editor.renderWhitespace": "boundary"
+   "editor.renderWhitespace": "boundary",
+   "editor.tabSize": 2
 }
