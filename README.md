@@ -26,6 +26,8 @@ In alphabetical order:
 
 # Hacktoberfest
 
+![Hacktoberfest](hacktoberfest.svg)
+
 We are participating in Hacktoberfest. Look for issues tagged with
 #hacktoberfest and send us your pull requests!
 
