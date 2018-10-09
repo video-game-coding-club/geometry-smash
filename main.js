@@ -213,7 +213,7 @@ var obstacleLaser = function(x, y) {
 
 var obstacleTrapdoor = function(x, y) {
   ctx.fillStyle = "black";
-  ctx.fillRect(x, y, 350, -100);
+  ctx.fillRect(x, y, 350, -80);
 };
 
 var obstaclePole = function(x, y) {
@@ -281,13 +281,14 @@ var obstacles = [
 ];
 
 var drawObstacles = function() {
+  var obs_speed = 4.0;
   var position = 0;
   var rightside = 20;
   for (var i = 0; i < obstacles.length; i++) {
     position += obstacles[i][1];
     // draw if coordinates are within the canvas
-    if (-time + position - rightside > 0 && -time + position < canvas.width) {
-      obstacles[i][0](-time + position, floorHeight);
+    if (-time * obs_speed + position - rightside > 0 && -time * obs_speed + position < canvas.width) {
+      obstacles[i][0](-time * obs_speed + position, floorHeight);
     } else {
       if (obstacles[i][0] === 4) {
         lightningSound.muted = true;
@@ -330,14 +331,14 @@ var hero = {
 
     ctx.fillStyle = "brown";
     ctx.beginPath();
-    ctx.ellipse(190, y - 40, 50, 50, 0, 0, 2 * Math.PI);
+    ctx.ellipse(190, y - 52, 50, 50, 0, 0, 2 * Math.PI);
     ctx.fill();
   },
   position: floorHeight,
   is_jumping: false,
   velocity: 0,
-  jump_velocity: 6, // The jump velocity.
-  g: -0.1 // "gravity" acceleration term
+  jump_velocity: 15, // The jump velocity.
+  g: -0.3 // "gravity" acceleration term
 };
 
 var drawHero = function() {
