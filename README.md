@@ -28,7 +28,9 @@ In alphabetical order:
 
 [![Hacktoberfest](hacktoberfest.svg)](https://hacktoberfest.digitalocean.com/)
 
-We are participating in Hacktoberfest. Look for issues tagged with
+We are participating in Hacktoberfest. Look for
+[issues](https://github.com/video-game-coding-club/geometry-smash/issues)
+tagged with
 #hacktoberfest and send us your pull requests!
 
 # Contribute
@@ -42,7 +44,9 @@ Please see also:
 - Our [Kanban
   board](https://github.com/video-game-coding-club/geometry-smash/projects/1)
   is tracking what we are currently working on. Feel free to pick up
-  any of the open issues and start working on it.
+  any of the open
+  [issues](https://github.com/video-game-coding-club/geometry-smash/issues)
+  and start working on it.
 - We also use
   [Gitter](https://gitter.im/video-game-coding-club/geometry-smash)
   for real time chat. Drop by and say hi!
