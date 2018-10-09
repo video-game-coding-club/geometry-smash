@@ -213,7 +213,7 @@ var obstacleLaser = function(x, y) {
 
 var obstacleTrapdoor = function(x, y) {
   ctx.fillStyle = "black";
-  ctx.fillRect(x, y, 350, -100);
+  ctx.fillRect(x, y, 350, -80);
 };
 
 var obstaclePole = function(x, y) {
@@ -281,13 +281,14 @@ var obstacles = [
 ];
 
 var drawObstacles = function() {
+  var obs_speed = 4.0;
   var position = 0;
   var rightside = 20;
   for (var i = 0; i < obstacles.length; i++) {
     position += obstacles[i][1];
     // draw if coordinates are within the canvas
-    if (-time + position - rightside > 0 && -time + position < canvas.width) {
-      obstacles[i][0](-time + position, floorHeight);
+    if (-time * obs_speed + position - rightside > 0 && -time * obs_speed + position < canvas.width) {
+      obstacles[i][0](-time * obs_speed + position, floorHeight);
     } else {
       if (obstacles[i][0] === 4) {
         lightningSound.muted = true;
@@ -323,34 +324,41 @@ let mouseClickedSoundButton = function(event) {
   }
 };
 
-var hero = function(y) {
+var hero = {
+  draw: function(y) {
 
-  /*body and color*/
+    /*body and color*/
 
-  ctx.fillStyle = "brown";
-  ctx.beginPath();
-  ctx.ellipse(190, y - 40, 50, 50, 0, 0, 2 * Math.PI);
-  ctx.fill();
+    ctx.fillStyle = "brown";
+    ctx.beginPath();
+    ctx.ellipse(190, y - 52, 50, 50, 0, 0, 2 * Math.PI);
+    ctx.fill();
+  },
+  position: floorHeight,
+  is_jumping: false,
+  velocity: 0,
+  jump_velocity: 15, // The jump velocity.
+  g: -0.3 // "gravity" acceleration term
 };
 
-// initial position and velocity
-var heroPosition = floorHeight;
-var t0 = 0; // jump start time
-var vel = 0; // initial velocity
-var g = -0.01; // "gravity" acceleration term
-var drawHero = function(vel) {
-  dt = time - t0; // time (from start of jump)
-  vel = vel + g * dt;
-  heroPosition = heroPosition - vel * dt;
-  if (heroPosition > floorHeight) {
-    heroPosition = floorHeight;
+var drawHero = function() {
+  if (hero.is_jumping) {
+    hero.position += hero.velocity;
+    hero.velocity -= hero.g;
+    if (hero.position > floorHeight) {
+      hero.position = floorHeight;
+      hero.velocity = 0;
+      hero.is_jumping = false;
+    }
   }
-  hero(heroPosition);
+  hero.draw(hero.position);
 };
 
 let mouseClickedMoveHero = function(event) {
-  vel = 0.6; // jump velocity
-  t0 = time; // record the start time of the jump action
+  if (!hero.is_jumping) {
+    hero.velocity = -hero.jump_velocity;
+    hero.is_jumping = true;
+  }
 };
 
 let mouseClickedListeners = [
@@ -381,7 +389,7 @@ var draw = function() {
   drawStats();
   drawSoundButton();
   drawObstacles();
-  drawHero(vel);
+  drawHero();
   drawFloor();
   time++;
 };
