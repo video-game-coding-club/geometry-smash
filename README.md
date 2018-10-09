@@ -26,7 +26,7 @@ In alphabetical order:
 
 # Hacktoberfest
 
-![Hacktoberfest](hacktoberfest.svg)
+[![Hacktoberfest](hacktoberfest.svg)](https://hacktoberfest.digitalocean.com/)
 
 We are participating in Hacktoberfest. Look for issues tagged with
 #hacktoberfest and send us your pull requests!
