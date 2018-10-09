@@ -29,7 +29,7 @@ In alphabetical order:
 [![Hacktoberfest](hacktoberfest.svg)](https://hacktoberfest.digitalocean.com/)
 
 We are participating in Hacktoberfest. Look for
-[issues](https://github.com/video-game-coding-club/geometry-smash/issues)
+[![GitHub issues](https://img.shields.io/github/issues/video-game-coding-club/geometry-smash.svg)](https://github.com/video-game-coding-club/geometry-smash/issues?q=is%3Aopen+is%3Aissue+label%3Ahacktoberfest)
 tagged with
 #hacktoberfest and send us your pull requests!
 
