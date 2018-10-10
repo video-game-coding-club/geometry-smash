@@ -96,6 +96,6 @@ firewall. If you run into this issue please have a look at GitPod.
 
 The game script was loaded in `index.html` but recently we introduced
 a landing page and split the game code into a separate page,
-`game.html`.  This change was introduced with commit
+`game.html`. This change was introduced with commit
 [4107049a6ea0ce925b2e28b5087470ea0b4658dd](https://github.com/video-game-coding-club/geometry-smash/commit/4107049a6ea0ce925b2e28b5087470ea0b4658dd)
 and the introduction of using GitHub Pages to build our website.
