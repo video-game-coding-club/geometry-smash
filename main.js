@@ -49,6 +49,12 @@ var background = function(color) {
   ctx.strokeRect(0, 0, canvas.width, canvas.height);
 };
 
+var drawStats = function() {
+  ctx.fillStyle = "black";
+  ctx.font = '48px serif';
+  ctx.fillText("time = " + time, 10, 40);
+};
+
 var obstacleSpike = function(x, y) {
   ctx.beginPath();
   ctx.moveTo(x, y);
@@ -57,12 +63,6 @@ var obstacleSpike = function(x, y) {
   ctx.closePath();
   ctx.fillStyle = "black";
   ctx.fill();
-};
-
-var drawStats = function() {
-  ctx.fillStyle = "black";
-  ctx.font = '48px serif';
-  ctx.fillText("time = " + time, 10, 40);
 };
 
 var obstacleSaw = function(x, y) {
