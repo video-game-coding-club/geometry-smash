@@ -250,6 +250,8 @@ var obstacleExplodingWall = function(x, y) {
   }
 };
 
+var drawBackground = function() {};
+
 var drawFloor = function() {
   let strokeColors = ["black", "black"];
   let fillColors = ["darkblue", "yellow"];
@@ -398,6 +400,7 @@ var draw = function() {
 
   drawStats();
   drawSoundButton();
+  drawBackground();
   drawObstacles();
   drawHero();
   drawFloor();
