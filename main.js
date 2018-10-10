@@ -49,203 +49,221 @@ var background = function(color) {
   ctx.strokeRect(0, 0, canvas.width, canvas.height);
 };
 
-var obstacleSpike = function(x, y) {
-  ctx.beginPath();
-  ctx.moveTo(x, y);
-  ctx.lineTo(x + 60, y);
-  ctx.lineTo(x + 30, y - 60);
-  ctx.closePath();
-  ctx.fillStyle = "black";
-  ctx.fill();
-};
-
 var drawStats = function() {
   ctx.fillStyle = "black";
   ctx.font = '48px serif';
   ctx.fillText("time = " + time, 10, 40);
 };
 
-var obstacleSaw = function(x, y) {
-  var numberSpikes = 20;
-  var sawRadius = 80;
-  var sawHeight = y - 50 * (3 + Math.sin(time / 70 / 2 * Math.PI));
+var obstacleSpike = {
+  draw: function(x, y) {
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x + 60, y);
+    ctx.lineTo(x + 30, y - 60);
+    ctx.closePath();
+    ctx.fillStyle = "black";
+    ctx.fill();
+  }
+};
 
-  ctx.beginPath();
-  ctx.ellipse(x, sawHeight, sawRadius, sawRadius, 0, 0, 2 * Math.PI);
-  ctx.closePath();
-  ctx.fillStyle = "silver";
-  ctx.fill();
-
-  ctx.beginPath();
-  ctx.ellipse(x, sawHeight, 15, 15, 0, 0, 2 * Math.PI);
-  ctx.closePath();
-  ctx.fillStyle = "black";
-  ctx.fill();
-
-  ctx.beginPath();
-  ctx.rect(x - 5, sawHeight, 10, sawHeight);
-  ctx.closePath();
-  ctx.fillStyle = "black";
-  ctx.fill();
-
-  for (var i = 0; i < numberSpikes; i++) {
-    ctx.save();
-
-    var alpha = -2 * Math.PI / numberSpikes * i - 0.15 * time / (2 * Math.PI) % (2 * Math.PI);
-
-    ctx.translate(x + sawRadius * Math.sin(alpha), sawHeight + sawRadius * Math.cos(alpha));
-    ctx.rotate(-alpha);
+var obstacleSaw = {
+  draw: function(x, y) {
+    var numberSpikes = 20;
+    var sawRadius = 80;
+    var sawHeight = y - 50 * (3 + Math.sin(time / 70 / 2 * Math.PI));
 
     ctx.beginPath();
-    ctx.moveTo(-10, 0);
-    ctx.lineTo(10, 0);
-    ctx.lineTo(0, 20);
+    ctx.ellipse(x, sawHeight, sawRadius, sawRadius, 0, 0, 2 * Math.PI);
+    ctx.closePath();
+    ctx.fillStyle = "silver";
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.ellipse(x, sawHeight, 15, 15, 0, 0, 2 * Math.PI);
     ctx.closePath();
     ctx.fillStyle = "black";
     ctx.fill();
 
-    ctx.restore();
+    ctx.beginPath();
+    ctx.rect(x - 5, sawHeight, 10, sawHeight);
+    ctx.closePath();
+    ctx.fillStyle = "black";
+    ctx.fill();
+
+    for (var i = 0; i < numberSpikes; i++) {
+      ctx.save();
+
+      var alpha = -2 * Math.PI / numberSpikes * i - 0.15 * time / (2 * Math.PI) % (2 * Math.PI);
+
+      ctx.translate(x + sawRadius * Math.sin(alpha), sawHeight + sawRadius * Math.cos(alpha));
+      ctx.rotate(-alpha);
+
+      ctx.beginPath();
+      ctx.moveTo(-10, 0);
+      ctx.lineTo(10, 0);
+      ctx.lineTo(0, 20);
+      ctx.closePath();
+      ctx.fillStyle = "black";
+      ctx.fill();
+
+      ctx.restore();
+    }
   }
 };
 
-var obstacleThorns = function(x, y) {
-  ctx.beginPath();
-  ctx.moveTo(x, y);
-  ctx.lineTo(x + 10, y - 10);
-  ctx.lineTo(x + 20, y);
-  ctx.closePath();
-  ctx.stroke();
+var obstacleThorns = {
+  draw: function(x, y) {
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x + 10, y - 10);
+    ctx.lineTo(x + 20, y);
+    ctx.closePath();
+    ctx.stroke();
+  }
 };
 
-var toxicSign = function(x, y) {
-  ctx.beginPath();
-  ctx.rect(x - 70, y - 20, 140, -120);
-  ctx.closePath();
-  ctx.fillStyle = "white";
-  ctx.strokeStyle = "black";
-  ctx.lineWidth = 4;
-  ctx.stroke();
-  ctx.fill();
+var toxicSign = {
+  draw: function(x, y) {
+    ctx.beginPath();
+    ctx.rect(x - 70, y - 20, 140, -120);
+    ctx.closePath();
+    ctx.fillStyle = "white";
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 4;
+    ctx.stroke();
+    ctx.fill();
 
-  ctx.beginPath();
-  ctx.rect(x - 10, y, 20, -20);
-  ctx.closePath();
-  ctx.fillStyle = "black";
-  ctx.fill();
+    ctx.beginPath();
+    ctx.rect(x - 10, y, 20, -20);
+    ctx.closePath();
+    ctx.fillStyle = "black";
+    ctx.fill();
 
-  ctx.drawImage(toxicImage, x - 70, y - 140, 140, 120);
+    ctx.drawImage(toxicImage, x - 70, y - 140, 140, 120);
+  }
 };
 
-var electricSign = function(x, y) {
-  ctx.beginPath();
-  ctx.rect(x - 70, y - 20, 140, -120);
-  ctx.closePath();
+var electricSign = {
+  draw: function(x, y) {
+    ctx.beginPath();
+    ctx.rect(x - 70, y - 20, 140, -120);
+    ctx.closePath();
 
-  ctx.fillStyle = "white";
-  ctx.strokeStyle = "black";
-  ctx.lineWidth = 4;
-  ctx.stroke();
-  ctx.fill();
+    ctx.fillStyle = "white";
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 4;
+    ctx.stroke();
+    ctx.fill();
 
-  ctx.beginPath();
-  ctx.rect(x - 10, y, 20, -20);
-  ctx.closePath();
+    ctx.beginPath();
+    ctx.rect(x - 10, y, 20, -20);
+    ctx.closePath();
 
-  ctx.fillStyle = "black";
-  ctx.fill();
+    ctx.fillStyle = "black";
+    ctx.fill();
 
-  ctx.drawImage(electricImage, x - 70, y - 140, 140, 120);
+    ctx.drawImage(electricImage, x - 70, y - 140, 140, 120);
+  }
 };
 
-var obstacleLaser = function(x, y) {
-  ctx.fillStyle = "black";
-  ctx.fillRect(x, y, 76, -40);
+var obstacleLaser = {
+  draw: function(x, y) {
+    ctx.fillStyle = "black";
+    ctx.fillRect(x, y, 76, -40);
 
-  ctx.beginPath();
-  ctx.arc(x + 38, y - 40, 30, Math.PI, 2 * Math.PI);
-  ctx.fillStyle = "gold";
-  ctx.fill();
+    ctx.beginPath();
+    ctx.arc(x + 38, y - 40, 30, Math.PI, 2 * Math.PI);
+    ctx.fillStyle = "gold";
+    ctx.fill();
 
-  let laserInterval = 120;
-  let laserOn = 40;
-  let laserSpeed = 7;
+    let laserInterval = 120;
+    let laserOn = 40;
+    let laserSpeed = 7;
 
-  if (time % laserInterval > laserInterval - laserOn) {
-    /* The current height of the laser beam. */
-    let laserTop = 0;
+    if (time % laserInterval > laserInterval - laserOn) {
+      /* The current height of the laser beam. */
+      let laserTop = 0;
 
-    if (laserSound === undefined) {
-      laserSound = lightningSound.play();
+      if (laserSound === undefined) {
+        laserSound = lightningSound.play();
+        if (laserSound !== undefined) {
+          laserSound.then(_ => {
+            console.log("playing sound");
+          }).catch(error => {
+            console.log("could not play sound");
+            console.log(error);
+          });
+        }
+      }
+      if (time % laserInterval < laserInterval - laserOn + laserSpeed) {
+        laserTop = y - 76 - (y - 76) / 10 * (time % 10);
+      }
+
+      ctx.beginPath();
+      ctx.moveTo(x + 38, y - 76);
+      ctx.lineTo(x + 38, laserTop);
+      ctx.lineWidth = 9;
+      ctx.strokeStyle = "darkred";
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(x + 32, y - 75);
+      ctx.lineTo(x + 32, laserTop);
+      ctx.strokeStyle = "orangered";
+      ctx.lineWidth = 4;
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(x + 44, y - 75);
+      ctx.lineTo(x + 44, laserTop);
+      ctx.strokeStyle = "orangered";
+      ctx.lineWidth = 4;
+      ctx.stroke();
+    } else {
       if (laserSound !== undefined) {
-        laserSound.then(_ => {
-          console.log("playing sound");
-        }).catch(error => {
-          console.log("could not play sound");
-          console.log(error);
-        });
+        lightningSound.pause();
+        laserSound = undefined;
       }
     }
-    if (time % laserInterval < laserInterval - laserOn + laserSpeed) {
-      laserTop = y - 76 - (y - 76) / 10 * (time % 10);
-    }
 
-    ctx.beginPath();
-    ctx.moveTo(x + 38, y - 76);
-    ctx.lineTo(x + 38, laserTop);
-    ctx.lineWidth = 9;
-    ctx.strokeStyle = "darkred";
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(x + 32, y - 75);
-    ctx.lineTo(x + 32, laserTop);
-    ctx.strokeStyle = "orangered";
-    ctx.lineWidth = 4;
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(x + 44, y - 75);
-    ctx.lineTo(x + 44, laserTop);
-    ctx.strokeStyle = "orangered";
-    ctx.lineWidth = 4;
-    ctx.stroke();
-  } else {
-    if (laserSound !== undefined) {
-      lightningSound.pause();
-      laserSound = undefined;
-    }
+    ctx.fillStyle = "black";
+    ctx.fillRect(x + 16, 0, 44, 18);
   }
-
-  ctx.fillStyle = "black";
-  ctx.fillRect(x + 16, 0, 44, 18);
 };
 
-var obstacleTrapdoor = function(x, y) {
-  ctx.fillStyle = "black";
-  ctx.fillRect(x, y, 350, -80);
+var obstacleTrapdoor = {
+  draw: function(x, y) {
+    ctx.fillStyle = "black";
+    ctx.fillRect(x, y, 350, -80);
+  }
 };
 
-var obstaclePole = function(x, y) {
-  let speed = 2;
-  let height = Math.max(0.5 * canvas.height, y - speed * time);
-  ctx.beginPath();
-  ctx.moveTo(x, y);
-  ctx.lineTo(x + 100, y);
-  ctx.lineTo(x + 80, height);
-  ctx.lineTo(x + 20, height);
-  ctx.closePath();
-  ctx.fillStyle = "red";
-  ctx.fill();
+var obstaclePole = {
+  draw: function(x, y) {
+    let speed = 2;
+    let height = Math.max(0.5 * canvas.height, y - speed * time);
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x + 100, y);
+    ctx.lineTo(x + 80, height);
+    ctx.lineTo(x + 20, height);
+    ctx.closePath();
+    ctx.fillStyle = "red";
+    ctx.fill();
+  }
 };
 
 var explodingWallBricks = [];
-var obstacleExplodingWall = function(x, y) {
-  if (explodingWallBricks.length === 0) {
-    ctx.strokeStyle = "black";
-    for (let i = 0; 35 * i < floorHeight; i++) {
-      ctx.beginPath();
-      ctx.rect(x, 10 + 35 * i, 10, -30);
-      ctx.stroke();
+var obstacleExplodingWall = {
+  draw: function(x, y) {
+    if (explodingWallBricks.length === 0) {
+      ctx.strokeStyle = "black";
+      for (let i = 0; 35 * i < floorHeight; i++) {
+        ctx.beginPath();
+        ctx.rect(x, 10 + 35 * i, 10, -30);
+        ctx.stroke();
+      }
     }
   }
 };
@@ -328,7 +346,7 @@ var drawObstacles = function() {
     position += obstacles[i][1];
     // draw if coordinates are within the canvas
     if (-time * obs_speed + position - rightside > 0 && -time * obs_speed + position < canvas.width) {
-      obstacles[i][0](-time * obs_speed + position, floorHeight);
+      obstacles[i][0].draw(-time * obs_speed + position, floorHeight);
     } else {
       if (obstacles[i][0] === 4) {
         lightningSound.muted = true;
