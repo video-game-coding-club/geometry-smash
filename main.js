@@ -177,11 +177,7 @@ var obstacleLaser = {
     ctx.fillStyle = "gold";
     ctx.fill();
 
-    let laserInterval = 120;
-    let laserOn = 40;
-    let laserSpeed = 7;
-
-    if (time % laserInterval > laserInterval - laserOn) {
+    if (time % this.laserInterval > this.laserInterval - this.laserOn) {
       /* The current height of the laser beam. */
       let laserTop = 0;
 
@@ -196,7 +192,7 @@ var obstacleLaser = {
           });
         }
       }
-      if (time % laserInterval < laserInterval - laserOn + laserSpeed) {
+      if (time % this.laserInterval < this.laserInterval - this.laserOn + laserSpeed) {
         laserTop = y - 76 - (y - 76) / 10 * (time % 10);
       }
 
@@ -229,7 +225,10 @@ var obstacleLaser = {
 
     ctx.fillStyle = "black";
     ctx.fillRect(x + 16, 0, 44, 18);
-  }
+  },
+  laserInterval: 120,
+  laserOn: 40,
+  laserSpeed: 7
 };
 
 var obstacleTrapdoor = {
