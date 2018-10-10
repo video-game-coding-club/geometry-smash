@@ -51,9 +51,6 @@ Please see also:
 - We also use
   [Gitter](https://gitter.im/video-game-coding-club/geometry-smash)
   for real time chat. Drop by and say hi!
-- You might also want to check out our
-  [wiki](https://github.com/video-game-coding-club/geometry-smash/wiki)
-  with some useful information on how to contribute.
 - If you don't want to install any software and start developing
   anyway have a look at
   [GitPod](https://gitpod.io#https://github.com/video-game-coding-club/geometry-smash)
