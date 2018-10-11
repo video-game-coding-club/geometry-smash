@@ -64,7 +64,9 @@ var obstacleSpike = {
     ctx.closePath();
     ctx.fillStyle = "black";
     ctx.fill();
-  }
+  },
+  xmin: 30,
+  ymin: 100
 };
 
 var obstacleSaw = {
@@ -235,7 +237,11 @@ var obstacleTrapdoor = {
   draw: function(x, y) {
     ctx.fillStyle = "black";
     ctx.fillRect(x, y, 350, -80);
-  }
+    this.ymin = y - 80;
+    this.xmin = x; // yes, this is redundant
+  },
+  xmin: 30,
+  ymin: 80
 };
 
 var obstaclePole = {
@@ -304,7 +310,10 @@ var drawFloor = function() {
  */
 var obstacles = [
   [obstacleTrapdoor, 600],
-  [obstacleSpike, 500],
+  [obstacleTrapdoor, 600]
+];
+
+/*  [obstacleSpike, 500],
   [obstacleThorns, 300],
   [obstacleExplodingWall, 200],
   [obstaclePole, 200],
@@ -345,7 +354,7 @@ var obstacles = [
   [obstacleSpike, 550],
   [obstacleSpike, 320],
   [obstacleSpike, 300]
-];
+];*/
 
 var drawObstacles = function() {
   var obs_speed = 4.0;
@@ -354,8 +363,13 @@ var drawObstacles = function() {
   for (var i = 0; i < obstacles.length; i++) {
     position += obstacles[i][1];
     // draw if coordinates are within the canvas
-    if (-time * obs_speed + position - rightside > 0 && -time * obs_speed + position < canvas.width) {
-      obstacles[i][0].draw(-time * obs_speed + position, floorHeight);
+    let obs_xmin = -time * obs_speed + position;
+    if (obs_xmin - rightside > 0 && obs_xmin < canvas.width) {
+      obstacles[i][0].draw(obs_xmin, floorHeight);
+      if (obstacles[i][0].ymin < hero.position && obs_xmin > rightside) {
+        drawGameOverSign();
+        //hero.draw(hero.position);
+      }
     } else {
       if (obstacles[i][0] === 4) {
         lightningSound.muted = true;
@@ -405,7 +419,9 @@ var hero = {
   is_jumping: false,
   velocity: 0,
   jump_velocity: 15, // The jump velocity.
-  g: -0.3 // "gravity" acceleration term
+  g: -0.3, // "gravity" acceleration term
+  xmax: 50,
+  ymax: 50
 };
 
 var drawHero = function() {
@@ -419,6 +435,7 @@ var drawHero = function() {
     }
   }
   hero.draw(hero.position);
+  hero.ymax = hero.position;
 };
 
 let mouseClickedMoveHero = function(event) {
