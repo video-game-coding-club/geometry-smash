@@ -435,7 +435,12 @@ let mouseClickedListeners = [
 
 (function() {
   let initialize = function() {
-    canvas.addEventListener('click', mouseClick);
+    /* The mousedown event is fired when a pointing device button is
+       pressed on an element [1].
+
+       [1] https://developer.mozilla.org/en-US/docs/Web/Events/mousedown
+    */
+    canvas.addEventListener('mousedown', mouseClick);
   };
 
   let mouseClick = function(event) {
