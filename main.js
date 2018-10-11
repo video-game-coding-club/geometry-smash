@@ -275,6 +275,7 @@ var obstacleExplodingWall = {
 
 let drawGameOverSign = function() {
   ctx.fillStyle = "red";
+  ctx.beginPath();
   ctx.rect(0.5 * canvas.width - 150, 0.5 * canvas.height - 100, 300, 80);
   ctx.fill();
 
