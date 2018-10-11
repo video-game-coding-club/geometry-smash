@@ -65,8 +65,10 @@ var obstacleSpike = {
     ctx.fillStyle = "black";
     ctx.fill();
   },
-  xmin: 30,
-  ymin: 100
+  x: 30,
+  y: 100,
+  w: 100,
+  h: 200
 };
 
 var obstacleSaw = {
