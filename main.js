@@ -111,7 +111,11 @@ var obstacleSaw = {
 
       ctx.restore();
     }
-  }
+  },
+  x: 100,
+  y: 100,
+  w: 30,
+  h: 30
 };
 
 var obstacleThorns = {
