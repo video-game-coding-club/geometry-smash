@@ -65,8 +65,10 @@ var obstacleSpike = {
     ctx.fillStyle = "black";
     ctx.fill();
   },
-  xmin: 30,
-  ymin: 100
+  x: 30,
+  y: 100,
+  w: 100,
+  h: 200
 };
 
 var obstacleSaw = {
@@ -124,8 +126,10 @@ var obstacleThorns = {
     ctx.stroke();
     this.ymin = y - 10;
   },
-  xmin: 20,
-  ymin: 0
+  x: 20,
+  y: 0,
+  h: 200,
+  w: 150
 };
 
 var toxicSign = {
