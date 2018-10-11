@@ -249,7 +249,11 @@ var obstacleLaser = {
   },
   laserInterval: 120,
   laserOn: 40,
-  laserSpeed: 7
+  laserSpeed: 7,
+  x: 100,
+  y: 100,
+  w: 20,
+  h: 2
 };
 
 var obstacleTrapdoor = {
