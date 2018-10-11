@@ -192,7 +192,7 @@ var obstacleLaser = {
           });
         }
       }
-      if (time % this.laserInterval < this.laserInterval - this.laserOn + laserSpeed) {
+      if (time % this.laserInterval < this.laserInterval - this.laserOn + this.laserSpeed) {
         laserTop = y - 76 - (y - 76) / 10 * (time % 10);
       }
 
