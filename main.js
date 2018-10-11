@@ -174,8 +174,10 @@ var electricSign = {
     ctx.drawImage(electricImage, x - 70, y - 140, 140, 120);
     this.ymin = y - 100; // confirm this
   },
-  xmin: 20,
-  ymin: 0
+  x: 20,
+  y: 100,
+  w: 20,
+  h: 2
 };
 
 var obstacleLaser = {
