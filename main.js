@@ -130,8 +130,10 @@ var obstacleThorns = {
     ctx.stroke();
     this.ymin = y - 10;
   },
-  xmin: 20,
-  ymin: 0
+  x: 20,
+  y: 0,
+  h: 200,
+  w: 150
 };
 
 var toxicSign = {
