@@ -267,6 +267,16 @@ var obstacleExplodingWall = {
   }
 };
 
+let drawGameOverSign = function() {
+  ctx.fillStyle = "red";
+  ctx.rect(0.5 * canvas.width - 150, 0.5 * canvas.height - 100, 300, 80);
+  ctx.fill();
+
+  ctx.fillStyle = "black";
+  ctx.font = '48px serif';
+  ctx.fillText("GAME OVER", 0.5 * canvas.width - 140, 0.5 * canvas.height - 50);
+};
+
 var drawBackground = function() {};
 
 var drawFloor = function() {
@@ -438,7 +448,6 @@ let mouseClickedListeners = [
   initialize();
 })();
 
-
 var draw = function() {
   window.requestAnimationFrame(draw);
   background("blue");
@@ -449,6 +458,14 @@ var draw = function() {
   drawObstacles();
   drawHero();
   drawFloor();
+
+  // NOTE: update this end time with actual level end time or some
+  // other event that ends the game
+  if (time > 500) {
+    drawGameOverSign();
+    return;
+  }
+
   time++;
 };
 
