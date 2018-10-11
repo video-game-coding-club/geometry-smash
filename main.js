@@ -111,7 +111,11 @@ var obstacleSaw = {
 
       ctx.restore();
     }
-  }
+  },
+  x: 100,
+  y: 100,
+  w: 30,
+  h: 30
 };
 
 var obstacleThorns = {
@@ -435,8 +439,10 @@ var hero = {
   velocity: 0,
   jump_velocity: 15, // The jump velocity.
   g: -0.3, // "gravity" acceleration term
-  xmax: 50,
-  ymax: 50
+  x: 50,
+  y: 50,
+  w: 50,
+  h: 50
 };
 
 var drawHero = function() {
