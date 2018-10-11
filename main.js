@@ -122,7 +122,10 @@ var obstacleThorns = {
     ctx.lineTo(x + 20, y);
     ctx.closePath();
     ctx.stroke();
-  }
+    this.ymin = y - 10;
+  },
+  xmin: 20,
+  ymin: 0
 };
 
 var toxicSign = {
@@ -143,7 +146,10 @@ var toxicSign = {
     ctx.fill();
 
     ctx.drawImage(toxicImage, x - 70, y - 140, 140, 120);
-  }
+    this.ymin = y - 100; // confirm this
+  },
+  xmin: 20,
+  ymin: 0
 };
 
 var electricSign = {
@@ -166,7 +172,10 @@ var electricSign = {
     ctx.fill();
 
     ctx.drawImage(electricImage, x - 70, y - 140, 140, 120);
-  }
+    this.ymin = y - 100; // confirm this
+  },
+  xmin: 20,
+  ymin: 0
 };
 
 var obstacleLaser = {
@@ -316,6 +325,12 @@ var obstacles = [
 
 /*  [obstacleSpike, 500],
   [obstacleThorns, 300],
+  [electricSign, 400],
+  [toxicSign, 200],
+];
+
+/*  [obstacleSpike, 500],
+  [obstacleThorns, 300],
   [obstacleExplodingWall, 200],
   [obstaclePole, 200],
   [electricSign, 400],
@@ -369,7 +384,6 @@ var drawObstacles = function() {
       obstacles[i][0].draw(obs_xmin, floorHeight);
       if (obstacles[i][0].ymin < hero.position && obs_xmin > rightside) {
         drawGameOverSign();
-        //hero.draw(hero.position);
       }
     } else {
       if (obstacles[i][0] === 4) {
