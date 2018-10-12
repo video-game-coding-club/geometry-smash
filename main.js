@@ -299,7 +299,11 @@ var obstacleExplodingWall = {
         ctx.stroke();
       }
     }
-  }
+  },
+  x: 20,
+  y: 20,
+  w: 20,
+  h: 20
 };
 
 let drawGameOverSign = function() {
