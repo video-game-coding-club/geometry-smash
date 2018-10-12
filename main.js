@@ -514,6 +514,10 @@ let mouseClickedListeners = [
   mouseClickedMoveHero
 ];
 
+let keyPressListeners = [
+  powerkeyPressedMoveHero
+];
+
 (function() {
   let initialize = function() {
     /* The mousedown event is fired when a pointing device button is
@@ -522,12 +526,20 @@ let mouseClickedListeners = [
        [1] https://developer.mozilla.org/en-US/docs/Web/Events/mousedown
     */
     canvas.addEventListener('mousedown', mouseClick);
+    cavnas.addEventListener('keypress', keyPress);
   };
 
   let mouseClick = function(event) {
     console.log("mouse clicked");
     for (let i = 0; i < mouseClickedListeners.length; i++) {
       mouseClickedListeners[i](event);
+    }
+  };
+
+  let keyPress = function(event) {
+    console.log("key pressed");
+    for (let i = 0; i < keyPressListeners.length; i++) {
+      keyPressListeners[i](event);
     }
   };
 
