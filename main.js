@@ -279,7 +279,11 @@ var obstaclePole = {
     ctx.closePath();
     ctx.fillStyle = "red";
     ctx.fill();
-  }
+  },
+  x: 20,
+  y: 20,
+  w: 20,
+  h: 20
 };
 
 var explodingWallBricks = [];
