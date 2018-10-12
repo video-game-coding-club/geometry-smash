@@ -256,11 +256,11 @@ var obstacleTrapdoor = {
   draw: function(x, y) {
     ctx.fillStyle = "black";
     ctx.fillRect(x, y, 350, -80);
-    this.ymin = y - 80;
-    this.xmin = x; // yes, this is redundant
   },
-  xmin: 30,
-  ymin: 80
+  x: 100,
+  y: 100,
+  w: 20,
+  h: 2
 };
 
 var obstaclePole = {
@@ -392,9 +392,9 @@ var drawObstacles = function() {
     let obs_xmin = -time * obs_speed + position;
     if (obs_xmin - rightside > 0 && obs_xmin < canvas.width) {
       obstacles[i][0].draw(obs_xmin, floorHeight);
-      if (obstacles[i][0].ymin < hero.position && obs_xmin > rightside) {
-        drawGameOverSign();
-      }
+      //if (obstacles[i][0].ymin < hero.position && obs_xmin > rightside) {
+      //  drawGameOverSign();
+      //}
     } else {
       if (obstacles[i][0] === 4) {
         lightningSound.muted = true;
