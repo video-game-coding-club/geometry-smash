@@ -468,16 +468,17 @@ var hero = {
     ctx.beginPath();
     ctx.ellipse(190, y - 52, 50, 50, 0, 0, 2 * Math.PI);
     ctx.fill();
+    this.y = y - 2;
   },
   position: floorHeight,
   is_jumping: false,
   velocity: 0,
   jump_velocity: 15, // The jump velocity.
   g: -0.3, // "gravity" acceleration term
-  x: 50,
+  x: 190 - 50,
   y: 50,
-  w: 50,
-  h: 50
+  w: 100,
+  h: -100
 };
 
 var drawHero = function() {
