@@ -344,16 +344,12 @@ var drawFloor = function() {
  */
 var obstacles = [
   [obstacleTrapdoor, 600],
-  [obstacleTrapdoor, 600]
-];
-
-/*  [obstacleSpike, 500],
+  [obstacleTrapdoor, 600],
+  [obstacleSpike, 500],
   [obstacleThorns, 300],
   [electricSign, 400],
   [toxicSign, 200],
-];
-
-/*  [obstacleSpike, 500],
+  [obstacleSpike, 500],
   [obstacleThorns, 300],
   [obstacleExplodingWall, 200],
   [obstaclePole, 200],
@@ -394,7 +390,12 @@ var obstacles = [
   [obstacleSpike, 550],
   [obstacleSpike, 320],
   [obstacleSpike, 300]
-];*/
+];
+
+var drawBoundingBox = function(obstacle) {
+  ctx.beginPath();
+  ctx.rect(obstacle.x, obstacle.y, obstacle.w, obstacle.h);
+};
 
 var drawObstacles = function() {
   var obs_speed = 4.0;
@@ -406,6 +407,7 @@ var drawObstacles = function() {
     let obs_xmin = -time * obs_speed + position;
     if (obs_xmin - rightside > 0 && obs_xmin < canvas.width) {
       obstacles[i][0].draw(obs_xmin, floorHeight);
+      drawBoundingBox(obstacles[i][0]);
       //if (obstacles[i][0].ymin < hero.position && obs_xmin > rightside) {
       //  drawGameOverSign();
       //}
