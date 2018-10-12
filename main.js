@@ -55,6 +55,15 @@ var drawStats = function() {
   ctx.fillText("time = " + time, 10, 40);
 };
 
+var drawHeroBoundingBox = function(object) {
+  ctx.beginPath();
+  ctx.rect(object.x, object.y, object.w, object.h);
+  ctx.closePath();
+  ctx.strokeStyle = "lightblue";
+  ctx.lineWidth = "1";
+  ctx.stroke();
+};
+
 var obstacleSpike = {
   draw: function(x, y) {
     ctx.beginPath();
@@ -482,6 +491,7 @@ var drawHero = function() {
     }
   }
   hero.draw(hero.position);
+  drawHeroBoundingBox(hero);
 };
 
 let mouseClickedMoveHero = function(event) {
