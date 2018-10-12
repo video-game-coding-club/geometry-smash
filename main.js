@@ -504,6 +504,11 @@ let mouseClickedMoveHero = function(event) {
   }
 };
 
+let powerkeyPressedMoveHero = function(even) {
+  hero.velocity -= 0.2;
+  hero.is_jumping = true;
+};
+
 let mouseClickedListeners = [
   mouseClickedSoundButton,
   mouseClickedMoveHero
