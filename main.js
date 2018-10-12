@@ -67,8 +67,8 @@ var obstacleSpike = {
   },
   x: 30,
   y: 100,
-  w: 100,
-  h: 200
+  w: 60,
+  h: -60
 };
 
 var obstacleSaw = {
@@ -127,19 +127,20 @@ var obstacleThorns = {
     ctx.lineTo(x + 10, y - 10);
     ctx.lineTo(x + 20, y);
     ctx.closePath();
+    ctx.strokeStyle = "black";
     ctx.stroke();
-    this.ymin = y - 10;
   },
   x: 20,
   y: 0,
-  h: 200,
-  w: 150
+  h: -10,
+  w: 20
 };
 
 var toxicSign = {
   draw: function(x, y) {
+    //re-aligned so x,y as bottom left (delete this comment later)
     ctx.beginPath();
-    ctx.rect(x - 70, y - 20, 140, -120);
+    ctx.rect(x, y - 20, 140, -120);
     ctx.closePath();
     ctx.fillStyle = "white";
     ctx.strokeStyle = "black";
@@ -148,24 +149,24 @@ var toxicSign = {
     ctx.fill();
 
     ctx.beginPath();
-    ctx.rect(x - 10, y, 20, -20);
+    ctx.rect(x + 60, y, 20, -20);
     ctx.closePath();
     ctx.fillStyle = "black";
     ctx.fill();
 
-    ctx.drawImage(toxicImage, x - 70, y - 140, 140, 120);
-    this.ymin = y - 100; // confirm this
+    ctx.drawImage(toxicImage, x, y - 140, 140, 120);
   },
   x: 20,
   y: 0,
-  w: 20,
-  h: 20
+  w: 140,
+  h: -140
 };
 
 var electricSign = {
   draw: function(x, y) {
+    //re-aligned so x,y as bottom left (delete this comment later)
     ctx.beginPath();
-    ctx.rect(x - 70, y - 20, 140, -120);
+    ctx.rect(x, y - 20, 140, -120);
     ctx.closePath();
 
     ctx.fillStyle = "white";
@@ -175,19 +176,19 @@ var electricSign = {
     ctx.fill();
 
     ctx.beginPath();
-    ctx.rect(x - 10, y, 20, -20);
+    ctx.rect(x + 60, y, 20, -20);
     ctx.closePath();
 
     ctx.fillStyle = "black";
     ctx.fill();
 
-    ctx.drawImage(electricImage, x - 70, y - 140, 140, 120);
+    ctx.drawImage(electricImage, x, y - 140, 140, 120);
     this.ymin = y - 100; // confirm this
   },
   x: 20,
   y: 100,
-  w: 20,
-  h: 2
+  w: 140,
+  h: -140
 };
 
 var obstacleLaser = {
@@ -265,8 +266,8 @@ var obstacleTrapdoor = {
   },
   x: 100,
   y: 100,
-  w: 20,
-  h: 2
+  w: 350,
+  h: -80
 };
 
 var obstaclePole = {
@@ -344,7 +345,6 @@ var drawFloor = function() {
  */
 var obstacles = [
   [obstacleTrapdoor, 600],
-  [obstacleTrapdoor, 600],
   [obstacleSpike, 500],
   [obstacleThorns, 300],
   [electricSign, 400],
@@ -392,9 +392,13 @@ var obstacles = [
   [obstacleSpike, 300]
 ];
 
-var drawBoundingBox = function(obstacle) {
+var drawBoundingBox = function(obstacle, xmin, ymin) {
   ctx.beginPath();
-  ctx.rect(obstacle.x, obstacle.y, obstacle.w, obstacle.h);
+  ctx.rect(xmin, ymin, obstacle.w, obstacle.h);
+  ctx.closePath();
+  ctx.strokeStyle = "orangered";
+  ctx.lineWidth = 4;
+  ctx.stroke();
 };
 
 var drawObstacles = function() {
@@ -407,7 +411,7 @@ var drawObstacles = function() {
     let obs_xmin = -time * obs_speed + position;
     if (obs_xmin - rightside > 0 && obs_xmin < canvas.width) {
       obstacles[i][0].draw(obs_xmin, floorHeight);
-      drawBoundingBox(obstacles[i][0]);
+      drawBoundingBox(obstacles[i][0], obs_xmin, floorHeight);
       //if (obstacles[i][0].ymin < hero.position && obs_xmin > rightside) {
       //  drawGameOverSign();
       //}
