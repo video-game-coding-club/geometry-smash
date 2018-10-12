@@ -462,7 +462,6 @@ var drawHero = function() {
     }
   }
   hero.draw(hero.position);
-  hero.ymax = hero.position;
 };
 
 let mouseClickedMoveHero = function(event) {
