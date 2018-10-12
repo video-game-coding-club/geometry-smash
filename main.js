@@ -74,8 +74,8 @@ var obstacleSpike = {
     ctx.fillStyle = "black";
     ctx.fill();
   },
-  x: 30,
-  y: 100,
+  x: 0,
+  y: 0,
   w: 60,
   h: -60
 };
@@ -85,6 +85,8 @@ var obstacleSaw = {
     var numberSpikes = 20;
     var sawRadius = 80;
     var sawHeight = y - 50 * (3 + Math.sin(time / 70 / 2 * Math.PI));
+    // there are two variables called 'y', which may be confusing ...
+    this.y = 80 - 50 * (3 + Math.sin(time / 70 / 2 * Math.PI));
 
     ctx.beginPath();
     ctx.ellipse(x, sawHeight, sawRadius, sawRadius, 0, 0, 2 * Math.PI);
@@ -123,10 +125,10 @@ var obstacleSaw = {
       ctx.restore();
     }
   },
-  x: 100,
-  y: 100,
-  w: 30,
-  h: 30
+  x: -80,
+  y: 0,
+  w: 160,
+  h: -160
 };
 
 var obstacleThorns = {
@@ -139,7 +141,7 @@ var obstacleThorns = {
     ctx.strokeStyle = "black";
     ctx.stroke();
   },
-  x: 20,
+  x: 0,
   y: 0,
   h: -10,
   w: 20
@@ -165,7 +167,7 @@ var toxicSign = {
 
     ctx.drawImage(toxicImage, x, y - 140, 140, 120);
   },
-  x: 20,
+  x: 0,
   y: 0,
   w: 140,
   h: -140
@@ -192,10 +194,9 @@ var electricSign = {
     ctx.fill();
 
     ctx.drawImage(electricImage, x, y - 140, 140, 120);
-    this.ymin = y - 100; // confirm this
   },
-  x: 20,
-  y: 100,
+  x: 0,
+  y: 0,
   w: 140,
   h: -140
 };
@@ -262,8 +263,8 @@ var obstacleLaser = {
   laserInterval: 120,
   laserOn: 40,
   laserSpeed: 7,
-  x: 100,
-  y: 100,
+  x: 0,
+  y: 0,
   w: 20,
   h: 2
 };
@@ -273,8 +274,8 @@ var obstacleTrapdoor = {
     ctx.fillStyle = "black";
     ctx.fillRect(x, y, 350, -80);
   },
-  x: 100,
-  y: 100,
+  x: 0,
+  y: 0,
   w: 350,
   h: -80
 };
@@ -292,8 +293,8 @@ var obstaclePole = {
     ctx.fillStyle = "red";
     ctx.fill();
   },
-  x: 20,
-  y: 20,
+  x: 0,
+  y: 0,
   w: 20,
   h: 20
 };
@@ -310,8 +311,8 @@ var obstacleExplodingWall = {
       }
     }
   },
-  x: 20,
-  y: 20,
+  x: 0,
+  y: 0,
   w: 20,
   h: 20
 };
@@ -355,9 +356,10 @@ var drawFloor = function() {
 var obstacles = [
   [obstacleTrapdoor, 600],
   [obstacleSpike, 500],
-  [obstacleThorns, 300],
+  [obstacleSaw, 400],
   [electricSign, 400],
-  [toxicSign, 200],
+  [obstacleThorns, 300],
+  [toxicSign, 300],
   [obstacleSpike, 500],
   [obstacleThorns, 300],
   [obstacleExplodingWall, 200],
@@ -366,7 +368,6 @@ var obstacles = [
   [toxicSign, 200],
   [obstacleSpike, 300],
   [obstacleLaser, 200],
-  [obstacleSaw, 400],
   [obstacleSpike, 400],
   [obstacleSpike, 550],
   [obstacleSpike, 320],
@@ -403,7 +404,7 @@ var obstacles = [
 
 var drawBoundingBox = function(obstacle, xmin, ymin) {
   ctx.beginPath();
-  ctx.rect(xmin, ymin, obstacle.w, obstacle.h);
+  ctx.rect(xmin + obstacle.x, ymin + obstacle.y, obstacle.w, obstacle.h);
   ctx.closePath();
   ctx.strokeStyle = "orangered";
   ctx.lineWidth = 4;
@@ -418,9 +419,10 @@ var drawObstacles = function() {
     position += obstacles[i][1];
     // draw if coordinates are within the canvas
     let obs_xmin = -time * obs_speed + position;
+    let obs_ymin = floorHeight;
     if (obs_xmin - rightside > 0 && obs_xmin < canvas.width) {
       obstacles[i][0].draw(obs_xmin, floorHeight);
-      drawBoundingBox(obstacles[i][0], obs_xmin, floorHeight);
+      drawBoundingBox(obstacles[i][0], obs_xmin, obs_ymin);
       //if (obstacles[i][0].ymin < hero.position && obs_xmin > rightside) {
       //  drawGameOverSign();
       //}
@@ -540,7 +542,7 @@ var draw = function() {
 
   // NOTE: update this end time with actual level end time or some
   // other event that ends the game
-  if (time > 500) {
+  if (time > 1000) {
     drawGameOverSign();
     return;
   }
