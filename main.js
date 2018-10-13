@@ -284,8 +284,8 @@ var obstaclePole = {
   draw: function(x, y) {
     let speed = 0.1;
     //let height = -Math.max(300, x - speed * time);
-    let poleHeight = Math.min(250, 0.5*canvas.width-x);
-    this.h = - poleHeight;
+    let poleHeight = Math.min(250, 0.5 * canvas.width - x);
+    this.h = -poleHeight;
 
     ctx.beginPath();
     ctx.moveTo(x, y);
