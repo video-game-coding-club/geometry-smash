@@ -282,21 +282,28 @@ var obstacleTrapdoor = {
 
 var obstaclePole = {
   draw: function(x, y) {
-    let speed = 2;
-    let height = Math.max(0.5 * canvas.height, y - speed * time);
+    let speed = 0.1;
+    //let height = -Math.max(300, x - speed * time);
+    let poleHeight = Math.min(250, 0.5 * canvas.width - x);
+    this.h = -poleHeight;
+
     ctx.beginPath();
     ctx.moveTo(x, y);
     ctx.lineTo(x + 100, y);
-    ctx.lineTo(x + 80, height);
-    ctx.lineTo(x + 20, height);
+    ctx.lineTo(x + 80, floorHeight - poleHeight);
+    ctx.lineTo(x + 20, floorHeight - poleHeight);
     ctx.closePath();
-    ctx.fillStyle = "red";
+    ctx.fillStyle = "green";
     ctx.fill();
+
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 4;
+    ctx.stroke();
   },
   x: 0,
   y: 0,
-  w: 20,
-  h: 20
+  w: 100,
+  h: -100
 };
 
 var explodingWallBricks = [];
@@ -313,8 +320,8 @@ var obstacleExplodingWall = {
   },
   x: 0,
   y: 0,
-  w: 20,
-  h: 20
+  w: 10,
+  h: 100
 };
 
 let drawGameOverSign = function() {
@@ -359,11 +366,11 @@ var obstacles = [
   [obstacleSaw, 400],
   [electricSign, 400],
   [obstacleThorns, 300],
+  [obstaclePole, 500],
   [toxicSign, 300],
   [obstacleSpike, 500],
   [obstacleThorns, 300],
   [obstacleExplodingWall, 200],
-  [obstaclePole, 200],
   [electricSign, 400],
   [toxicSign, 200],
   [obstacleSpike, 300],
