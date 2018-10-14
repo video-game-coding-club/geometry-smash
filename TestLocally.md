@@ -5,7 +5,9 @@ title: "Test Game Locally"
 
 # Test the game locally
 
-If you are using CodeAnywhere or GitPod you can test your changes directly.
+If you are using CodeAnywhere or GitPod you can test your changes
+directly in those environments. If you are developing on your own PC
+then you may have to install additional software as described below.
 
 ## GitPod
 
