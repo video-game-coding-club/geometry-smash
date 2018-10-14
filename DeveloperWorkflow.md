@@ -61,13 +61,13 @@ Once you create and check out a new branch you can push it to GitHub
 by running:
 
 ~~~
-git push --set-upstream origin feature_x
+$ git push --set-upstream origin feature_x
 ~~~
 
 After this step you will only have to run
 
 ~~~
-git push
+$ git push
 ~~~
 
 To push additional commits.

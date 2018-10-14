@@ -12,5 +12,5 @@ interface. An easier to use alternative is
 with:
 
 ~~~
-sudo apt-get install nano
+$ sudo apt-get install nano
 ~~~
