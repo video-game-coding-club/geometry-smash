@@ -6,8 +6,8 @@ title: "Developer Workflow"
 # Forking the repo
 
 This step is only for developers that are not added as contributors to
-the repo. You can skip this step if you are contributor and jump to
-Creating a new branch.
+the repo. You can skip this step if you are a contributor and jump to
+[Create a new branch](#create-a-new-branch).
 
 Press Fork-button in Github and follow the instructions.
 
@@ -20,7 +20,7 @@ link. Then use follow command.
 git clone you_link_here
 ~~~
 
-# Creating  a new branch
+# Create a new branch
 
 In order to got code changes back to GitHub we will work through [pull
 requests](https://help.github.com/articles/about-pull-requests/). Before
