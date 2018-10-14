@@ -474,6 +474,7 @@ var hero = {
   },
   position: floorHeight,
   is_jumping: false,
+  is_boosting: false,
   velocity: 0,
   jump_velocity: 15, // The jump velocity.
   g: -0.3, // "gravity" acceleration term
@@ -484,6 +485,10 @@ var hero = {
 };
 
 var drawHero = function() {
+  if (hero.is_boosting) {
+    hero.velocity -= 0.5;
+    hero.is_jumping = true;
+  }
   if (hero.is_jumping) {
     hero.position += hero.velocity;
     hero.velocity -= hero.g;
@@ -504,9 +509,18 @@ let mouseClickedMoveHero = function(event) {
   }
 };
 
-let powerkeyPressedMoveHero = function(even) {
-  hero.velocity -= 0.2;
-  hero.is_jumping = true;
+let powerkeyPressedMoveHero = function(event) {
+  if (event.code === "ControlLeft" || event.code == "ControlRight") {
+    console.log("boosting hero");
+    hero.is_boosting = true;
+  }
+};
+
+let powerkeyReleasedMoveHero = function(event) {
+  if (event.code === "ControlLeft" || event.code == "ControlRight") {
+    console.log("turning hero booster off");
+    hero.is_boosting = false;
+  }
 };
 
 let mouseClickedListeners = [
@@ -518,17 +532,11 @@ let keyPressListeners = [
   powerkeyPressedMoveHero
 ];
 
+let keyReleaseListeners = [
+  powerkeyReleasedMoveHero
+];
+
 (function() {
-  let initialize = function() {
-    /* The mousedown event is fired when a pointing device button is
-       pressed on an element [1].
-
-       [1] https://developer.mozilla.org/en-US/docs/Web/Events/mousedown
-    */
-    canvas.addEventListener('mousedown', mouseClick);
-    cavnas.addEventListener('keypress', keyPress);
-  };
-
   let mouseClick = function(event) {
     console.log("mouse clicked");
     for (let i = 0; i < mouseClickedListeners.length; i++) {
@@ -537,10 +545,28 @@ let keyPressListeners = [
   };
 
   let keyPress = function(event) {
-    console.log("key pressed");
+    console.log("key " + event.key + " pressed");
     for (let i = 0; i < keyPressListeners.length; i++) {
       keyPressListeners[i](event);
     }
+  };
+
+  let keyRelease = function(event) {
+    console.log("key " + event.key + " released");
+    for (let i = 0; i < keyReleaseListeners.length; i++) {
+      keyReleaseListeners[i](event);
+    }
+  };
+
+  let initialize = function() {
+    /* The mousedown event is fired when a pointing device button is
+       pressed on an element [1].
+
+       [1] https://developer.mozilla.org/en-US/docs/Web/Events/mousedown
+    */
+    canvas.addEventListener('mousedown', mouseClick);
+    document.addEventListener('keydown', keyPress);
+    document.addEventListener('keyup', keyRelease);
   };
 
   initialize();
