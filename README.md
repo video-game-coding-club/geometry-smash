@@ -58,7 +58,9 @@ Please see also:
   currently to 10 hours of usage per month).
 
 You can find more information on a suggested workflow on our
-[Developer Workflow](DeveloperWorkflow.md) page.
+[Developer Workflow](DeveloperWorkflow.md) page. If you want to run
+the game locally to test your code changes please have a look on our
+[Test the game locally](TestLocally.md) page.
 
 More information on git can be found on our [git](Git.md) page.
 
