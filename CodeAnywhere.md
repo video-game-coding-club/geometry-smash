@@ -11,6 +11,6 @@ interface. An easier to use alternative is
 [nano](https://www.nano-editor.org/) which you will have to install
 with:
 
-~~~
+~~~ Shell
 $ sudo apt-get install nano
 ~~~

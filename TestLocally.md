@@ -25,13 +25,13 @@ to run and preview the game. Since we are using GitHub pages you can
 refer to [how to set up GitHub Pages
 locally](https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/):
 
-~~~
+~~~ Shell
 $ gem install bundler
 $ bundle install
 ~~~
 
 Now you can build and serve the website by running
 
-~~~
+~~~ Shell
 $ bundle exec jekyll serve
 ~~~
