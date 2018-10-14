@@ -3,19 +3,25 @@ layout: default
 title: "Developer Workflow"
 ---
 
-# Forking the repo
-This step is only for developers that are not added as contributors to the repo. You can skip this step if you are contributor and jump to Creating a new branch.
+# Fork the repository
 
-Press Fork-button in Github and follow the instructions.
+This step is only for developers that are not added as contributors to
+the repo. You can skip this step if you are a contributor and jump to
+[Create a new branch](#create-a-new-branch).
 
-# Clone the repo
-In your forked repo press the Clone-button and copy the https or ssh link. Then use follow command.
+A fork is created simply by clicking on the "Fork" button on the
+repository Github page and follow the instructions.
+
+# Clone the repository
+
+In your forked repository press the "Clone" button and copy the
+`https` or `ssh` link. Then use the following command.
 
 ~~~
-git clone you_link_here
+git clone REPOSITORY_URI
 ~~~
 
-# Creating  a new branch
+# Create a new branch
 
 In order to got code changes back to GitHub we will work through [pull
 requests](https://help.github.com/articles/about-pull-requests/). Before
@@ -37,7 +43,7 @@ git checkout feature_x
 
 and start working!
 
-# Committing changes
+# Commit changes
 
 When you are happy with your changes (e.g. in `main.js`) you can
 commit those changes to your branch with
@@ -50,19 +56,19 @@ This will open an editor. Describe what you have changed so that the
 others understand your changes. After committing the changes you need
 to push them to GitHub.
 
-# Pushing a branch to GitHub
+# Push a branch to GitHub
 
 Once you create and check out a new branch you can push it to GitHub
 by running:
 
 ~~~
-git push --set-upstream origin feature_x
+$ git push --set-upstream origin feature_x
 ~~~
 
 After this step you will only have to run
 
 ~~~
-git push
+$ git push
 ~~~
 
 To push additional commits.

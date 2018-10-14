@@ -1,6 +1,8 @@
 theme: jekyll-theme-hacker
 title: Geometry Smash
 google_analytics: UA-123354485-1
+kramdown:
+  auto_ids: true
 plugins:
   - jekyll-mentions
   - jekyll-seo-tag
