@@ -32,7 +32,7 @@ In alphabetical order:
 We are participating in Hacktoberfest. Look for
 [![GitHub issues](https://img.shields.io/github/issues/video-game-coding-club/geometry-smash.svg)](https://github.com/video-game-coding-club/geometry-smash/issues?q=is%3Aopen+is%3Aissue+label%3Ahacktoberfest)
 tagged with
-#hacktoberfest and send us your pull requests!
+`#hacktoberfest` and send us your pull requests!
 
 # Contribute
 
