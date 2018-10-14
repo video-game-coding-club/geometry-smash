@@ -7,7 +7,7 @@ title: "Git"
 
 Please configure `git` by running
 
-~~~
+~~~ Shell
 $ git config --local pull.ff only
 $ git config --local pull.rebase preserve
 $ git config --local push.default simple
@@ -21,7 +21,7 @@ $ git config --local core.editor nano
 In order to update your repository from GitHub, run the following
 command:
 
-~~~
+~~~ Shell
 $ git remote update --prune
 $ git rebase origin/master master
 ~~~
@@ -30,6 +30,6 @@ $ git rebase origin/master master
 
 The whole commit history can be nicely visualized with
 
-~~~
+~~~ Shell
 $ git log --graph --decorate --all
 ~~~
