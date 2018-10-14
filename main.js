@@ -143,13 +143,13 @@ var obstacleThorns = {
   },
   x: 0,
   y: 0,
-  h: -10,
-  w: 20
+  w: 20,
+  h: -10
 };
 
 var toxicSign = {
   draw: function(x, y) {
-    //re-aligned so x,y as bottom left (delete this comment later)
+    // aligned so x,y as bottom left
     ctx.beginPath();
     ctx.rect(x, y - 20, 140, -120);
     ctx.closePath();
@@ -175,7 +175,7 @@ var toxicSign = {
 
 var electricSign = {
   draw: function(x, y) {
-    //re-aligned so x,y as bottom left (delete this comment later)
+    // aligned so x,y as bottom left
     ctx.beginPath();
     ctx.rect(x, y - 20, 140, -120);
     ctx.closePath();
@@ -266,7 +266,7 @@ var obstacleLaser = {
   x: 0,
   y: 0,
   w: 20,
-  h: 2
+  h: -200
 };
 
 var obstacleTrapdoor = {
@@ -321,18 +321,20 @@ var obstacleExplodingWall = {
   x: 0,
   y: 0,
   w: 10,
-  h: 100
+  h: -100
 };
 
 let drawGameOverSign = function() {
   ctx.fillStyle = "red";
   ctx.beginPath();
-  ctx.rect(0.5 * canvas.width - 150, 0.5 * canvas.height - 100, 300, 80);
+  ctx.rect(0.5 * canvas.width - 150, 0.5 * canvas.height - 100, 300, 60);
   ctx.fill();
-
   ctx.fillStyle = "black";
+  ctx.lineWidth = 4;
+  ctx.stroke();
+
   ctx.font = '48px serif';
-  ctx.fillText("GAME OVER", 0.5 * canvas.width - 140, 0.5 * canvas.height - 50);
+  ctx.fillText("GAME OVER", 0.5 * canvas.width - 140, 0.5 * canvas.height - 55);
 };
 
 var drawBackground = function() {};
