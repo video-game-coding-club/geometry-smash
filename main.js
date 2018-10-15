@@ -420,19 +420,19 @@ var drawBoundingBox = function(obstacle, xmin, ymin) {
 
 var drawObstacles = function() {
   var obs_speed = 4.0;
-  var obs_listPosition = 0; 
+  var obs_listPosition = 0;
   var rightside = 20;
   for (var i = 0; i < obstacles.length; i++) {
     // x-position summed from list
-    obs_listPosition += obstacles[i][1]; 
+    obs_listPosition += obstacles[i][1];
     // draw if coordinates are within the canvas
     let obs_x = -time * obs_speed + obs_listPosition;
     let obs_y = floorHeight;
     if (obs_x - rightside > 0 && obs_x < canvas.width) {
       obstacles[i][0].draw(obs_x, obs_y);
       drawBoundingBox(obstacles[i][0], obs_x, obs_y);
-      if (hero.x + hero.w > obs_x  && 
-         hero.y  > obs_y + obstacles[i][0].h ) {
+      if (hero.x + hero.w > obs_x &&
+        hero.y > obs_y + obstacles[i][0].h) {
         drawGameOverSign();
       }
     } else {
@@ -479,7 +479,7 @@ var hero = {
     ctx.beginPath();
     ctx.ellipse(190, y - 50, 50, 50, 0, 0, 2 * Math.PI);
     ctx.fill();
-    this.y = y; 
+    this.y = y;
   },
   is_jumping: false,
   is_boosting: false,
