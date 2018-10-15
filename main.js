@@ -492,6 +492,10 @@ var drawHero = function() {
   if (hero.is_jumping) {
     hero.position += hero.velocity;
     hero.velocity -= hero.g;
+    if (hero.position < 100) {
+      hero.position = 100;
+      hero.velocity = 0;
+    }
     if (hero.position > floorHeight) {
       hero.position = floorHeight;
       hero.velocity = 0;
