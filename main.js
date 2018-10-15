@@ -420,19 +420,21 @@ var drawBoundingBox = function(obstacle, xmin, ymin) {
 
 var drawObstacles = function() {
   var obs_speed = 4.0;
-  var position = 0;
+  var obs_listPosition = 0; 
   var rightside = 20;
   for (var i = 0; i < obstacles.length; i++) {
-    position += obstacles[i][1];
+    // x-position summed from list
+    obs_listPosition += obstacles[i][1]; 
     // draw if coordinates are within the canvas
-    let obs_xmin = -time * obs_speed + position;
-    let obs_ymin = floorHeight;
-    if (obs_xmin - rightside > 0 && obs_xmin < canvas.width) {
-      obstacles[i][0].draw(obs_xmin, floorHeight);
-      drawBoundingBox(obstacles[i][0], obs_xmin, obs_ymin);
-      //if (obstacles[i][0].ymin < hero.position && obs_xmin > rightside) {
-      //  drawGameOverSign();
-      //}
+    let obs_x = -time * obs_speed + obs_listPosition;
+    let obs_y = floorHeight;
+    if (obs_x - rightside > 0 && obs_x < canvas.width) {
+      obstacles[i][0].draw(obs_x, obs_y);
+      drawBoundingBox(obstacles[i][0], obs_x, obs_y);
+      if (hero.x + hero.w > obs_x  && 
+         hero.y  > obs_y + obstacles[i][0].h ) {
+        drawGameOverSign();
+      }
     } else {
       if (obstacles[i][0] === 4) {
         lightningSound.muted = true;
@@ -475,18 +477,17 @@ var hero = {
 
     ctx.fillStyle = "brown";
     ctx.beginPath();
-    ctx.ellipse(190, y - 52, 50, 50, 0, 0, 2 * Math.PI);
+    ctx.ellipse(190, y - 50, 50, 50, 0, 0, 2 * Math.PI);
     ctx.fill();
-    this.y = y - 2;
+    this.y = y; 
   },
-  position: floorHeight,
   is_jumping: false,
   is_boosting: false,
   velocity: 0,
   jump_velocity: 15, // The jump velocity.
   g: -0.3, // "gravity" acceleration term
   x: 190 - 50,
-  y: 50,
+  y: floorHeight,
   w: 100,
   h: -100
 };
@@ -497,19 +498,19 @@ var drawHero = function() {
     hero.is_jumping = true;
   }
   if (hero.is_jumping) {
-    hero.position += hero.velocity;
+    hero.y += hero.velocity;
     hero.velocity -= hero.g;
-    if (hero.position < 100) {
-      hero.position = 100;
-      hero.velocity = 0;
+    if (hero.y < 100) {
+      hero.y = 100;
+      hero.y = 0;
     }
-    if (hero.position > floorHeight) {
-      hero.position = floorHeight;
+    if (hero.y > floorHeight) {
+      hero.y = floorHeight;
       hero.velocity = 0;
       hero.is_jumping = false;
     }
   }
-  hero.draw(hero.position);
+  hero.draw(hero.y);
   drawHeroBoundingBox(hero);
 };
 
