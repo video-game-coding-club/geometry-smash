@@ -759,13 +759,6 @@ let draw = function() {
   drawHero();
   //drawFloor();
 
-  // NOTE: update this end time with actual level end time or some
-  // other event that ends the game
-  if (time > 1000) {
-    drawGameOverSign();
-    return;
-  }
-
   if (!debugMode) {
     time++;
   }
