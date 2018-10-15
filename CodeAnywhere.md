@@ -3,7 +3,7 @@ layout: default
 title: "CodeAnywhere Platform"
 ---
 
-# Preparing your codeanywhere system
+# Preparing your CodeAnywhere system
 
 The default editor in the codeanywhere machine is
 [vim](https://www.vim.org/) which has a somewhat unusual user
