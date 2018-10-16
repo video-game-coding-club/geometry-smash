@@ -321,7 +321,7 @@ var obstacleExplodingWall = {
   x: 0,
   y: 0,
   w: 10,
-  h: -100
+  h: -canvas.height
 };
 
 let drawGameOverSign = function() {
@@ -432,9 +432,11 @@ var drawObstacles = function() {
     let obs_y = floorHeight;
     if (obs_x - rightside > 0 && obs_x < canvas.width) {
       obstacles[i][0].draw(obs_x, obs_y);
+      let obs_left = obs_x + obstacles[i][0].x;
+      let obs_top = obs_y + obstacles[i][0].h;
       drawBoundingBox(obstacles[i][0], obs_x, obs_y);
-      if (hero.x + hero.w > obs_x &&
-        hero.y > obs_y + obstacles[i][0].h) {
+      if (hero.x + hero.w > obs_left &&
+        hero.y > obs_top) {
         drawGameOverSign();
       }
     } else {
