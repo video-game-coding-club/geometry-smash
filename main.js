@@ -436,7 +436,7 @@ var drawObstacles = function() {
       let obs_top = obs_y + obstacles[i][0].h;
       drawBoundingBox(obstacles[i][0], obs_x, obs_y);
       if (hero.x + hero.w > obs_left &&
-          hero.y > obs_top) {
+        hero.y > obs_top) {
         drawGameOverSign();
       }
     } else {
