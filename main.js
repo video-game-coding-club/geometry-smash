@@ -212,6 +212,7 @@ var obstacleLaser = {
     ctx.fill();
 
     if (time % this.laserInterval > this.laserInterval - this.laserOn) {
+      this.h = -canvas.height;
       /* The current height of the laser beam. */
       let laserTop = 0;
 
@@ -251,6 +252,7 @@ var obstacleLaser = {
       ctx.lineWidth = 4;
       ctx.stroke();
     } else {
+      this.h = 0;
       if (laserSound !== undefined) {
         lightningSound.pause();
         laserSound = undefined;
@@ -265,8 +267,8 @@ var obstacleLaser = {
   laserSpeed: 7,
   x: 0,
   y: 0,
-  w: 20,
-  h: -200
+  w: 76,
+  h: 0
 };
 
 var obstacleTrapdoor = {
@@ -367,6 +369,7 @@ var obstacles = [
   [obstacleSpike, 500],
   [obstacleSaw, 400],
   [electricSign, 400],
+  [obstacleLaser, 500],
   [obstacleThorns, 300],
   [obstaclePole, 500],
   [toxicSign, 300],
