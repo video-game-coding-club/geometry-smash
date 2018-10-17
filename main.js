@@ -252,7 +252,7 @@ var obstacleLaser = {
       ctx.lineWidth = 4;
       ctx.stroke();
     } else {
-    this.h = 0;
+      this.h = 0;
       if (laserSound !== undefined) {
         lightningSound.pause();
         laserSound = undefined;
