@@ -421,6 +421,7 @@ var drawObstacles = function() {
   for (var i = 0; i < obstacles.length; i++) {
     // x-position summed from list
     obs_listPosition += obstacles[i][1];
+
     // draw if coordinates are within the canvas
     let obs_x = -time * obs_speed + obs_listPosition;
     let obs_y = floorHeight;
@@ -429,6 +430,12 @@ var drawObstacles = function() {
       let obs_left = obs_x + obstacles[i][0].x;
       let obs_top = obs_y + obstacles[i][0].h;
       drawBoundingBox(obstacles[i][0], obs_x, obs_y);
+
+      /* Detect collision.
+       *
+       * (1) How does this work?
+       * (2) Does it always work?
+       */
       if (hero.x + hero.w > obs_left &&
         hero.y > obs_top) {
         drawGameOverSign();
