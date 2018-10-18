@@ -584,6 +584,7 @@ let keyReleaseListeners = [
        [1] https://developer.mozilla.org/en-US/docs/Web/Events/mousedown
     */
     canvas.addEventListener('mousedown', mouseClick);
+    canvas.addEventListener('touchstart', mouseClick);
     document.addEventListener('keydown', keyPress);
     document.addEventListener('keyup', keyRelease);
   };
