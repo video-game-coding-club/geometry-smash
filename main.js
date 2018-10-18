@@ -55,15 +55,6 @@ var drawStats = function() {
   ctx.fillText("time = " + time, 10, 40);
 };
 
-var drawHeroBoundingBox = function(object) {
-  ctx.beginPath();
-  ctx.rect(object.x, object.y, object.w, object.h);
-  ctx.closePath();
-  ctx.strokeStyle = "lightblue";
-  ctx.lineWidth = "1";
-  ctx.stroke();
-};
-
 var obstacleSpike = {
   draw: function(x, y) {
     ctx.beginPath();
@@ -419,7 +410,7 @@ var drawBoundingBox = function(obstacle, xmin, ymin) {
   ctx.rect(xmin + obstacle.x, ymin + obstacle.y, obstacle.w, obstacle.h);
   ctx.closePath();
   ctx.strokeStyle = "orangered";
-  ctx.lineWidth = 4;
+  ctx.lineWidth = 1;
   ctx.stroke();
 };
 
@@ -475,6 +466,15 @@ let mouseClickedSoundButton = function(event) {
       lightningSound.muted = true;
     }
   }
+};
+
+var drawHeroBoundingBox = function(object) {
+  ctx.beginPath();
+  ctx.rect(object.x, object.y, object.w, object.h);
+  ctx.closePath();
+  ctx.strokeStyle = "lightblue";
+  ctx.lineWidth = "1";
+  ctx.stroke();
 };
 
 var hero = {
