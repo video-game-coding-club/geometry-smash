@@ -538,9 +538,11 @@ var drawHero = function() {
 };
 
 let mouseClickedMoveHero = function(event) {
-  if (!hero.is_jumping) {
-    hero.velocity = -hero.jump_velocity;
-    hero.is_jumping = true;
+  if (!debugMode) {
+    if (!hero.is_jumping) {
+      hero.velocity = -hero.jump_velocity;
+      hero.is_jumping = true;
+    }
   }
 };
 
