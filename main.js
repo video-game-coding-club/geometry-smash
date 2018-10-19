@@ -485,15 +485,14 @@ var drawHeroBoundingBox = function(object) {
 };
 
 var hero = {
-  draw: function(y) {
+  draw: function() {
 
     /*body and color*/
 
     ctx.fillStyle = "brown";
     ctx.beginPath();
-    ctx.ellipse(190, y - 50, 50, 50, 0, 0, 2 * Math.PI);
+    ctx.ellipse(this.x + 50, this.y - 50, 50, 50, 0, 0, 2 * Math.PI);
     ctx.fill();
-    this.y = y;
   },
   is_jumping: false,
   is_boosting: false,
@@ -524,7 +523,7 @@ var drawHero = function() {
       hero.is_jumping = false;
     }
   }
-  hero.draw(hero.y);
+  hero.draw();
   drawHeroBoundingBox(hero);
 };
 
