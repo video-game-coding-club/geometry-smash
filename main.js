@@ -7,6 +7,9 @@ var time = 0;
 /* The position of the floor. */
 var floorHeight = 0;
 
+/* Debug mode. */
+let debugMode = false;
+
 /* The current mouse position. */
 let mousePosition = {
   x: 0,
@@ -512,17 +515,18 @@ var hero = {
 };
 
 var drawHero = function() {
-  if (hero.is_boosting) {
-    hero.velocity -= 0.5;
-    hero.is_jumping = true;
-  }
-  if (hero.is_jumping) {
-    hero.y += hero.velocity;
-    hero.velocity -= hero.g;
-    if (hero.y < 100) {
-      hero.y = 100;
-      hero.y = 0;
+  if (debugMode) {
+    hero.x = mousePosition.x;
+    hero.y = mousePosition.y;
+  } else {
+    if (hero.is_boosting) {
+      hero.velocity -= 0.5;
+      hero.is_jumping = true;
     }
+
+    hero.velocity -= hero.g;
+    hero.y += hero.velocity;
+
     if (hero.y > floorHeight) {
       hero.y = floorHeight;
       hero.velocity = 0;
@@ -549,6 +553,16 @@ let powerkeyPressedMoveHero = function(event) {
   if (event.code === "ControlLeft" || event.code == "ControlRight") {
     console.log("boosting hero");
     hero.is_boosting = true;
+  }
+};
+
+let debugKeyPressed = function(event) {
+  if (event.code === "KeyD" && event.key === "d") {
+    if (debugMode) {
+      /* Reset x component of hero position. */
+      hero.x = 190 - 50;
+    }
+    debugMode = !debugMode;
   }
 };
 
@@ -640,7 +654,9 @@ var draw = function() {
     return;
   }
 
-  time++;
+  if (!debugMode) {
+    time++;
+  }
 };
 
 draw();
