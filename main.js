@@ -566,6 +566,12 @@ let debugKeyPressed = function(event) {
   }
 };
 
+let restartKeyPressed = function(event) {
+  if (event.code === "KeyR" && event.key === "r") {
+    time = 0;
+  }
+};
+
 let powerkeyReleasedMoveHero = function(event) {
   if (event.code === "ControlLeft" || event.code == "ControlRight") {
     console.log("turning hero booster off");
@@ -584,7 +590,8 @@ let mouseMoveListeners = [
 
 let keyPressListeners = [
   powerkeyPressedMoveHero,
-  debugKeyPressed
+  debugKeyPressed,
+  restartKeyPressed
 ];
 
 let keyReleaseListeners = [
