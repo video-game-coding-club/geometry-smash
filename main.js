@@ -7,6 +7,12 @@ var time = 0;
 /* The position of the floor. */
 var floorHeight = 0;
 
+/* The current mouse position. */
+let mousePosition = {
+  x: 0,
+  y: 0
+};
+
 /* The toxic sign image. */
 var toxicImage = new Image();
 toxicImage.src = "toxic.jpg";
@@ -534,6 +540,11 @@ let mouseClickedMoveHero = function(event) {
   }
 };
 
+let mouseMoved = function(event) {
+  mousePosition.x = event.clientX;
+  mousePosition.y = event.clientY;
+};
+
 let powerkeyPressedMoveHero = function(event) {
   if (event.code === "ControlLeft" || event.code == "ControlRight") {
     console.log("boosting hero");
@@ -553,8 +564,13 @@ let mouseClickedListeners = [
   mouseClickedMoveHero
 ];
 
+let mouseMoveListeners = [
+  mouseMoved
+];
+
 let keyPressListeners = [
-  powerkeyPressedMoveHero
+  powerkeyPressedMoveHero,
+  debugKeyPressed
 ];
 
 let keyReleaseListeners = [
@@ -566,6 +582,13 @@ let keyReleaseListeners = [
     console.log("mouse clicked");
     for (let i = 0; i < mouseClickedListeners.length; i++) {
       mouseClickedListeners[i](event);
+    }
+  };
+
+  let mouseMove = function(event) {
+    console.log("mouse moved");
+    for (let i = 0; i < mouseMoveListeners.length; i++) {
+      mouseMoveListeners[i](event);
     }
   };
 
@@ -591,6 +614,7 @@ let keyReleaseListeners = [
     */
     canvas.addEventListener('mousedown', mouseClick);
     canvas.addEventListener('touchstart', mouseClick);
+    canvas.addEventListener('mousemove', mouseMove);
     document.addEventListener('keydown', keyPress);
     document.addEventListener('keyup', keyRelease);
   };
