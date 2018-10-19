@@ -561,6 +561,7 @@ let debugKeyPressed = function(event) {
     if (debugMode) {
       /* Reset x component of hero position. */
       hero.x = 190 - 50;
+      hero.velocity = 0;
     }
     debugMode = !debugMode;
   }
