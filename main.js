@@ -7,6 +7,15 @@ var time = 0;
 /* The position of the floor. */
 var floorHeight = 0;
 
+/* Debug mode. */
+let debugMode = false;
+
+/* The current mouse position. */
+let mousePosition = {
+  x: 0,
+  y: 0
+};
+
 /* The toxic sign image. */
 var toxicImage = new Image();
 toxicImage.src = "toxic.jpg";
@@ -50,9 +59,14 @@ var background = function(color) {
 };
 
 var drawStats = function() {
-  ctx.fillStyle = "black";
-  ctx.font = '48px serif';
-  ctx.fillText("time = " + time, 10, 40);
+  ctx.fillStyle = "white";
+  ctx.font = '20px monospace';
+  ctx.fillText("time           = " + time, 10, 20);
+  ctx.fillText("hero position  = [" + hero.x.toFixed(0) + ", " + hero.y.toFixed(0) + "]", 10, 40);
+  ctx.fillText("hero velocity  = " + hero.velocity.toFixed(2), 10, 60);
+  ctx.fillText("booster (CTRL) = " + (hero.is_boosting ? "on" : "off"), 10, 80);
+  ctx.fillText("debug (d)      = " + (debugMode ? "on" : "off"), 10, 100);
+  ctx.fillText("restart (r)", 10, 120);
 };
 
 var obstacleSpike = {
@@ -485,15 +499,14 @@ var drawHeroBoundingBox = function(object) {
 };
 
 var hero = {
-  draw: function(y) {
+  draw: function() {
 
     /*body and color*/
 
     ctx.fillStyle = "brown";
     ctx.beginPath();
-    ctx.ellipse(190, y - 50, 50, 50, 0, 0, 2 * Math.PI);
+    ctx.ellipse(this.x + 50, this.y - 50, 50, 50, 0, 0, 2 * Math.PI);
     ctx.fill();
-    this.y = y;
   },
   is_jumping: false,
   is_boosting: false,
@@ -507,38 +520,63 @@ var hero = {
 };
 
 var drawHero = function() {
-  if (hero.is_boosting) {
-    hero.velocity -= 0.5;
-    hero.is_jumping = true;
-  }
-  if (hero.is_jumping) {
-    hero.y += hero.velocity;
-    hero.velocity -= hero.g;
-    if (hero.y < 100) {
-      hero.y = 100;
-      hero.y = 0;
+  if (debugMode) {
+    hero.x = mousePosition.x;
+    hero.y = mousePosition.y;
+  } else {
+    if (hero.is_boosting) {
+      hero.velocity -= 0.5;
+      hero.is_jumping = true;
     }
+
+    hero.velocity -= hero.g;
+    hero.y += hero.velocity;
+
     if (hero.y > floorHeight) {
       hero.y = floorHeight;
       hero.velocity = 0;
       hero.is_jumping = false;
     }
   }
-  hero.draw(hero.y);
+  hero.draw();
   drawHeroBoundingBox(hero);
 };
 
 let mouseClickedMoveHero = function(event) {
-  if (!hero.is_jumping) {
-    hero.velocity = -hero.jump_velocity;
-    hero.is_jumping = true;
+  if (!debugMode) {
+    if (!hero.is_jumping) {
+      hero.velocity = -hero.jump_velocity;
+      hero.is_jumping = true;
+    }
   }
+};
+
+let mouseMoved = function(event) {
+  mousePosition.x = event.clientX;
+  mousePosition.y = event.clientY;
 };
 
 let powerkeyPressedMoveHero = function(event) {
   if (event.code === "ControlLeft" || event.code == "ControlRight") {
     console.log("boosting hero");
     hero.is_boosting = true;
+  }
+};
+
+let debugKeyPressed = function(event) {
+  if (event.code === "KeyD" && event.key === "d") {
+    if (debugMode) {
+      /* Reset x component of hero position. */
+      hero.x = 190 - 50;
+      hero.velocity = 0;
+    }
+    debugMode = !debugMode;
+  }
+};
+
+let restartKeyPressed = function(event) {
+  if (event.code === "KeyR" && event.key === "r") {
+    time = 0;
   }
 };
 
@@ -554,8 +592,14 @@ let mouseClickedListeners = [
   mouseClickedMoveHero
 ];
 
+let mouseMoveListeners = [
+  mouseMoved
+];
+
 let keyPressListeners = [
-  powerkeyPressedMoveHero
+  powerkeyPressedMoveHero,
+  debugKeyPressed,
+  restartKeyPressed
 ];
 
 let keyReleaseListeners = [
@@ -567,6 +611,13 @@ let keyReleaseListeners = [
     console.log("mouse clicked");
     for (let i = 0; i < mouseClickedListeners.length; i++) {
       mouseClickedListeners[i](event);
+    }
+  };
+
+  let mouseMove = function(event) {
+    console.log("mouse moved");
+    for (let i = 0; i < mouseMoveListeners.length; i++) {
+      mouseMoveListeners[i](event);
     }
   };
 
@@ -592,6 +643,7 @@ let keyReleaseListeners = [
     */
     canvas.addEventListener('mousedown', mouseClick);
     canvas.addEventListener('touchstart', mouseClick);
+    canvas.addEventListener('mousemove', mouseMove);
     document.addEventListener('keydown', keyPress);
     document.addEventListener('keyup', keyRelease);
   };
@@ -617,7 +669,9 @@ var draw = function() {
     return;
   }
 
-  time++;
+  if (!debugMode) {
+    time++;
+  }
 };
 
 draw();
