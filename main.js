@@ -420,12 +420,9 @@ var obstacles = [
 ];
 
 var drawBoundingBox = function(obstacle, xmin, ymin) {
-  ctx.beginPath();
-  ctx.rect(xmin + obstacle.x, ymin + obstacle.y, obstacle.w, obstacle.h);
-  ctx.closePath();
   ctx.strokeStyle = "orangered";
   ctx.lineWidth = 1;
-  ctx.stroke();
+  ctx.strokeRect(xmin + obstacle.x, ymin + obstacle.y, obstacle.w, obstacle.h);
 };
 
 var drawObstacles = function() {
@@ -490,12 +487,9 @@ let mouseClickedSoundButton = function(event) {
 };
 
 var drawHeroBoundingBox = function(object) {
-  ctx.beginPath();
-  ctx.rect(object.x, object.y, object.w, object.h);
-  ctx.closePath();
   ctx.strokeStyle = "lightblue";
   ctx.lineWidth = "1";
-  ctx.stroke();
+  ctx.strokeRect(object.x, object.y, object.w, object.h);
 
   ctx.font = '14px monospace';
   ctx.fillStyle = "white";
