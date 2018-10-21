@@ -32,6 +32,27 @@ lightningSound.muted = true;
 /* The state of the laser sound. */
 let laserSound;
 
+class GameObject {
+  constructor(w = 0, h = 0) {
+    this.x = 0;
+    this.y = 0;
+    this.w = w;
+    this.h = h;
+  }
+
+  /* This method needs to be defined by each game object class. */
+  draw() {}
+
+  drawBoundingBox() {
+    ctx.beginPath();
+    ctx.rect(this.x, this.y, this.w, this.h);
+    ctx.closePath();
+    ctx.strokeStyle = "orangered";
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+}
+
 let background = function(color) {
   ctx.fillStyle = color;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
