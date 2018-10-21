@@ -496,6 +496,24 @@ var drawHeroBoundingBox = function(object) {
   ctx.strokeStyle = "lightblue";
   ctx.lineWidth = "1";
   ctx.stroke();
+
+  ctx.font = '14px monospace';
+  ctx.fillStyle = "white";
+  ctx.textAlign = "right";
+  ctx.textBaseline = "top";
+  ctx.fillText("(x, y)", object.x, object.y);
+  ctx.textAlign = "left";
+  ctx.textBaseline = "top";
+  ctx.fillText("(x + w, y)", object.x + object.w, object.y);
+  ctx.textAlign = "left";
+  ctx.textBaseline = "bottom";
+  ctx.fillText("(x + w, y + h)", object.x + object.w, object.y + object.h);
+  ctx.textAlign = "right";
+  ctx.textBaseline = "bottom";
+  ctx.fillText("(x, y + h)", object.x, object.y + object.h);
+
+  ctx.textAlign = "left";
+  ctx.textBaseline = "alphabetic";
 };
 
 var hero = {
@@ -659,8 +677,9 @@ var draw = function() {
   drawSoundButton();
   drawBackground();
   drawObstacles();
-  drawHero();
   drawFloor();
+  drawHero();
+  //drawFloor();
 
   // NOTE: update this end time with actual level end time or some
   // other event that ends the game
