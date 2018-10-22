@@ -69,7 +69,7 @@ var drawStats = function() {
   ctx.fillText("restart (r)", 10, 120);
 };
 
-var obstacleSpike = {
+var obstacleSpike = new Object({
   draw: function(x, y) {
     ctx.beginPath();
     ctx.moveTo(x, y);
@@ -83,7 +83,7 @@ var obstacleSpike = {
   y: 0,
   w: 60,
   h: -60
-};
+});
 
 var obstacleSaw = {
   draw: function(x, y) {
