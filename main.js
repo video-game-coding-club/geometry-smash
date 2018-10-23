@@ -32,23 +32,6 @@ lightningSound.muted = true;
 /* The state of the laser sound. */
 let laserSound;
 
-(function() {
-  let initialize = function() {
-    window.addEventListener('resize', resizeCanvas);
-    canvas.style.position = "absolute";
-    canvas.style.left = "0px";
-    canvas.style.top = "0px";
-    resizeCanvas();
-  };
-
-  let resizeCanvas = function() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    floorHeight = canvas.height - 50;
-  };
-
-  initialize();
-})();
 
 var background = function(color) {
   ctx.fillStyle = color;
@@ -686,5 +669,23 @@ var draw = function() {
     time++;
   }
 };
+
+(function() {
+  let initialize = function() {
+    window.addEventListener('resize', resizeCanvas);
+    canvas.style.position = "absolute";
+    canvas.style.left = "0px";
+    canvas.style.top = "0px";
+    resizeCanvas();
+  };
+
+  let resizeCanvas = function() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    floorHeight = canvas.height - 50;
+  };
+
+  initialize();
+})();
 
 draw();
