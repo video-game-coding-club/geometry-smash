@@ -443,8 +443,7 @@ var drawObstacles = function() {
 
 let drawSoundButton = function() {
   ctx.fillStyle = "yellow";
-  ctx.rect(canvas.width - 230, 10, 220, 100);
-  ctx.fill();
+  ctx.fillRect(canvas.width - 230, 10, 220, 100);
 
   ctx.fillStyle = "black";
   ctx.font = '48px serif';
