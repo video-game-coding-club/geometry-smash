@@ -32,7 +32,6 @@ lightningSound.muted = true;
 /* The state of the laser sound. */
 let laserSound;
 
-
 var background = function(color) {
   ctx.fillStyle = color;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -498,9 +497,10 @@ var hero = {
 
     /*body and color*/
 
-    ctx.fillStyle = "brown";
     ctx.beginPath();
     ctx.ellipse(this.x + 50, this.y - 50, 50, 50, 0, 0, 2 * Math.PI);
+    ctx.closePath();
+    ctx.fillStyle = "brown";
     ctx.fill();
   },
   is_jumping: false,
