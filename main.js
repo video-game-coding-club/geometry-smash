@@ -537,13 +537,18 @@ var drawHero = function() {
   drawHeroBoundingBox(hero);
 };
 
-let mouseClickedMoveHero = function(event) {
+let jumpHero = function() {
   if (!debugMode) {
     if (!hero.is_jumping) {
+      console.log("jump hero");
       hero.velocity = -hero.jump_velocity;
       hero.is_jumping = true;
     }
   }
+};
+
+let mouseClickedMoveHero = function(event) {
+  jumpHero();
 };
 
 let mouseMoved = function(event) {
@@ -582,6 +587,12 @@ let powerkeyReleasedMoveHero = function(event) {
   }
 };
 
+let spaceKeyPressed = function(event) {
+  if (event.code === "Space" && event.key === " ") {
+    jumpHero();
+  }
+};
+
 let mouseClickedListeners = [
   mouseClickedSoundButton,
   mouseClickedMoveHero
@@ -594,7 +605,8 @@ let mouseMoveListeners = [
 let keyPressListeners = [
   powerkeyPressedMoveHero,
   debugKeyPressed,
-  restartKeyPressed
+  restartKeyPressed,
+  spaceKeyPressed
 ];
 
 let keyReleaseListeners = [
@@ -617,14 +629,14 @@ let keyReleaseListeners = [
   };
 
   let keyPress = function(event) {
-    console.log("key " + event.key + " pressed");
+    console.log("pressed key '" + event.key + "', code " + event.code);
     for (let i = 0; i < keyPressListeners.length; i++) {
       keyPressListeners[i](event);
     }
   };
 
   let keyRelease = function(event) {
-    console.log("key " + event.key + " released");
+    console.log("released key '" + event.key + "', code " + event.code);
     for (let i = 0; i < keyReleaseListeners.length; i++) {
       keyReleaseListeners[i](event);
     }
