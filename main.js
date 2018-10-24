@@ -49,7 +49,9 @@ var drawStats = function() {
   ctx.fillText("hero velocity  = " + hero.velocity.toFixed(2), 10, 60);
   ctx.fillText("booster (CTRL) = " + (hero.is_boosting ? "on" : "off"), 10, 80);
   ctx.fillText("debug (d)      = " + (debugMode ? "on" : "off"), 10, 100);
-  ctx.fillText("restart (r)", 10, 120);
+  ctx.fillText("step debug (s) = " + (debugMode ? "enabled" : "disabled"), 10, 120);
+  ctx.fillText("step back (S)  = " + (debugMode ? "enabled" : "disabled"), 10, 140);
+  ctx.fillText("restart (r)", 10, 160);
 };
 
 var obstacleSpike = {
@@ -580,6 +582,22 @@ let restartKeyPressed = function(event) {
   }
 };
 
+let stepKeyPressed = function(event) {
+  if (event.code === "KeyS" && event.key === "s") {
+    if (debugMode) {
+      time++;
+    }
+  }
+};
+
+let reverseStepKeyPressed = function(event) {
+  if (event.code === "KeyS" && event.key === "S") {
+    if (debugMode) {
+      time--;
+    }
+  }
+};
+
 let powerkeyReleasedMoveHero = function(event) {
   if (event.code === "ControlLeft" || event.code == "ControlRight") {
     console.log("turning hero booster off");
@@ -606,7 +624,9 @@ let keyPressListeners = [
   powerkeyPressedMoveHero,
   debugKeyPressed,
   restartKeyPressed,
-  spaceKeyPressed
+  spaceKeyPressed,
+  stepKeyPressed,
+  reverseStepKeyPressed
 ];
 
 let keyReleaseListeners = [
