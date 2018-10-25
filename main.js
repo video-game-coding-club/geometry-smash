@@ -1,11 +1,11 @@
-var canvas = document.getElementById("game-layer");
-var ctx = canvas.getContext("2d");
+let canvas = document.getElementById("game-layer");
+let ctx = canvas.getContext("2d");
 
 /* Reset the game time. */
-var time = 0;
+let time = 0;
 
 /* The position of the floor. */
-var floorHeight = 0;
+let floorHeight = 0;
 
 /* Debug mode. */
 let debugMode = false;
@@ -17,11 +17,11 @@ let mousePosition = {
 };
 
 /* The toxic sign image. */
-var toxicImage = new Image();
+let toxicImage = new Image();
 toxicImage.src = "toxic.jpg";
 
 /* The electric sign image. */
-var electricImage = new Image();
+let electricImage = new Image();
 electricImage.src = "electric.jpg";
 
 /* The sound effect for the laser obstacle. */
@@ -32,7 +32,7 @@ lightningSound.muted = true;
 /* The state of the laser sound. */
 let laserSound;
 
-var background = function(color) {
+let background = function(color) {
   ctx.fillStyle = color;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.strokeStyle = 'black';
@@ -40,7 +40,7 @@ var background = function(color) {
   ctx.strokeRect(0, 0, canvas.width, canvas.height);
 };
 
-var drawStats = function() {
+let drawStats = function() {
   ctx.fillStyle = "white";
   ctx.font = '20px monospace';
   ctx.fillText("time           = " + time, 10, 20);
@@ -53,7 +53,7 @@ var drawStats = function() {
   ctx.fillText("restart (r)", 10, 160);
 };
 
-var obstacleSpike = {
+let obstacleSpike = {
   draw: function(x, y) {
     ctx.beginPath();
     ctx.moveTo(x, y);
@@ -69,11 +69,11 @@ var obstacleSpike = {
   h: -60
 };
 
-var obstacleSaw = {
+let obstacleSaw = {
   draw: function(x, y) {
-    var numberSpikes = 20;
-    var sawRadius = 80;
-    var sawHeight = y - 50 * (3 + Math.sin(time / 70 / 2 * Math.PI));
+    let numberSpikes = 20;
+    let sawRadius = 80;
+    let sawHeight = y - 50 * (3 + Math.sin(time / 70 / 2 * Math.PI));
     // there are two variables called 'y', which may be confusing ...
     this.y = 80 - 50 * (3 + Math.sin(time / 70 / 2 * Math.PI));
 
@@ -95,10 +95,10 @@ var obstacleSaw = {
     ctx.fillStyle = "black";
     ctx.fill();
 
-    for (var i = 0; i < numberSpikes; i++) {
+    for (let i = 0; i < numberSpikes; i++) {
       ctx.save();
 
-      var alpha = -2 * Math.PI / numberSpikes * i - 0.15 * time / (2 * Math.PI) % (2 * Math.PI);
+      let alpha = -2 * Math.PI / numberSpikes * i - 0.15 * time / (2 * Math.PI) % (2 * Math.PI);
 
       ctx.translate(x + sawRadius * Math.sin(alpha), sawHeight + sawRadius * Math.cos(alpha));
       ctx.rotate(-alpha);
@@ -120,7 +120,7 @@ var obstacleSaw = {
   h: -160
 };
 
-var obstacleThorns = {
+let obstacleThorns = {
   draw: function(x, y) {
     ctx.beginPath();
     ctx.moveTo(x, y);
@@ -136,7 +136,7 @@ var obstacleThorns = {
   h: -10
 };
 
-var toxicSign = {
+let toxicSign = {
   draw: function(x, y) {
     // aligned so x,y as bottom left
     ctx.beginPath();
@@ -162,7 +162,7 @@ var toxicSign = {
   h: -140
 };
 
-var electricSign = {
+let electricSign = {
   draw: function(x, y) {
     // aligned so x,y as bottom left
     ctx.beginPath();
@@ -190,7 +190,7 @@ var electricSign = {
   h: -140
 };
 
-var obstacleLaser = {
+let obstacleLaser = {
   draw: function(x, y) {
     ctx.fillStyle = "black";
     ctx.fillRect(x, y, 76, -40);
@@ -260,7 +260,7 @@ var obstacleLaser = {
   h: 0
 };
 
-var obstacleTrapdoor = {
+let obstacleTrapdoor = {
   draw: function(x, y) {
     ctx.fillStyle = "black";
     ctx.fillRect(x, y, 350, -80);
@@ -271,7 +271,7 @@ var obstacleTrapdoor = {
   h: -80
 };
 
-var obstaclePole = {
+let obstaclePole = {
   draw: function(x, y) {
     let speed = 0.1;
     //let height = -Math.max(300, x - speed * time);
@@ -297,8 +297,8 @@ var obstaclePole = {
   h: -100
 };
 
-var explodingWallBricks = [];
-var obstacleExplodingWall = {
+let explodingWallBricks = [];
+let obstacleExplodingWall = {
   draw: function(x, y) {
     if (explodingWallBricks.length === 0) {
       ctx.strokeStyle = "black";
@@ -328,9 +328,9 @@ let drawGameOverSign = function() {
   ctx.fillText("GAME OVER", 0.5 * canvas.width - 140, 0.5 * canvas.height - 55);
 };
 
-var drawBackground = function() {};
+let drawBackground = function() {};
 
-var drawFloor = function() {
+let drawFloor = function() {
   let strokeColors = ["black", "black"];
   let fillColors = ["darkblue", "yellow"];
 
@@ -353,7 +353,7 @@ var drawFloor = function() {
  * 1. The obstacle type
  * 2. The distance to the previous obstacle
  */
-var obstacles = [
+let obstacles = [
   [obstacleTrapdoor, 600],
   [obstacleSpike, 500],
   [obstacleSaw, 400],
@@ -403,17 +403,17 @@ var obstacles = [
   [obstacleSpike, 300]
 ];
 
-var drawBoundingBox = function(obstacle, xmin, ymin) {
+let drawBoundingBox = function(obstacle, xmin, ymin) {
   ctx.strokeStyle = "orangered";
   ctx.lineWidth = 1;
   ctx.strokeRect(xmin + obstacle.x, ymin + obstacle.y, obstacle.w, obstacle.h);
 };
 
-var drawObstacles = function() {
-  var obs_speed = 4.0;
-  var obs_listPosition = 0;
-  var rightside = 20;
-  for (var i = 0; i < obstacles.length; i++) {
+let drawObstacles = function() {
+  let obs_speed = 4.0;
+  let obs_listPosition = 0;
+  let rightside = 20;
+  for (let i = 0; i < obstacles.length; i++) {
     // x-position summed from list
     obs_listPosition += obstacles[i][1];
 
@@ -469,7 +469,7 @@ let mouseClickedSoundButton = function(event) {
   }
 };
 
-var drawHeroBoundingBox = function(object) {
+let drawHeroBoundingBox = function(object) {
   ctx.strokeStyle = "lightblue";
   ctx.lineWidth = "1";
   ctx.strokeRect(object.x, object.y, object.w, object.h);
@@ -493,7 +493,7 @@ var drawHeroBoundingBox = function(object) {
   ctx.textBaseline = "alphabetic";
 };
 
-var hero = {
+let hero = {
   draw: function() {
 
     /*body and color*/
@@ -515,7 +515,7 @@ var hero = {
   h: -100
 };
 
-var drawHero = function() {
+let drawHero = function() {
   if (debugMode) {
     hero.x = mousePosition.x;
     hero.y = mousePosition.y;
@@ -677,7 +677,7 @@ let keyReleaseListeners = [
   initialize();
 })();
 
-var draw = function() {
+let draw = function() {
   window.requestAnimationFrame(draw);
   background("blue");
 
