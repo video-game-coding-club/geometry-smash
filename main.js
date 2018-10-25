@@ -32,6 +32,27 @@ lightningSound.muted = true;
 /* The state of the laser sound. */
 let laserSound;
 
+class GameObject {
+  constructor(w = 0, h = 0) {
+    this.x = 0;
+    this.y = 0;
+    this.w = w;
+    this.h = h;
+  }
+
+  /* This method needs to be defined by each game object class. */
+  draw() {}
+
+  drawBoundingBox() {
+    ctx.beginPath();
+    ctx.rect(this.x, this.y, this.w, this.h);
+    ctx.closePath();
+    ctx.strokeStyle = "orangered";
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+}
+
 let background = function(color) {
   ctx.fillStyle = color;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -53,21 +74,18 @@ let drawStats = function() {
   ctx.fillText("restart (r)", 10, 160);
 };
 
-let obstacleSpike = {
-  draw: function(x, y) {
+class ObstacleSpike extends GameObject {
+  draw() {
     ctx.beginPath();
-    ctx.moveTo(x, y);
-    ctx.lineTo(x + 60, y);
-    ctx.lineTo(x + 30, y - 60);
+    ctx.moveTo(this.x, this.y);
+    ctx.lineTo(this.x + 60, this.y);
+    ctx.lineTo(this.x + 30, this.y - 60);
     ctx.closePath();
     ctx.fillStyle = "black";
     ctx.fill();
-  },
-  x: 0,
-  y: 0,
-  w: 60,
-  h: -60
-};
+  }
+}
+let obstacleSpike = new ObstacleSpike(60, -60);
 
 let obstacleSaw = {
   draw: function(x, y) {
@@ -425,9 +443,18 @@ let drawObstacles = function() {
     let obs_y = floorHeight;
     if (obs_x - rightside > 0 && obs_x < canvas.width) {
       obstacles[i][0].draw(obs_x, obs_y);
+
       let obs_left = obs_x + obstacles[i][0].x;
       let obs_top = obs_y + obstacles[i][0].h;
-      drawBoundingBox(obstacles[i][0]);
+
+      obstacles[i][0].x = obs_x;
+      obstacles[i][0].y = obs_y;
+
+      if (obstacles[i][0].hasOwnProperty("drawBoundingBox")) {
+        obstacles[i][0].drawBoundingBox();
+      } else {
+        drawBoundingBox(obstacles[i][0], obs_x, obs_y);
+      }
 
       /* Detect collision.
        *
