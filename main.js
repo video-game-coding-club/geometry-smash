@@ -612,7 +612,7 @@ let spaceKeyPressed = function(event) {
 
 let mouseClickedListeners = [
   mouseClickedSoundButton,
-  mouseClickedMoveHero
+  jumpHero
 ];
 
 let mouseMoveListeners = [
