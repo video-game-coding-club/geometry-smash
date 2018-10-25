@@ -53,27 +53,6 @@ class GameObject {
   }
 }
 
-let background = function(color) {
-  ctx.fillStyle = color;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.strokeStyle = 'black';
-  ctx.lineWidth = '5';
-  ctx.strokeRect(0, 0, canvas.width, canvas.height);
-};
-
-let drawStats = function() {
-  ctx.fillStyle = "white";
-  ctx.font = '20px monospace';
-  ctx.fillText("time           = " + time, 10, 20);
-  ctx.fillText("hero position  = [" + hero.x.toFixed(0) + ", " + hero.y.toFixed(0) + "]", 10, 40);
-  ctx.fillText("hero velocity  = " + hero.velocity.toFixed(2), 10, 60);
-  ctx.fillText("booster (CTRL) = " + (hero.is_boosting ? "on" : "off"), 10, 80);
-  ctx.fillText("debug (d)      = " + (debugMode ? "on" : "off"), 10, 100);
-  ctx.fillText("step debug (s) = " + (debugMode ? "enabled" : "disabled"), 10, 120);
-  ctx.fillText("step back (S)  = " + (debugMode ? "enabled" : "disabled"), 10, 140);
-  ctx.fillText("restart (r)", 10, 160);
-};
-
 class ObstacleSpike extends GameObject {
   draw() {
     ctx.beginPath();
@@ -333,41 +312,6 @@ let obstacleExplodingWall = {
   h: -canvas.height
 };
 
-let drawGameOverSign = function() {
-  ctx.fillStyle = "red";
-  ctx.beginPath();
-  ctx.rect(0.5 * canvas.width - 150, 0.5 * canvas.height - 100, 300, 60);
-  ctx.fill();
-  ctx.fillStyle = "black";
-  ctx.lineWidth = 4;
-  ctx.stroke();
-
-  ctx.font = '48px serif';
-  ctx.fillText("GAME OVER", 0.5 * canvas.width - 140, 0.5 * canvas.height - 55);
-};
-
-let drawBackground = function() {};
-
-let drawFloor = function() {
-  let strokeColors = ["black", "black"];
-  let fillColors = ["darkblue", "yellow"];
-
-  let floorSpeed = 1;
-
-  for (let i = 0; - floorSpeed * time % 400 + 400 * i < canvas.width; i++) {
-    for (let j = 0; j < 2; j++) {
-      ctx.beginPath();
-      ctx.rect(-floorSpeed * time % 400 + 400 * i + 200 * j, floorHeight, 200, 50);
-      ctx.closePath();
-
-      ctx.strokeStyle = strokeColors[j];
-      ctx.fillStyle = fillColors[j];
-      ctx.fill();
-      ctx.stroke();
-    }
-  }
-};
-
 /* Each obstacle in the level is given by two things:
  *
  * 1. The obstacle type
@@ -422,6 +366,60 @@ let obstacles = [
   [obstacleSpike, 320],
   [obstacleSpike, 300]
 ];
+
+let background = function(color) {
+  ctx.fillStyle = color;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.strokeStyle = 'black';
+  ctx.lineWidth = '5';
+  ctx.strokeRect(0, 0, canvas.width, canvas.height);
+};
+
+let drawStats = function() {
+  ctx.fillStyle = "white";
+  ctx.font = '20px monospace';
+  ctx.fillText("time           = " + time, 10, 20);
+  ctx.fillText("hero position  = [" + hero.x.toFixed(0) + ", " + hero.y.toFixed(0) + "]", 10, 40);
+  ctx.fillText("hero velocity  = " + hero.velocity.toFixed(2), 10, 60);
+  ctx.fillText("booster (CTRL) = " + (hero.is_boosting ? "on" : "off"), 10, 80);
+  ctx.fillText("debug (d)      = " + (debugMode ? "on" : "off"), 10, 100);
+  ctx.fillText("restart (r)", 10, 120);
+};
+
+let drawGameOverSign = function() {
+  ctx.fillStyle = "red";
+  ctx.beginPath();
+  ctx.rect(0.5 * canvas.width - 150, 0.5 * canvas.height - 100, 300, 60);
+  ctx.fill();
+  ctx.fillStyle = "black";
+  ctx.lineWidth = 4;
+  ctx.stroke();
+
+  ctx.font = '48px serif';
+  ctx.fillText("GAME OVER", 0.5 * canvas.width - 140, 0.5 * canvas.height - 55);
+};
+
+let drawBackground = function() {};
+
+let drawFloor = function() {
+  let strokeColors = ["black", "black"];
+  let fillColors = ["darkblue", "yellow"];
+
+  let floorSpeed = 1;
+
+  for (let i = 0; - floorSpeed * time % 400 + 400 * i < canvas.width; i++) {
+    for (let j = 0; j < 2; j++) {
+      ctx.beginPath();
+      ctx.rect(-floorSpeed * time % 400 + 400 * i + 200 * j, floorHeight, 200, 50);
+      ctx.closePath();
+
+      ctx.strokeStyle = strokeColors[j];
+      ctx.fillStyle = fillColors[j];
+      ctx.fill();
+      ctx.stroke();
+    }
+  }
+};
 
 let drawBoundingBox = function(obstacle) {
   ctx.strokeStyle = "orangered";
