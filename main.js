@@ -449,7 +449,12 @@ let drawObstacles = function() {
 
       obstacles[i][0].x = obs_x;
       obstacles[i][0].y = obs_y;
-      obstacles[i][0].drawBoundingBox();
+
+      if (obstacles[i][0].hasOwnProperty("drawBoundingBox")) {
+        obstacles[i][0].drawBoundingBox();
+      } else {
+        drawBoundingBox(obstacles[i][0], obs_x, obs_y);
+      }
 
       /* Detect collision.
        *
