@@ -1,3 +1,5 @@
+"use strict";
+
 var canvas = document.getElementById("game-layer");
 var ctx = canvas.getContext("2d");
 
