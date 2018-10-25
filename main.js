@@ -379,11 +379,14 @@ let drawStats = function() {
   ctx.fillStyle = "white";
   ctx.font = '20px monospace';
   ctx.fillText("time           = " + time, 10, 20);
-  ctx.fillText("hero position  = [" + hero.x.toFixed(0) + ", " + hero.y.toFixed(0) + "]", 10, 40);
+  ctx.fillText("hero position  = [" + hero.x.toFixed(0) +
+    ", " + hero.y.toFixed(0) + "]", 10, 40);
   ctx.fillText("hero velocity  = " + hero.velocity.toFixed(2), 10, 60);
   ctx.fillText("booster (CTRL) = " + (hero.is_boosting ? "on" : "off"), 10, 80);
   ctx.fillText("debug (d)      = " + (debugMode ? "on" : "off"), 10, 100);
-  ctx.fillText("restart (r)", 10, 120);
+  ctx.fillText("step debug (s) = " + (debugMode ? "enabled" : "disabled"), 10, 120);
+  ctx.fillText("step back (S)  = " + (debugMode ? "enabled" : "disabled"), 10, 140);
+  ctx.fillText("restart (r)", 10, 160);
 };
 
 let drawGameOverSign = function() {
