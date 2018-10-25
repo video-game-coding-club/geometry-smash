@@ -44,12 +44,27 @@ class GameObject {
   draw() {}
 
   drawBoundingBox() {
-    ctx.beginPath();
-    ctx.rect(this.x, this.y, this.w, this.h);
-    ctx.closePath();
     ctx.strokeStyle = "orangered";
     ctx.lineWidth = 1;
-    ctx.stroke();
+    ctx.strokeRect(this.x, this.y, this.w, this.h);
+
+    ctx.font = '14px monospace';
+    ctx.fillStyle = "white";
+    ctx.textAlign = "right";
+    ctx.textBaseline = "top";
+    ctx.fillText("(x, y)", this.x, this.y);
+    ctx.textAlign = "left";
+    ctx.textBaseline = "top";
+    ctx.fillText("(x + w, y)", this.x + this.w, this.y);
+    ctx.textAlign = "left";
+    ctx.textBaseline = "bottom";
+    ctx.fillText("(x + w, y + h)", this.x + this.w, this.y + this.h);
+    ctx.textAlign = "right";
+    ctx.textBaseline = "bottom";
+    ctx.fillText("(x, y + h)", this.x, this.y + this.h);
+
+    ctx.textAlign = "left";
+    ctx.textBaseline = "alphabetic";
   }
 }
 
@@ -428,6 +443,24 @@ let drawBoundingBox = function(obstacle) {
   ctx.strokeStyle = "orangered";
   ctx.lineWidth = 1;
   ctx.strokeRect(obstacle.x, obstacle.y, obstacle.w, obstacle.h);
+
+  ctx.font = '14px monospace';
+  ctx.fillStyle = "white";
+  ctx.textAlign = "right";
+  ctx.textBaseline = "top";
+  ctx.fillText("(x, y)", obstacle.x, obstacle.y);
+  ctx.textAlign = "left";
+  ctx.textBaseline = "top";
+  ctx.fillText("(x + w, y)", obstacle.x + obstacle.w, obstacle.y);
+  ctx.textAlign = "left";
+  ctx.textBaseline = "bottom";
+  ctx.fillText("(x + w, y + h)", obstacle.x + obstacle.w, obstacle.y + obstacle.h);
+  ctx.textAlign = "right";
+  ctx.textBaseline = "bottom";
+  ctx.fillText("(x, y + h)", obstacle.x, obstacle.y + obstacle.h);
+
+  ctx.textAlign = "left";
+  ctx.textBaseline = "alphabetic";
 };
 
 let drawObstacles = function() {
@@ -715,8 +748,8 @@ let draw = function() {
   drawStats();
   drawSoundButton();
   drawBackground();
-  drawObstacles();
   drawFloor();
+  drawObstacles();
   drawHero();
   //drawFloor();
 
