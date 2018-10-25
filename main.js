@@ -38,13 +38,14 @@ class GameObject {
     this.y = 0;
     this.w = w;
     this.h = h;
+    this.boundingBoxColor = "orangered";
   }
 
   /* This method needs to be defined by each game object class. */
   draw() {}
 
   drawBoundingBox() {
-    ctx.strokeStyle = "orangered";
+    ctx.strokeStyle = this.boundingBoxColor;
     ctx.lineWidth = 1;
     ctx.strokeRect(this.x, this.y, this.w, this.h);
 
@@ -533,51 +534,28 @@ let mouseClickedSoundButton = function(event) {
   }
 };
 
-let drawHeroBoundingBox = function(object) {
-  ctx.strokeStyle = "lightblue";
-  ctx.lineWidth = "1";
-  ctx.strokeRect(object.x, object.y, object.w, object.h);
+class Hero extends GameObject {
+  constructor(w = 100, h = -100) {
+    super(w, h);
+    this.boundingBoxColor = "lightblue";
+    this.is_jumping = false;
+    this.is_boosting = false;
+    this.velocity = 0;
+    this.jump_velocity = 15; // The jump velocity.
+    this.g = -0.3; // "gravity" acceleration term
+  }
 
-  ctx.font = '14px monospace';
-  ctx.fillStyle = "white";
-  ctx.textAlign = "right";
-  ctx.textBaseline = "top";
-  ctx.fillText("(x, y)", object.x, object.y);
-  ctx.textAlign = "left";
-  ctx.textBaseline = "top";
-  ctx.fillText("(x + w, y)", object.x + object.w, object.y);
-  ctx.textAlign = "left";
-  ctx.textBaseline = "bottom";
-  ctx.fillText("(x + w, y + h)", object.x + object.w, object.y + object.h);
-  ctx.textAlign = "right";
-  ctx.textBaseline = "bottom";
-  ctx.fillText("(x, y + h)", object.x, object.y + object.h);
-
-  ctx.textAlign = "left";
-  ctx.textBaseline = "alphabetic";
-};
-
-let hero = {
-  draw: function() {
-
+  draw() {
     /*body and color*/
-
     ctx.beginPath();
     ctx.ellipse(this.x + 50, this.y - 50, 50, 50, 0, 0, 2 * Math.PI);
     ctx.closePath();
     ctx.fillStyle = "brown";
     ctx.fill();
-  },
-  is_jumping: false,
-  is_boosting: false,
-  velocity: 0,
-  jump_velocity: 15, // The jump velocity.
-  g: -0.3, // "gravity" acceleration term
-  x: 190 - 50,
-  y: floorHeight,
-  w: 100,
-  h: -100
-};
+  }
+}
+let hero = new Hero(100, -100);
+hero.x = 190 - 50;
 
 let drawHero = function() {
   if (debugMode) {
@@ -599,7 +577,7 @@ let drawHero = function() {
     }
   }
   hero.draw();
-  drawHeroBoundingBox(hero);
+  hero.drawBoundingBox();
 };
 
 let jumpHero = function() {
