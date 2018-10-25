@@ -74,21 +74,18 @@ let drawStats = function() {
   ctx.fillText("restart (r)", 10, 160);
 };
 
-let obstacleSpike = {
-  draw: function(x, y) {
+class ObstacleSpike extends GameObject {
+  draw() {
     ctx.beginPath();
-    ctx.moveTo(x, y);
-    ctx.lineTo(x + 60, y);
-    ctx.lineTo(x + 30, y - 60);
+    ctx.moveTo(this.x, this.y);
+    ctx.lineTo(this.x + 60, this.y);
+    ctx.lineTo(this.x + 30, this.y - 60);
     ctx.closePath();
     ctx.fillStyle = "black";
     ctx.fill();
-  },
-  x: 0,
-  y: 0,
-  w: 60,
-  h: -60
-};
+  }
+}
+let obstacleSpike = new ObstacleSpike(60, -60);
 
 let obstacleSaw = {
   draw: function(x, y) {
@@ -446,9 +443,13 @@ let drawObstacles = function() {
     let obs_y = floorHeight;
     if (obs_x - rightside > 0 && obs_x < canvas.width) {
       obstacles[i][0].draw(obs_x, obs_y);
+
       let obs_left = obs_x + obstacles[i][0].x;
       let obs_top = obs_y + obstacles[i][0].h;
-      drawBoundingBox(obstacles[i][0]);
+
+      obstacles[i][0].x = obs_x;
+      obstacles[i][0].y = obs_y;
+      obstacles[i][0].drawBoundingBox();
 
       /* Detect collision.
        *
