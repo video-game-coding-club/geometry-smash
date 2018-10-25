@@ -403,10 +403,10 @@ let obstacles = [
   [obstacleSpike, 300]
 ];
 
-let drawBoundingBox = function(obstacle, xmin, ymin) {
+let drawBoundingBox = function(obstacle) {
   ctx.strokeStyle = "orangered";
   ctx.lineWidth = 1;
-  ctx.strokeRect(xmin + obstacle.x, ymin + obstacle.y, obstacle.w, obstacle.h);
+  ctx.strokeRect(obstacle.x, obstacle.y, obstacle.w, obstacle.h);
 };
 
 let drawObstacles = function() {
@@ -424,7 +424,7 @@ let drawObstacles = function() {
       obstacles[i][0].draw(obs_x, obs_y);
       let obs_left = obs_x + obstacles[i][0].x;
       let obs_top = obs_y + obstacles[i][0].h;
-      drawBoundingBox(obstacles[i][0], obs_x, obs_y);
+      drawBoundingBox(obstacles[i][0]);
 
       /* Detect collision.
        *
