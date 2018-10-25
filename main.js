@@ -334,10 +334,12 @@ let drawFloor = function() {
   let strokeColors = ["black", "black"];
   let fillColors = ["darkblue", "yellow"];
 
-  for (let i = 0; - time % 400 + 400 * i < canvas.width; i++) {
+  let floorSpeed = 1;
+
+  for (let i = 0; - floorSpeed * time % 400 + 400 * i < canvas.width; i++) {
     for (let j = 0; j < 2; j++) {
       ctx.beginPath();
-      ctx.rect(-time % 400 + 400 * i + 200 * j, floorHeight, 200, 50);
+      ctx.rect(-floorSpeed * time % 400 + 400 * i + 200 * j, floorHeight, 200, 50);
       ctx.closePath();
 
       ctx.strokeStyle = strokeColors[j];
