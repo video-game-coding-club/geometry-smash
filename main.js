@@ -410,9 +410,10 @@ let drawBoundingBox = function(obstacle, xmin, ymin) {
 };
 
 let drawObstacles = function() {
-  let obs_speed = 4.0;
+  let obs_speed = 1;
   let obs_listPosition = 0;
   let rightside = 20;
+
   for (let i = 0; i < obstacles.length; i++) {
     // x-position summed from list
     obs_listPosition += obstacles[i][1];
