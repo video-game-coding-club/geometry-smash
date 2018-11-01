@@ -134,10 +134,12 @@ let obstacleSaw = {
 
 let obstacleThorns = {
   draw: function(x, y) {
+    this.x = x;
+    this.y = y;
     ctx.beginPath();
-    ctx.moveTo(x, y);
-    ctx.lineTo(x + 10, y - 10);
-    ctx.lineTo(x + 20, y);
+    ctx.moveTo(this.x, this.y);
+    ctx.lineTo(this.x + 10, this.y - 10);
+    ctx.lineTo(this.x + 20, this.y);
     ctx.closePath();
     ctx.strokeStyle = "black";
     ctx.stroke();
@@ -145,7 +147,9 @@ let obstacleThorns = {
   x: 0,
   y: 0,
   w: 20,
-  h: -10
+  h: -10,
+  pos_x: 0,
+  pos_y: 0
 };
 
 let toxicSign = {
@@ -476,13 +480,13 @@ let drawObstacles = function() {
     let obs_x = -time * obs_speed + obs_listPosition;
     let obs_y = floorHeight;
     if (obs_x - rightside > 0 && obs_x < canvas.width) {
-      obstacles[i][0].draw(obs_x, obs_y);
-
       let obs_left = obs_x + obstacles[i][0].x;
       let obs_top = obs_y + obstacles[i][0].h;
 
       obstacles[i][0].x = obs_x;
       obstacles[i][0].y = obs_y;
+
+      obstacles[i][0].draw(obs_x, obs_y);
 
       if (debugMode) {
         if (obstacles[i][0].hasOwnProperty("drawBoundingBox")) {
