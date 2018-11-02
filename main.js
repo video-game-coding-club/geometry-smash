@@ -484,10 +484,12 @@ let drawObstacles = function() {
       obstacles[i][0].x = obs_x;
       obstacles[i][0].y = obs_y;
 
-      if (obstacles[i][0].hasOwnProperty("drawBoundingBox")) {
-        obstacles[i][0].drawBoundingBox();
-      } else {
-        drawBoundingBox(obstacles[i][0]);
+      if (debugMode) {
+        if (obstacles[i][0].hasOwnProperty("drawBoundingBox")) {
+          obstacles[i][0].drawBoundingBox();
+        } else {
+          drawBoundingBox(obstacles[i][0]);
+        }
       }
 
       /* Detect collision.
@@ -601,7 +603,9 @@ let drawHero = function() {
     }
   }
   hero.draw();
-  drawHeroBoundingBox(hero);
+  if (debugMode) {
+    drawHeroBoundingBox(hero);
+  }
 };
 
 let jumpHero = function() {
