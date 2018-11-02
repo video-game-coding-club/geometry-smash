@@ -568,12 +568,69 @@ let drawHeroBoundingBox = function(object) {
 let hero = {
   draw: function() {
 
-    /*body and color*/
+    /* body and color */
 
     ctx.beginPath();
     ctx.ellipse(this.x + 50, this.y - 50, 50, 50, 0, 0, 2 * Math.PI);
     ctx.closePath();
-    ctx.fillStyle = "brown";
+    ctx.fillStyle = "rgb(105, 73, 75)";
+    ctx.fill();
+
+    /* big smile */
+
+    ctx.fillStyle = "rgb(245, 240, 240)";
+    ctx.beginPath();
+    ctx.arc(this.x + 50, this.y - 50, 35, 0, Math.PI);
+    ctx.closePath();
+    ctx.fill();
+
+    /* eyes and pupils */
+
+    ctx.beginPath();
+    ctx.ellipse(this.x + 30, this.y - 70, 12, 12, 0, 0, 2 * Math.PI);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.ellipse(this.x + 70, this.y - 70, 12, 12, 0, 0, 2 * Math.PI);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.fillStyle = "blue";
+    ctx.beginPath();
+    ctx.ellipse(this.x + 30, this.y - 66, 6, 6, 0, 0, 2 * Math.PI);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.ellipse(this.x + 70, this.y - 66, 6, 6, 0, 0, 2 * Math.PI);
+    ctx.closePath();
+    ctx.fill();
+
+    /* arms and fists */
+
+    ctx.strokeStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(this.x, this.y - 60);
+    ctx.lineTo(this.x - 20, this.y - 90);
+    ctx.closePath();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(this.x + 100, this.y - 60);
+    ctx.lineTo(this.x + 120, this.y - 90);
+    ctx.closePath();
+    ctx.stroke();
+
+    ctx.fillStyle = "red";
+    ctx.beginPath();
+    ctx.ellipse(this.x - 20, this.y - 90, 10, 10, 0, 0, 2 * Math.PI);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.ellipse(this.x + 120, this.y - 90, 10, 10, 0, 0, 2 * Math.PI);
+    ctx.closePath();
     ctx.fill();
   },
   is_jumping: false,
