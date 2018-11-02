@@ -495,11 +495,10 @@ let drawObstacles = function() {
        * (1) How does this work?
        * (2) Does it always work?
        */
-      if (hero.x + hero.w >= obstacles[i][0].x &&
-          hero.y > obstacles[i][0].y +obstacles[i][0].h &&
-          hero.x < obstacles[i][0].x +obstacles[i][0].w &&
-          hero.y + hero.h < obstacles[i][0].y
-          ) {
+      if (hero.x + hero.w > obstacles[i][0].x &&
+        hero.y > obstacles[i][0].y + obstacles[i][0].h &&
+        hero.x < obstacles[i][0].x + obstacles[i][0].w &&
+        hero.y + hero.h < obstacles[i][0].y) {
         drawGameOverSign();
       }
     } else {
