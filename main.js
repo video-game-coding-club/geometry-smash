@@ -403,9 +403,11 @@ let drawStats = function() {
   ctx.fillText("hero velocity  = " + hero.velocity.toFixed(2), 10, 60);
   ctx.fillText("booster (CTRL) = " + (hero.is_boosting ? "on" : "off"), 10, 80);
   ctx.fillText("debug (d)      = " + (debugMode ? "on" : "off"), 10, 100);
-  ctx.fillText("step debug (s) = " + (debugMode ? "enabled" : "disabled"), 10, 120);
-  ctx.fillText("step back (S)  = " + (debugMode ? "enabled" : "disabled"), 10, 140);
-  ctx.fillText("restart (r)", 10, 160);
+  ctx.fillText("restart (r)", 10, 120);
+  if (debugMode) {
+    ctx.fillText("step debug (s) = " + (debugMode ? "enabled" : "disabled"), 10, 140);
+    ctx.fillText("step back (S)  = " + (debugMode ? "enabled" : "disabled"), 10, 160);
+  }
 };
 
 let drawGameOverSign = function() {
