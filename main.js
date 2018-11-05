@@ -437,19 +437,17 @@ let drawBoundingBox = function(obstacle) {
 let drawObstacles = function() {
   let obs_speed = 1;
   let obs_listPosition = 0;
-  let rightside = 20;
 
   for (let i = 0; i < obstacles.length; i++) {
     // x-position summed from list
     obs_listPosition += obstacles[i][1];
 
-    // draw if coordinates are within the canvas
     let obs_x = -time * obs_speed + obs_listPosition;
     let obs_y = floorHeight;
-    if (obs_x - rightside > 0 && obs_x < canvas.width) {
-      let obs_left = obs_x + obstacles[i][0].x;
-      let obs_top = obs_y + obstacles[i][0].h;
+    let obs_right = obs_x + obstacles[i][0].w;
 
+    // Draw if coordinates are within the canvas.
+    if (obs_right > 0 && obs_x < canvas.width) {
       obstacles[i][0].x = obs_x;
       obstacles[i][0].y = obs_y;
 
