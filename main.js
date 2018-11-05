@@ -32,44 +32,8 @@ lightningSound.muted = true;
 /* The state of the laser sound. */
 let laserSound;
 
-class GameObject {
-  constructor(w = 0, h = 0) {
-    this.x = 0;
-    this.y = 0;
-    this.w = w;
-    this.h = h;
-  }
-
-  /* This method needs to be defined by each game object class. */
-  draw() {}
-
-  drawBoundingBox() {
-    ctx.strokeStyle = "orangered";
-    ctx.lineWidth = 1;
-    ctx.strokeRect(this.x, this.y, this.w, this.h);
-
-    ctx.font = '14px monospace';
-    ctx.fillStyle = "white";
-    ctx.textAlign = "right";
-    ctx.textBaseline = "top";
-    ctx.fillText("(x, y)", this.x, this.y);
-    ctx.textAlign = "left";
-    ctx.textBaseline = "top";
-    ctx.fillText("(x + w, y)", this.x + this.w, this.y);
-    ctx.textAlign = "left";
-    ctx.textBaseline = "bottom";
-    ctx.fillText("(x + w, y + h)", this.x + this.w, this.y + this.h);
-    ctx.textAlign = "right";
-    ctx.textBaseline = "bottom";
-    ctx.fillText("(x, y + h)", this.x, this.y + this.h);
-
-    ctx.textAlign = "left";
-    ctx.textBaseline = "alphabetic";
-  }
-}
-
-class ObstacleSpike extends GameObject {
-  draw() {
+let obstacleSpike = {
+  draw: function(x, y) {
     ctx.beginPath();
     ctx.moveTo(this.x, this.y);
     ctx.lineTo(this.x + 60, this.y);
@@ -77,9 +41,12 @@ class ObstacleSpike extends GameObject {
     ctx.closePath();
     ctx.fillStyle = "black";
     ctx.fill();
-  }
-}
-let obstacleSpike = new ObstacleSpike(60, -60);
+  },
+  x: 0,
+  y: 0,
+  w: 60,
+  h: -60
+};
 
 let obstacleSaw = {
   draw: function(x, y) {
