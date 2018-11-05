@@ -52,9 +52,7 @@ let obstacleSaw = {
   draw: function(x, y) {
     let numberSpikes = 20;
     let sawRadius = 80;
-    let sawHeight = y - 50 * (3 + Math.sin(time / 70 / 2 * Math.PI));
-    // there are two variables called 'y', which may be confusing ...
-    this.y = 80 - 50 * (3 + Math.sin(time / 70 / 2 * Math.PI));
+    let sawHeight = y - 60 * (3 + Math.sin(time / 70 / 2 * Math.PI));
 
     ctx.beginPath();
     ctx.ellipse(x, sawHeight, sawRadius, sawRadius, 0, 0, 2 * Math.PI);
