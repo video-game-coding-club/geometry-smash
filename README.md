@@ -28,7 +28,7 @@ In alphabetical order:
 
 # Hacktoberfest
 
-[![Hacktoberfest](hacktoberfest.svg)](https://hacktoberfest.digitalocean.com/)
+[![Hacktoberfest](assets/hacktoberfest.svg)](https://hacktoberfest.digitalocean.com/)
 
 Thanks for all your Hacktoberfest contributions!
 
