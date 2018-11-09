@@ -675,7 +675,7 @@ let debugKeyPressed = function(event) {
 
 let equalKeyPressed = function(event) {
   if (event.code === "Equal") {
-   hero.jump_velocity += 1;
+    hero.jump_velocity += 1;
   }
 };
 
