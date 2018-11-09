@@ -679,6 +679,12 @@ let equalKeyPressed = function(event) {
   }
 };
 
+let minusKeyPressed = function(event) {
+  if (event.code === "Minus") {
+    hero.jump_velocity -= 1;
+  }
+};
+
 let restartKeyPressed = function(event) {
   if (event.code === "KeyR" && event.key === "r") {
     time = 0;
@@ -727,6 +733,7 @@ let keyPressListeners = [
   powerkeyPressedMoveHero,
   debugKeyPressed,
   equalKeyPressed,
+  minusKeyPressed,
   restartKeyPressed,
   spaceKeyPressed,
   stepKeyPressed,
