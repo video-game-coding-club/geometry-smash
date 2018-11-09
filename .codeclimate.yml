@@ -42,3 +42,5 @@ plugins:
   eslint:
     enabled: true
     channel: eslint-5
+  fixme:
+    enabled: true
