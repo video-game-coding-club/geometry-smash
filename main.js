@@ -18,14 +18,14 @@ let mousePosition = {
 
 /* The toxic sign image. */
 let toxicImage = new Image();
-toxicImage.src = "toxic.jpg";
+toxicImage.src = "assets/toxic.jpg";
 
 /* The electric sign image. */
 let electricImage = new Image();
-electricImage.src = "electric.jpg";
+electricImage.src = "assets/electric.jpg";
 
 /* The sound effect for the laser obstacle. */
-let lightningSound = new Audio("flash.wav");
+let lightningSound = new Audio("assets/flash.wav");
 lightningSound.loop = true;
 lightningSound.muted = true;
 
