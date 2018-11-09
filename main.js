@@ -681,7 +681,7 @@ let equalKeyPressed = function(event) {
 
 let minusKeyPressed = function(event) {
   if (event.code === "Minus") {
-   hero.jump_velocity -= 1;
+    hero.jump_velocity -= 1;
   }
 };
 
