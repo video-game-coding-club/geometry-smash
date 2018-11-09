@@ -26,12 +26,6 @@ In alphabetical order:
 - Lucas Price (@lucasprice)
 - Zach Gibson (@zachgib)
 
-# Hacktoberfest
-
-[![Hacktoberfest](assets/hacktoberfest.svg)](https://hacktoberfest.digitalocean.com/)
-
-Thanks for all your Hacktoberfest contributions!
-
 # Contribute
 
 Contributions are very welcome. If you would like to help please
