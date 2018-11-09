@@ -7,6 +7,7 @@ title: "Welcome to Geometry Smash"
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/video-game-coding-club/geometry-smash.svg)](https://github.com/video-game-coding-club/geometry-smash/pulls)
 [![GitHub issues](https://img.shields.io/github/issues/video-game-coding-club/geometry-smash.svg)](https://github.com/video-game-coding-club/geometry-smash/issues)
 [![Join the chat at https://gitter.im/video-game-coding-club/geometry-smash](https://badges.gitter.im/video-game-coding-club/geometry-smash.svg)](https://gitter.im/video-game-coding-club/geometry-smash?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Maintainability](https://api.codeclimate.com/v1/badges/2b63bc13f257312435e9/maintainability)](https://codeclimate.com/github/video-game-coding-club/geometry-smash/maintainability)
 
 # The Game
 
