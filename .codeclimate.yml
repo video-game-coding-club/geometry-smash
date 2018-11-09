@@ -44,3 +44,5 @@ plugins:
     channel: eslint-5
   fixme:
     enabled: true
+  markdownlint:
+    enabled: true
