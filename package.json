@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "test": "nyc mocha"
+  },
+  "devDependencies": {
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0"
+  }
+}
