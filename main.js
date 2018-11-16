@@ -117,17 +117,21 @@ let obstacleThorns = {
   pos_y: 0
 };
 
+let drawSignOutline = function(x, y) {
+  ctx.beginPath();
+  ctx.rect(x, y - 20, 140, -120);
+  ctx.closePath();
+
+  ctx.fillStyle = "white";
+  ctx.strokeStyle = "black";
+  ctx.lineWidth = 4;
+  ctx.stroke();
+  ctx.fill();
+};
+
 let toxicSign = {
   draw: function(x, y) {
-    // aligned so x,y as bottom left
-    ctx.beginPath();
-    ctx.rect(x, y - 20, 140, -120);
-    ctx.closePath();
-    ctx.fillStyle = "white";
-    ctx.strokeStyle = "black";
-    ctx.lineWidth = 4;
-    ctx.stroke();
-    ctx.fill();
+    drawSignOutline(x, y);
 
     ctx.beginPath();
     ctx.rect(x + 60, y, 20, -20);
@@ -145,16 +149,7 @@ let toxicSign = {
 
 let electricSign = {
   draw: function(x, y) {
-    // aligned so x,y as bottom left
-    ctx.beginPath();
-    ctx.rect(x, y - 20, 140, -120);
-    ctx.closePath();
-
-    ctx.fillStyle = "white";
-    ctx.strokeStyle = "black";
-    ctx.lineWidth = 4;
-    ctx.stroke();
-    ctx.fill();
+    drawSignOutline(x, y);
 
     ctx.beginPath();
     ctx.rect(x + 60, y, 20, -20);
