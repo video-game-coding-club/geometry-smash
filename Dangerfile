@@ -6,6 +6,11 @@ declared_trivial = github.pr_title.include? "#trivial"
 # be merged yet
 warn("PR is classed as Work in Progress") if github.pr_title.include? "[WIP]"
 
+# Ensure a clean commits history
+if git.commits.any? { |c| c.message =~ /^Merge branch/ }
+  fail('Please rebase to get rid of the merge commits in this PR')
+end
+
 # Ensure that labels have been used on the PR
 failure("Please add labels to this PR", sticky: false) if github.pr_labels.empty?
 
