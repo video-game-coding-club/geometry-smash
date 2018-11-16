@@ -20,7 +20,6 @@ notifications:
     on_start: never     # options: [always|never|change] default: always
 
 install:
-  - npm install jshint PrettyCSS js-beautify html-linter -g
   - npm install
   - bundle install
 

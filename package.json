@@ -3,7 +3,11 @@
     "test": "nyc mocha"
   },
   "devDependencies": {
+    "PrettyCSS": "^0.3.17",
+    "html-linter": "^1.1.0",
     "istanbul": "^0.4.5",
+    "js-beautify": "^1.8.8",
+    "jshint": "^2.9.6",
     "mocha": "^5.2.0",
     "nyc": "^13.1.0"
   }
