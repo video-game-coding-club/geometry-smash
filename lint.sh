@@ -11,7 +11,7 @@ fi
 
 jshint main.js
 prettycss --stop-on-errors --stop-on-warnings style.css
-html-linter --config html-linter.json *.html
+html-linter --config html-linter.json ./*.html
 js-beautify \
     --type js \
     --indent-size 2 \
