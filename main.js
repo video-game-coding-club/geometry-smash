@@ -446,6 +446,16 @@ let drawObstacleBoundingBox = function(obstacle) {
   }
 };
 
+let is_overlapping = function(object1, object2) {
+  if (object1.x + object1.w > obstacle2.x &&
+    object1.y > obstacle2.y + obstacle2.h &&
+    object1.x < obstacle2.x + obstacle2.w &&
+    object1.y + object1.h < obstacle2.y) {
+    return true;
+  }
+  return false;
+};
+
 let drawObstacles = function() {
   let obs_speed = 1;
   let obs_listPosition = 0;
@@ -467,10 +477,7 @@ let drawObstacles = function() {
       drawObstacleBoundingBox(obstacles[i][0]);
 
       // Detect collision.
-      if (hero.x + hero.w > obstacles[i][0].x &&
-        hero.y > obstacles[i][0].y + obstacles[i][0].h &&
-        hero.x < obstacles[i][0].x + obstacles[i][0].w &&
-        hero.y + hero.h < obstacles[i][0].y) {
+      if (is_overlapping(hero, obstacles[i][0])) {
         drawGameOverSign();
       }
     } else {
