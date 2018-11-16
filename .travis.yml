@@ -1,11 +1,11 @@
 language: node_js
 
+node_js:
+  - "node"
+
 addons:
   apt:
     update: true
-
-node_js:
-  - "node"
 
 notifications:
   webhooks:
@@ -17,9 +17,11 @@ notifications:
 
 install:
   - npm install jshint PrettyCSS js-beautify html-linter -g
+  - npm install
   - bundle install
 
 script:
   - ./lint.sh
   - bundle exec danger
   - bundle exec jekyll build
+  - npm test
