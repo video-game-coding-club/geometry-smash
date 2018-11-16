@@ -7,10 +7,13 @@ declared_trivial = github.pr_title.include? "#trivial"
 warn("PR is classed as Work in Progress") if github.pr_title.include? "[WIP]"
 
 # Ensure that labels have been used on the PR
-failure "Please add labels to this PR" if github.pr_labels.empty?
+failure("Please add labels to this PR", sticky: false) if github.pr_labels.empty?
 
 # Ensure there is a summary for a PR
-failure "Please provide a summary in the Pull Request description" if github.pr_body.length < 5
+failure("Please provide a summary in the Pull Request description", sticky: false) if github.pr_body.length < 5
+
+# Ensure that all PRs have an assignee
+warn("This PR does not have any assignees yet.", sticky: false) unless github.pr_json["assignee"]
 
 # Warn when there is a big PR
 warn("Big PR") if git.lines_of_code > 500
