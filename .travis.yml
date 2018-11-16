@@ -20,7 +20,6 @@ notifications:
     on_start: never     # options: [always|never|change] default: always
 
 install:
-  - npm install jshint PrettyCSS js-beautify html-linter -g
   - npm install
   - bundle install
 
@@ -34,6 +33,9 @@ script:
   - bundle exec danger
   - bundle exec jekyll build
   - npm test
+
+after_success:
+  - npm run coverage
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
