@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "test": "nyc mocha"
+    "test": "nyc --reporter=html mocha",
+    "coverage": "nyc --reporter=lcov mocha"
   },
   "devDependencies": {
     "PrettyCSS": "^0.3.17",
