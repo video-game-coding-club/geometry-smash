@@ -6,6 +6,12 @@ declared_trivial = github.pr_title.include? "#trivial"
 # be merged yet
 warn("PR is classed as Work in Progress") if github.pr_title.include? "[WIP]"
 
+# Ensure that labels have been used on the PR
+failure "Please add labels to this PR" if github.pr_labels.empty?
+
+# Ensure there is a summary for a PR
+failure "Please provide a summary in the Pull Request description" if github.pr_body.length < 5
+
 # Warn when there is a big PR
 warn("Big PR") if git.lines_of_code > 500
 
