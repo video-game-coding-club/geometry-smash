@@ -436,12 +436,22 @@ let drawBoundingBox = function(obstacle) {
   ctx.textBaseline = "alphabetic";
 };
 
+let drawObstacleBoundingBox = function(obstacle) {
+  if (debugMode) {
+    if (obstacle.hasOwnProperty("drawBoundingBox")) {
+      obstacles.drawBoundingBox();
+    } else {
+      drawBoundingBox(obstacle);
+    }
+  }
+};
+
 let drawObstacles = function() {
   let obs_speed = 1;
   let obs_listPosition = 0;
 
   for (let i = 0; i < obstacles.length; i++) {
-    // x-position summed from list
+    // x-position summed from list.
     obs_listPosition += obstacles[i][1];
 
     let obs_x = -time * obs_speed + obs_listPosition;
@@ -454,20 +464,9 @@ let drawObstacles = function() {
       obstacles[i][0].y = obs_y;
 
       obstacles[i][0].draw(obs_x, obs_y);
+      drawObstacleBoundingBox(obstacles[i][0]);
 
-      if (debugMode) {
-        if (obstacles[i][0].hasOwnProperty("drawBoundingBox")) {
-          obstacles[i][0].drawBoundingBox();
-        } else {
-          drawBoundingBox(obstacles[i][0]);
-        }
-      }
-
-      /* Detect collision.
-       *
-       * (1) How does this work?
-       * (2) Does it always work?
-       */
+      // Detect collision.
       if (hero.x + hero.w > obstacles[i][0].x &&
         hero.y > obstacles[i][0].y + obstacles[i][0].h &&
         hero.x < obstacles[i][0].x + obstacles[i][0].w &&
