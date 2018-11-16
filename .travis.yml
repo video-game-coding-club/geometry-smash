@@ -6,6 +6,7 @@ node_js:
 env:
   global:
     - CC_TEST_REPORTER_ID=0cc7cb0a3b014fb35268001381151197c74f26ffd2c81ca93b82ab4e4538744a
+    - TEST=yes
 
 addons:
   apt:
