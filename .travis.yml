@@ -3,6 +3,10 @@ language: node_js
 node_js:
   - "node"
 
+env:
+  global:
+    - CC_TEST_REPORTER_ID=0cc7cb0a3b014fb35268001381151197c74f26ffd2c81ca93b82ab4e4538744a
+
 addons:
   apt:
     update: true
@@ -20,8 +24,16 @@ install:
   - npm install
   - bundle install
 
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
 script:
   - ./lint.sh
   - bundle exec danger
   - bundle exec jekyll build
   - npm test
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
