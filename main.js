@@ -481,7 +481,7 @@ let drawObstacles = function() {
         drawGameOverSign();
       }
     } else {
-      if (obstacles[i][0] === 4) {
+      if (obstacles[i][0] === obstacleLaser) {
         lightningSound.muted = true;
       }
     }
