@@ -442,10 +442,10 @@ let drawObstacleBoundingBox = function(obstacle) {
 };
 
 let is_overlapping = function(object1, object2) {
-  if (object1.x + object1.w > obstacle2.x &&
-    object1.y > obstacle2.y + obstacle2.h &&
-    object1.x < obstacle2.x + obstacle2.w &&
-    object1.y + object1.h < obstacle2.y) {
+  if (object1.x + object1.w > object2.x &&
+    object1.y > object2.y + object2.h &&
+    object1.x < object2.x + object2.w &&
+    object1.y + object1.h < object2.y) {
     return true;
   }
   return false;
