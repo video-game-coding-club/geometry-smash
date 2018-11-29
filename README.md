@@ -64,14 +64,6 @@ run via the GUI instead of the command line. The game itself lives in
 `game.html`. Just right-click on the file `game.html` and open it with
 the "Mini Browser" and the game should start.
 
-# Online JavaScript Editor
-
-You can use our [online JavaScript
-editor](https://video-game-coding-club.github.io/online-editor/) to
-develop JavaScript graphics. The editor and game environments are
-identical so that you simply cut and paste working code from the
-editor into the game.
-
 # [CodeAnywhere](CodeAnywhere.md)
 
 If you develop using the [CodeAnywhere](https://codeanywhere.com/)
