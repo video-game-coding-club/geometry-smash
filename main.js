@@ -280,8 +280,7 @@ let obstacleExplodingWall = {
       ctx.strokeStyle = "black";
       for (let i = 0; 35 * i < floorHeight; i++) {
         ctx.beginPath();
-        ctx.rect(x, 10 + 35 * i, 10, -30);
-        ctx.stroke();
+        ctx.rect(x, 10 + 35 * i, 10, -30);        ctx.stroke();
       }
     }
   },
@@ -364,7 +363,7 @@ let drawStats = function() {
   ctx.fillText("booster (CTRL) = " + (hero.is_boosting ? "on" : "off"), 10, 80);
   ctx.fillText("debug (d)      = " + (debugMode ? "on" : "off"), 10, 100);
   ctx.fillText("restart (r)", 10, 120);
-  ctx.fillText("+ make hero jump higher", 10, 140);
+  ctx.fillText("= make hero jump higher", 10, 140);
   ctx.fillText("- make hero jump lower", 10, 160);
   if (debugMode) {
     ctx.fillText("step debug (s) = " + (debugMode ? "enabled" : "disabled"), 10, 180);
