@@ -63,30 +63,3 @@ offers tight GitHub integration. All necessary `git` commands can be
 run via the GUI instead of the command line. The game itself lives in
 `game.html`. Just right-click on the file `game.html` and open it with
 the "Mini Browser" and the game should start.
-
-# Online JavaScript Editor
-
-You can use our [online JavaScript
-editor](https://video-game-coding-club.github.io/online-editor/) to
-develop JavaScript graphics. The editor and game environments are
-identical so that you simply cut and paste working code from the
-editor into the game.
-
-# [CodeAnywhere](CodeAnywhere.md)
-
-If you develop using the [CodeAnywhere](https://codeanywhere.com/)
-platform, please note that the "**Run Project**" button will serve a
-list of files instead of the game. The game itself was moved from
-`index.html` to `game.html`. Just click on the file `game.html` and
-the game should start.
-
-Accessing the project's webserver might be blocked by your school's
-firewall. If you run into this issue please have a look at GitPod.
-
-# More details on where the game lives
-
-The game script was loaded in `index.html` but recently we introduced
-a landing page and split the game code into a separate page,
-`game.html`. This change was introduced with commit
-[4107049a6ea0ce925b2e28b5087470ea0b4658dd](https://github.com/video-game-coding-club/geometry-smash/commit/4107049a6ea0ce925b2e28b5087470ea0b4658dd)
-and the introduction of using GitHub Pages to build our website.
