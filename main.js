@@ -163,7 +163,8 @@ let electricSign = {
   x: 0,
   y: 0,
   w: 140,
-  h: -140
+  h: -140,
+  obst: false
 };
 
 let obstacleLaser = {
@@ -442,6 +443,9 @@ let drawObstacleBoundingBox = function(obstacle) {
 };
 
 let is_overlapping = function(object1, object2) {
+  if (!object2.obst) {
+    return false;
+  }
   if (object1.x + object1.w > object2.x &&
     object1.y > object2.y + object2.h &&
     object1.x < object2.x + object2.w &&
