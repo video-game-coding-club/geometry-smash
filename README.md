@@ -64,17 +64,6 @@ run via the GUI instead of the command line. The game itself lives in
 `game.html`. Just right-click on the file `game.html` and open it with
 the "Mini Browser" and the game should start.
 
-# [CodeAnywhere](CodeAnywhere.md)
-
-If you develop using the [CodeAnywhere](https://codeanywhere.com/)
-platform, please note that the "**Run Project**" button will serve a
-list of files instead of the game. The game itself was moved from
-`index.html` to `game.html`. Just click on the file `game.html` and
-the game should start.
-
-Accessing the project's webserver might be blocked by your school's
-firewall. If you run into this issue please have a look at GitPod.
-
 # More details on where the game lives
 
 The game script was loaded in `index.html` but recently we introduced
