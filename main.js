@@ -280,7 +280,8 @@ let obstacleExplodingWall = {
       ctx.strokeStyle = "black";
       for (let i = 0; 35 * i < floorHeight; i++) {
         ctx.beginPath();
-        ctx.rect(x, 10 + 35 * i, 10, -30);        ctx.stroke();
+        ctx.rect(x, 10 + 35 * i, 10, -30);
+        ctx.stroke();
       }
     }
   },
