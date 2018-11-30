@@ -693,11 +693,13 @@ let minusKeyPressed = function(event) {
     hero.jump_velocity -= 1;
   }
 };
+
 let greaterKeyPressed = function(event) {
   if (event.code === "Period") {
     obs_speed += 1;
   }
 };
+
 let restartKeyPressed = function(event) {
   if (event.code === "KeyR" && event.key === "r") {
     time = 0;
