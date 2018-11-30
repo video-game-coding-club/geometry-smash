@@ -30,9 +30,11 @@ before_script:
 
 script:
   - ./lint.sh
+  - npm test
   - bundle exec danger
   - bundle exec jekyll build
-  - npm test
+  - npm run build
+  - cp -v main-babel.js _site/main.js
 
 deploy:
  provider: pages
