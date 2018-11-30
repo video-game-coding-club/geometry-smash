@@ -1,6 +1,9 @@
 theme: jekyll-theme-hacker
 title: Geometry Smash
 google_analytics: UA-123354485-1
+exclude:
+  - CODEOWNERS
+  - Dangerfile
 kramdown:
   auto_ids: true
 plugins:
