@@ -682,6 +682,12 @@ let equalKeyPressed = function(event) {
   }
 };
 
+let lessKeyPressed = function(event) {
+  if (event.code === "Comma") {
+    obs_speed -= 1;
+  }
+};
+
 let minusKeyPressed = function(event) {
   if (event.code === "Minus") {
     hero.jump_velocity -= 1;
