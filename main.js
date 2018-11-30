@@ -366,9 +366,11 @@ let drawStats = function() {
   ctx.fillText("restart (r)", 10, 120);
   ctx.fillText("= make hero jump higher", 10, 140);
   ctx.fillText("- make hero jump lower", 10, 160);
+  ctx.fillText("< make hero go slower", 10, 180);
+  ctx.fillText("> make hero go faster", 10, 200);
   if (debugMode) {
-    ctx.fillText("step debug (s) = " + (debugMode ? "enabled" : "disabled"), 10, 180);
-    ctx.fillText("step back (S)  = " + (debugMode ? "enabled" : "disabled"), 10, 200);
+    ctx.fillText("step debug (s) = " + (debugMode ? "enabled" : "disabled"), 10, 220);
+    ctx.fillText("step back (S)  = " + (debugMode ? "enabled" : "disabled"), 10, 240);
   }
 };
 
