@@ -31,13 +31,13 @@ install:
 
 jobs:
   include:
-    - stage: Linting
+    - stage: Lint
 
       script:
         - ./lint.sh
         - bundle exec danger
 
-    - stage: Testing
+    - stage: Test and analyze coverage
 
       before_script:
         - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
@@ -53,7 +53,7 @@ jobs:
       after_script:
         - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
-    - stage: Publishing
+    - stage: Publish webpage
 
       script:
         - bundle exec jekyll build
