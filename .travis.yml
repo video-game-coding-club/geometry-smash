@@ -19,6 +19,10 @@ notifications:
     on_failure: always  # options: [always|never|change] default: always
     on_start: never     # options: [always|never|change] default: always
 
+cache:
+  - bundler
+  - npm
+
 install:
   - npm install
   - bundle install
@@ -30,17 +34,20 @@ before_script:
 
 script:
   - ./lint.sh
+  - npm test
   - bundle exec danger
   - bundle exec jekyll build
-  - npm test
+  - babel main.js --out-file main-babel.js
+  - cp -v main-babel.js _site/main.js
 
-#deploy:
-#  provider: pages
-#  skip-cleanup: true
-#  github-token: $GITHUB_TOKEN
-#  keep-history: true
-#  on:
-#    branch: master
+deploy:
+ provider: pages
+ local-dir: _site
+ skip-cleanup: true
+ github-token: $GITHUB_TOKEN
+ keep-history: true
+ on:
+   branch: master
 
 after_success:
   - npm run coverage
