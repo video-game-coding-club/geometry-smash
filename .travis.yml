@@ -60,6 +60,7 @@ jobs:
         - babel main.js --out-file main-babel.js
         - mv -v _site/main.js _site/main-original.js
         - cp -v main-babel.js _site/main.js
+        - bundle exec htmlproofer _site
         - tree _site
 
       deploy:
