@@ -37,7 +37,7 @@ script:
   - npm test
   - bundle exec danger
   - bundle exec jekyll build
-  - npm run build
+  - babel main.js --out-file main-babel.js
   - cp -v main-babel.js _site/main.js
 
 deploy:
