@@ -27,30 +27,43 @@ install:
   - npm install
   - bundle install
 
-before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+jobs:
+  include:
+    - stage: Linting
 
-script:
-  - ./lint.sh
-  - npm test
-  - bundle exec danger
-  - bundle exec jekyll build
-  - babel main.js --out-file main-babel.js
-  - cp -v main-babel.js _site/main.js
+      script:
+        - ./lint.sh
+        - bundle exec danger
 
-deploy:
- provider: pages
- local-dir: _site
- skip-cleanup: true
- github-token: $GITHUB_TOKEN
- keep-history: true
- on:
-   branch: master
+    - stage: Testing
 
-after_success:
-  - npm run coverage
+      before_script:
+        - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+        - chmod +x ./cc-test-reporter
+        - ./cc-test-reporter before-build
 
-after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+      script:
+        - npm test
+
+      after_success:
+        - npm run coverage
+
+      after_script:
+        - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
+    - stage: Publishing
+
+      script:
+        - bundle exec jekyll build
+        - babel main.js --out-file main-babel.js
+        - cp -v main-babel.js _site/main.js
+        - ls -lh _site
+
+      deploy:
+        provider: pages
+        local-dir: _site
+        skip-cleanup: true
+        github-token: $GITHUB_TOKEN
+        keep-history: true
+        on:
+          branch: master
