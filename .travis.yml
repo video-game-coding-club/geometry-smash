@@ -10,6 +10,8 @@ env:
 addons:
   apt:
     update: true
+    packages:
+      - tree
 
 notifications:
   webhooks:
@@ -57,7 +59,7 @@ jobs:
         - bundle exec jekyll build
         - babel main.js --out-file main-babel.js
         - cp -v main-babel.js _site/main.js
-        - ls -lh _site
+        - tree _site
 
       deploy:
         provider: pages
