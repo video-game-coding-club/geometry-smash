@@ -10,6 +10,8 @@ env:
 addons:
   apt:
     update: true
+    packages:
+      - tree
 
 notifications:
   webhooks:
@@ -29,13 +31,13 @@ install:
 
 jobs:
   include:
-    - stage: Linting
+    - stage: Lint
 
       script:
         - ./lint.sh
         - bundle exec danger
 
-    - stage: Testing
+    - stage: Test and analyze coverage
 
       before_script:
         - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
@@ -51,13 +53,13 @@ jobs:
       after_script:
         - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
-    - stage: Publishing
+    - stage: Publish webpage
 
       script:
         - bundle exec jekyll build
         - babel main.js --out-file main-babel.js
         - cp -v main-babel.js _site/main.js
-        - ls -lh _site
+        - tree _site
 
       deploy:
         provider: pages
