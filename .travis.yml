@@ -53,7 +53,7 @@ jobs:
       after_script:
         - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
-    - stage: Publish webpage
+    - stage: Build and publish webpage
 
       script:
         - bundle exec jekyll build
