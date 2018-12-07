@@ -294,7 +294,7 @@ var drawStats = function drawStats() {
   ctx.fillText("time           = " + time, 10, 20);
   ctx.fillText("hero position  = [" + hero.x.toFixed(0) + ", " + hero.y.toFixed(0) + "]", 10, 40);
   ctx.fillText("hero velocity  = " + hero.velocity.toFixed(2), 10, 60);
-  ctx.fillText("obs speed  = " + obs_speed, 10, 60);
+  ctx.fillText("obs speed  = " + obs_speed, 10, 220);
   ctx.fillText("booster (CTRL) = " + (hero.is_boosting ? "on" : "off"), 10, 80);
   ctx.fillText("debug (d)      = " + (debugMode ? "on" : "off"), 10, 100);
   ctx.fillText("restart (r)", 10, 120);
