@@ -684,7 +684,7 @@ let equalKeyPressed = function(event) {
 
 let lessKeyPressed = function(event) {
   if (event.code === "Comma") {
-    obs_speed -= 1;
+    obs_speed -= 0.02;
   }
 };
 
@@ -696,7 +696,7 @@ let minusKeyPressed = function(event) {
 
 let greaterKeyPressed = function(event) {
   if (event.code === "Period") {
-    obs_speed += 1;
+    obs_speed += 0.02;
   }
 };
 
