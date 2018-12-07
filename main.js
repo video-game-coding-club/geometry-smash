@@ -134,7 +134,8 @@ var toxicSign = {
   x: 0,
   y: 0,
   w: 140,
-  h: -140
+  h: -140,
+  ignore_me: true
 };
 var electricSign = {
   draw: function draw(x, y) {
@@ -149,7 +150,8 @@ var electricSign = {
   x: 0,
   y: 0,
   w: 140,
-  h: -140
+  h: -140,
+  ignore_me: true
 };
 var obstacleLaser = {
   draw: function draw(x, y) {
@@ -374,6 +376,10 @@ var drawObstacleBoundingBox = function drawObstacleBoundingBox(obstacle) {
 };
 
 var is_overlapping = function is_overlapping(object1, object2) {
+  if (object2.ignore_me) {
+    return false;
+  }
+
   if (object1.x + object1.w > object2.x && object1.y > object2.y + object2.h && object1.x < object2.x + object2.w && object1.y + object1.h < object2.y) {
     return true;
   }
