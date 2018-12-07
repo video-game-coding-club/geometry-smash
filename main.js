@@ -3,7 +3,7 @@ let ctx = canvas.getContext("2d");
 
 /* Reset the game time. */
 let time = 0;
-
+let obs_speed = 1;
 /* The position of the floor. */
 let floorHeight = 0;
 
@@ -361,6 +361,7 @@ let drawStats = function() {
   ctx.fillText("hero position  = [" + hero.x.toFixed(0) +
     ", " + hero.y.toFixed(0) + "]", 10, 40);
   ctx.fillText("hero velocity  = " + hero.velocity.toFixed(2), 10, 60);
+  ctx.fillText("obs speed  = " + obs_speed, 10, 60);
   ctx.fillText("booster (CTRL) = " + (hero.is_boosting ? "on" : "off"), 10, 80);
   ctx.fillText("debug (d)      = " + (debugMode ? "on" : "off"), 10, 100);
   ctx.fillText("restart (r)", 10, 120);
@@ -454,7 +455,6 @@ let is_overlapping = function(object1, object2) {
 };
 
 let drawObstacles = function() {
-  let obs_speed = 1;
   let obs_listPosition = 0;
 
   for (let i = 0; i < obstacles.length; i++) {
@@ -752,7 +752,9 @@ let keyPressListeners = [
   restartKeyPressed,
   spaceKeyPressed,
   stepKeyPressed,
-  reverseStepKeyPressed
+  reverseStepKeyPressed,
+  lessKeyPressed,
+  greaterKeyPressed
 ];
 
 let keyReleaseListeners = [
