@@ -5,6 +5,7 @@ var ctx = canvas.getContext("2d");
 /* Reset the game time. */
 
 var time = 0;
+var obs_speed = 1;
 /* The position of the floor. */
 
 var floorHeight = 0;
@@ -293,6 +294,7 @@ var drawStats = function drawStats() {
   ctx.fillText("time           = " + time, 10, 20);
   ctx.fillText("hero position  = [" + hero.x.toFixed(0) + ", " + hero.y.toFixed(0) + "]", 10, 40);
   ctx.fillText("hero velocity  = " + hero.velocity.toFixed(2), 10, 60);
+  ctx.fillText("obs speed  = " + obs_speed, 10, 60);
   ctx.fillText("booster (CTRL) = " + (hero.is_boosting ? "on" : "off"), 10, 80);
   ctx.fillText("debug (d)      = " + (debugMode ? "on" : "off"), 10, 100);
   ctx.fillText("restart (r)", 10, 120);
@@ -380,7 +382,6 @@ var is_overlapping = function is_overlapping(object1, object2) {
 };
 
 var drawObstacles = function drawObstacles() {
-  var obs_speed = 1;
   var obs_listPosition = 0;
 
   for (var i = 0; i < obstacles.length; i++) {
@@ -650,7 +651,7 @@ var spaceKeyPressed = function spaceKeyPressed(event) {
 
 var mouseClickedListeners = [mouseClickedSoundButton, jumpHero];
 var mouseMoveListeners = [mouseMoved];
-var keyPressListeners = [powerkeyPressedMoveHero, debugKeyPressed, equalKeyPressed, minusKeyPressed, restartKeyPressed, spaceKeyPressed, stepKeyPressed, reverseStepKeyPressed];
+var keyPressListeners = [powerkeyPressedMoveHero, debugKeyPressed, equalKeyPressed, minusKeyPressed, restartKeyPressed, spaceKeyPressed, stepKeyPressed, reverseStepKeyPressed, lessKeyPressed, greaterKeyPressed];
 var keyReleaseListeners = [powerkeyReleasedMoveHero];
 
 (function () {
