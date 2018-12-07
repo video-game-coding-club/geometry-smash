@@ -3,7 +3,10 @@ let ctx = canvas.getContext("2d");
 
 /* Reset the game time. */
 let time = 0;
+
+/* The obstacle speed. */
 let obs_speed = 1;
+
 /* The position of the floor. */
 let floorHeight = 0;
 
@@ -748,13 +751,13 @@ let keyPressListeners = [
   powerkeyPressedMoveHero,
   debugKeyPressed,
   equalKeyPressed,
+  lessKeyPressed,
   minusKeyPressed,
+  greaterKeyPressed,
   restartKeyPressed,
-  spaceKeyPressed,
   stepKeyPressed,
   reverseStepKeyPressed,
-  lessKeyPressed,
-  greaterKeyPressed
+  spaceKeyPressed
 ];
 
 let keyReleaseListeners = [
