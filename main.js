@@ -1,9 +1,22 @@
 let canvas = document.getElementById("game-layer");
 let ctx = canvas.getContext("2d");
 
-/* Reset the game time. */
+/* The game time. */
 let time = 0;
+
+/* The last time. */
+let time_last = 0;
+
+/* The time difference between the time in the previous call and this
+ * one. */
+let time_difference = 0;
+
+/* The obstacle speed. */
 let obs_speed = 1;
+
+/* The obstacle offset (when moving in time). */
+let obs_offset = 0;
+
 /* The position of the floor. */
 let floorHeight = 0;
 
@@ -356,6 +369,12 @@ let background = function(color) {
   ctx.strokeRect(0, 0, canvas.width, canvas.height);
 };
 
+let resetGame = function() {
+  time = 0;
+  time_last = 0;
+  obs_offset = 0;
+};
+
 let drawStats = function() {
   ctx.fillStyle = "white";
   ctx.font = '20px monospace';
@@ -462,11 +481,15 @@ let is_overlapping = function(object1, object2) {
 let drawObstacles = function() {
   let obs_listPosition = 0;
 
+  /* Calculate the offset of the obstacles. This is the amount by
+   * which we shift the obstacles to the left. */
+  obs_offset += obs_speed * time_difference;
+
   for (let i = 0; i < obstacles.length; i++) {
     // x-position summed from list.
     obs_listPosition += obstacles[i][1];
 
-    let obs_x = -time * obs_speed + obs_listPosition;
+    let obs_x = obs_listPosition - obs_offset;
     let obs_y = floorHeight;
     let obs_right = obs_x + obstacles[i][0].w;
 
@@ -707,7 +730,7 @@ let greaterKeyPressed = function(event) {
 
 let restartKeyPressed = function(event) {
   if (event.code === "KeyR" && event.key === "r") {
-    time = 0;
+    resetGame();
   }
 };
 
@@ -753,13 +776,13 @@ let keyPressListeners = [
   powerkeyPressedMoveHero,
   debugKeyPressed,
   equalKeyPressed,
+  lessKeyPressed,
   minusKeyPressed,
+  greaterKeyPressed,
   restartKeyPressed,
-  spaceKeyPressed,
   stepKeyPressed,
   reverseStepKeyPressed,
-  lessKeyPressed,
-  greaterKeyPressed
+  spaceKeyPressed
 ];
 
 let keyReleaseListeners = [
@@ -815,14 +838,19 @@ let draw = function() {
   window.requestAnimationFrame(draw);
   background("blue");
 
+  /* Calculate the time difference between the time in this call and
+   * the time during the last call. */
+  time_difference = time - time_last;
+  time_last = time;
+
   drawStats();
   drawSoundButton();
   drawBackground();
   drawFloor();
   drawObstacles();
   drawHero();
-  //drawFloor();
 
+  /* Increment time. */
   if (!debugMode) {
     time++;
   }
@@ -843,6 +871,7 @@ let draw = function() {
     floorHeight = canvas.height - 50;
   };
 
+  resetGame();
   initialize();
 })();
 
