@@ -2,10 +2,22 @@
 
 var canvas = document.getElementById("game-layer");
 var ctx = canvas.getContext("2d");
-/* Reset the game time. */
+/* The game time. */
 
 var time = 0;
+/* The last time. */
+
+var time_last = 0;
+/* The time difference between the time in the previous call and this
+ * one. */
+
+var time_difference = 0;
+/* The obstacle speed. */
+
 var obs_speed = 1;
+/* The obstacle offset (when moving in time). */
+
+var obs_offset = 0;
 /* The position of the floor. */
 
 var floorHeight = 0;
@@ -290,6 +302,12 @@ var background = function background(color) {
   ctx.strokeRect(0, 0, canvas.width, canvas.height);
 };
 
+var resetGame = function resetGame() {
+  time = 0;
+  time_last = 0;
+  obs_offset = 0;
+};
+
 var drawStats = function drawStats() {
   ctx.fillStyle = "white";
   ctx.font = '20px monospace';
@@ -389,11 +407,15 @@ var is_overlapping = function is_overlapping(object1, object2) {
 
 var drawObstacles = function drawObstacles() {
   var obs_listPosition = 0;
+  /* Calculate the offset of the obstacles. This is the amount by
+   * which we shift the obstacles to the left. */
+
+  obs_offset += obs_speed * time_difference;
 
   for (var i = 0; i < obstacles.length; i++) {
     // x-position summed from list.
     obs_listPosition += obstacles[i][1];
-    var obs_x = -time * obs_speed + obs_listPosition;
+    var obs_x = obs_listPosition - obs_offset;
     var obs_y = floorHeight;
     var obs_right = obs_x + obstacles[i][0].w; // Draw if coordinates are within the canvas.
 
@@ -622,7 +644,7 @@ var greaterKeyPressed = function greaterKeyPressed(event) {
 
 var restartKeyPressed = function restartKeyPressed(event) {
   if (event.code === "KeyR" && event.key === "r") {
-    time = 0;
+    resetGame();
   }
 };
 
@@ -657,7 +679,7 @@ var spaceKeyPressed = function spaceKeyPressed(event) {
 
 var mouseClickedListeners = [mouseClickedSoundButton, jumpHero];
 var mouseMoveListeners = [mouseMoved];
-var keyPressListeners = [powerkeyPressedMoveHero, debugKeyPressed, equalKeyPressed, minusKeyPressed, restartKeyPressed, spaceKeyPressed, stepKeyPressed, reverseStepKeyPressed, lessKeyPressed, greaterKeyPressed];
+var keyPressListeners = [powerkeyPressedMoveHero, debugKeyPressed, equalKeyPressed, lessKeyPressed, minusKeyPressed, greaterKeyPressed, restartKeyPressed, stepKeyPressed, reverseStepKeyPressed, spaceKeyPressed];
 var keyReleaseListeners = [powerkeyReleasedMoveHero];
 
 (function () {
@@ -711,12 +733,18 @@ var keyReleaseListeners = [powerkeyReleasedMoveHero];
 var draw = function draw() {
   window.requestAnimationFrame(draw);
   background("blue");
+  /* Calculate the time difference between the time in this call and
+   * the time during the last call. */
+
+  time_difference = time - time_last;
+  time_last = time;
   drawStats();
   drawSoundButton();
   drawBackground();
   drawFloor();
   drawObstacles();
-  drawHero(); //drawFloor();
+  drawHero();
+  /* Increment time. */
 
   if (!debugMode) {
     time++;
@@ -738,6 +766,7 @@ var draw = function draw() {
     floorHeight = canvas.height - 50;
   };
 
+  resetGame();
   initialize();
 })();
 
