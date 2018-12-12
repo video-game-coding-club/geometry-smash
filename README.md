@@ -46,8 +46,8 @@ Please see also:
 - If you don't want to install any software and start developing
   anyway have a look at
   [GitPod](https://gitpod.io#https://github.com/video-game-coding-club/geometry-smash)
-  as your fully featured IDE (Note that the free plan is limited
-  currently to 10 hours of usage per month).
+  as your fully featured IDE (Note that the open source plan is
+  limited to 100 hours of usage per month).
 
 You can find more information on a suggested workflow on our
 [Developer Workflow](DeveloperWorkflow.md) page. If you want to run
