@@ -5,20 +5,21 @@
     "coverage": "nyc --reporter=lcov mocha"
   },
   "devDependencies": {
-    "@babel/cli": "^7.1.5",
-    "@babel/core": "^7.1.6",
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.0",
     "@babel/polyfill": "^7.0.0",
-    "@babel/preset-env": "^7.1.6",
+    "@babel/preset-env": "^7.2.0",
     "@babel/register": "^7.0.0",
     "PrettyCSS": "^0.3.17",
     "html-linter": "^1.1.1",
     "istanbul": "^0.4.5",
-    "js-beautify": "^1.8.8",
-    "jshint": "^2.9.6",
+    "js-beautify": "^1.8.9",
+    "jshint": "^2.9.7",
     "mocha": "^5.2.0",
-    "nyc": "^13.1.0"
+    "nyc": "^13.1.0",
+    "typescript": "^3.2.2"
   },
   "dependencies": {
-    "npm": "^6.4.1"
+    "npm": "^6.5.0"
   }
 }
