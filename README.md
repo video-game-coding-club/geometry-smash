@@ -22,7 +22,10 @@ You can play the game right here: [**Play Geometry Smash**](game.html)
 In alphabetical order:
 
 - Adis Bock (@adisbock)
+- Adrian Medin (@zmedin)
+- Anders Medin (@andmedin)
 - Ajla Bock (@ajlabock)
+- Levi Gibson (@LeviCodes)
 - Lucas Price (@lucasprice)
 - Zach Gibson (@zachgib)
 
