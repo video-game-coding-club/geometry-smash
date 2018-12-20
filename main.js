@@ -382,7 +382,6 @@ let drawStats = function() {
   ctx.fillText("hero position  = [" + hero.x.toFixed(0) +
     ", " + hero.y.toFixed(0) + "]", 10, 40);
   ctx.fillText("hero velocity  = " + hero.velocity.toFixed(2), 10, 60);
-  ctx.fillText("obs speed  = " + obs_speed, 10, 220);
   ctx.fillText("booster (CTRL) = " + (hero.is_boosting ? "on" : "off"), 10, 80);
   ctx.fillText("debug (d)      = " + (debugMode ? "on" : "off"), 10, 100);
   ctx.fillText("restart (r)", 10, 120);
@@ -390,9 +389,12 @@ let drawStats = function() {
   ctx.fillText("- make hero jump lower", 10, 160);
   ctx.fillText("< make hero go slower", 10, 180);
   ctx.fillText("> make hero go faster", 10, 200);
+  ctx.fillText("G make gravity bigger", 10, 220);
+  ctx.fillText("g make gravity smaller", 10, 240);
+  ctx.fillText("obs speed  = " + obs_speed, 10, 260);
   if (debugMode) {
-    ctx.fillText("step debug (s) = " + (debugMode ? "enabled" : "disabled"), 10, 260);
-    ctx.fillText("step back (S)  = " + (debugMode ? "enabled" : "disabled"), 10, 240);
+    ctx.fillText("step debug (s) = " + (debugMode ? "enabled" : "disabled"), 10, 280);
+    ctx.fillText("step back (S)  = " + (debugMode ? "enabled" : "disabled"), 10, 300);
   }
 };
 
