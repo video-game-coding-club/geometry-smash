@@ -58,6 +58,7 @@ jobs:
       script:
         - bundle exec jekyll build
         - babel main.js --out-file main-babel.js
+        - mv -v _site/main.js _site/main-original.js
         - cp -v main-babel.js _site/main.js
         - tree _site
 
