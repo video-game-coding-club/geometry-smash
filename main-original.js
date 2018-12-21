@@ -1,53 +1,52 @@
-"use strict";
+let canvas = document.getElementById("game-layer");
+let ctx = canvas.getContext("2d");
 
-var canvas = document.getElementById("game-layer");
-var ctx = canvas.getContext("2d");
 /* The game time. */
+let time = 0;
 
-var time = 0;
 /* The last time. */
+let time_last = 0;
 
-var time_last = 0;
 /* The time difference between the time in the previous call and this
  * one. */
+let time_difference = 0;
 
-var time_difference = 0;
 /* The obstacle speed. */
+let obs_speed = 1;
 
-var obs_speed = 1;
 /* The obstacle offset (when moving in time). */
+let obs_offset = 0;
 
-var obs_offset = 0;
 /* The position of the floor. */
+let floorHeight = 0;
 
-var floorHeight = 0;
 /* Debug mode. */
+let debugMode = false;
 
-var debugMode = false;
 /* The current mouse position. */
-
-var mousePosition = {
+let mousePosition = {
   x: 0,
   y: 0
 };
+
 /* The toxic sign image. */
-
-var toxicImage = new Image();
+let toxicImage = new Image();
 toxicImage.src = "assets/toxic.jpg";
+
 /* The electric sign image. */
-
-var electricImage = new Image();
+let electricImage = new Image();
 electricImage.src = "assets/electric.jpg";
-/* The sound effect for the laser obstacle. */
 
-var lightningSound = new Audio("assets/flash.wav");
+/* The sound effect for the laser obstacle. */
+let lightningSound = new Audio("assets/flash.wav");
 lightningSound.loop = true;
 lightningSound.muted = true;
-/* The state of the laser sound. */
 
-var laserSound;
-var obstacleSpike = {
-  draw: function draw(x, y) {
+/* The state of the laser sound. */
+let laserSound;
+
+let obstacleSpike = {
+  draw: function(x, y) {
     ctx.beginPath();
     ctx.moveTo(this.x, this.y);
     ctx.lineTo(this.x + 60, this.y);
@@ -61,32 +60,39 @@ var obstacleSpike = {
   w: 60,
   h: -60
 };
-var obstacleSaw = {
-  draw: function draw(x, y) {
-    var numberSpikes = 20;
-    var sawRadius = 80;
-    var sawHeight = y - 60 * (3 + Math.sin(time / 70 / 2 * Math.PI));
+
+let obstacleSaw = {
+  draw: function(x, y) {
+    let numberSpikes = 20;
+    let sawRadius = 80;
+    let sawHeight = y - 60 * (3 + Math.sin(time / 70 / 2 * Math.PI));
+
     ctx.beginPath();
     ctx.ellipse(x, sawHeight, sawRadius, sawRadius, 0, 0, 2 * Math.PI);
     ctx.closePath();
     ctx.fillStyle = "silver";
     ctx.fill();
+
     ctx.beginPath();
     ctx.ellipse(x, sawHeight, 15, 15, 0, 0, 2 * Math.PI);
     ctx.closePath();
     ctx.fillStyle = "black";
     ctx.fill();
+
     ctx.beginPath();
     ctx.rect(x - 5, sawHeight, 10, sawHeight);
     ctx.closePath();
     ctx.fillStyle = "black";
     ctx.fill();
 
-    for (var i = 0; i < numberSpikes; i++) {
+    for (let i = 0; i < numberSpikes; i++) {
       ctx.save();
-      var alpha = -2 * Math.PI / numberSpikes * i - 0.15 * time / (2 * Math.PI) % (2 * Math.PI);
+
+      let alpha = -2 * Math.PI / numberSpikes * i - 0.15 * time / (2 * Math.PI) % (2 * Math.PI);
+
       ctx.translate(x + sawRadius * Math.sin(alpha), sawHeight + sawRadius * Math.cos(alpha));
       ctx.rotate(-alpha);
+
       ctx.beginPath();
       ctx.moveTo(-10, 0);
       ctx.lineTo(10, 0);
@@ -94,6 +100,7 @@ var obstacleSaw = {
       ctx.closePath();
       ctx.fillStyle = "black";
       ctx.fill();
+
       ctx.restore();
     }
   },
@@ -102,8 +109,9 @@ var obstacleSaw = {
   w: 160,
   h: -160
 };
-var obstacleThorns = {
-  draw: function draw(x, y) {
+
+let obstacleThorns = {
+  draw: function(x, y) {
     this.x = x;
     this.y = y;
     ctx.beginPath();
@@ -122,10 +130,11 @@ var obstacleThorns = {
   pos_y: 0
 };
 
-var drawSignOutline = function drawSignOutline(x, y) {
+let drawSignOutline = function(x, y) {
   ctx.beginPath();
   ctx.rect(x, y - 20, 140, -120);
   ctx.closePath();
+
   ctx.fillStyle = "white";
   ctx.strokeStyle = "black";
   ctx.lineWidth = 4;
@@ -133,14 +142,16 @@ var drawSignOutline = function drawSignOutline(x, y) {
   ctx.fill();
 };
 
-var toxicSign = {
-  draw: function draw(x, y) {
+let toxicSign = {
+  draw: function(x, y) {
     drawSignOutline(x, y);
+
     ctx.beginPath();
     ctx.rect(x + 60, y, 20, -20);
     ctx.closePath();
     ctx.fillStyle = "black";
     ctx.fill();
+
     ctx.drawImage(toxicImage, x, y - 140, 140, 120);
   },
   x: 0,
@@ -149,14 +160,18 @@ var toxicSign = {
   h: -140,
   ignore_me: true
 };
-var electricSign = {
-  draw: function draw(x, y) {
+
+let electricSign = {
+  draw: function(x, y) {
     drawSignOutline(x, y);
+
     ctx.beginPath();
     ctx.rect(x + 60, y, 20, -20);
     ctx.closePath();
+
     ctx.fillStyle = "black";
     ctx.fill();
+
     ctx.drawImage(electricImage, x, y - 140, 140, 120);
   },
   x: 0,
@@ -165,10 +180,12 @@ var electricSign = {
   h: -140,
   ignore_me: true
 };
-var obstacleLaser = {
-  draw: function draw(x, y) {
+
+let obstacleLaser = {
+  draw: function(x, y) {
     ctx.fillStyle = "black";
     ctx.fillRect(x, y, 76, -40);
+
     ctx.beginPath();
     ctx.arc(x + 38, y - 40, 30, Math.PI, 2 * Math.PI);
     ctx.fillStyle = "gold";
@@ -177,22 +194,19 @@ var obstacleLaser = {
     if (time % this.laserInterval > this.laserInterval - this.laserOn) {
       this.h = -canvas.height;
       /* The current height of the laser beam. */
-
-      var laserTop = 0;
+      let laserTop = 0;
 
       if (laserSound === undefined) {
         laserSound = lightningSound.play();
-
         if (laserSound !== undefined) {
-          laserSound.then(function (_) {
+          laserSound.then(_ => {
             console.log("playing sound");
-          }).catch(function (error) {
+          }).catch(error => {
             console.log("could not play sound");
             console.log(error);
           });
         }
       }
-
       if (time % this.laserInterval < this.laserInterval - this.laserOn + this.laserSpeed) {
         laserTop = y - 76 - (y - 76) / 10 * (time % 10);
       }
@@ -203,12 +217,14 @@ var obstacleLaser = {
       ctx.lineWidth = 9;
       ctx.strokeStyle = "darkred";
       ctx.stroke();
+
       ctx.beginPath();
       ctx.moveTo(x + 32, y - 75);
       ctx.lineTo(x + 32, laserTop);
       ctx.strokeStyle = "orangered";
       ctx.lineWidth = 4;
       ctx.stroke();
+
       ctx.beginPath();
       ctx.moveTo(x + 44, y - 75);
       ctx.lineTo(x + 44, laserTop);
@@ -217,7 +233,6 @@ var obstacleLaser = {
       ctx.stroke();
     } else {
       this.h = 0;
-
       if (laserSound !== undefined) {
         lightningSound.pause();
         laserSound = undefined;
@@ -235,8 +250,9 @@ var obstacleLaser = {
   w: 76,
   h: 0
 };
-var obstacleTrapdoor = {
-  draw: function draw(x, y) {
+
+let obstacleTrapdoor = {
+  draw: function(x, y) {
     ctx.fillStyle = "black";
     ctx.fillRect(x, y, 350, -80);
   },
@@ -245,12 +261,14 @@ var obstacleTrapdoor = {
   w: 350,
   h: -80
 };
-var obstaclePole = {
-  draw: function draw(x, y) {
-    var speed = 0.1; //let height = -Math.max(300, x - speed * time);
 
-    var poleHeight = Math.min(250, 0.5 * canvas.width - x);
+let obstaclePole = {
+  draw: function(x, y) {
+    let speed = 0.1;
+    //let height = -Math.max(300, x - speed * time);
+    let poleHeight = Math.min(250, 0.5 * canvas.width - x);
     this.h = -poleHeight;
+
     ctx.beginPath();
     ctx.moveTo(x, y);
     ctx.lineTo(x + 100, y);
@@ -259,6 +277,7 @@ var obstaclePole = {
     ctx.closePath();
     ctx.fillStyle = "green";
     ctx.fill();
+
     ctx.strokeStyle = "black";
     ctx.lineWidth = 4;
     ctx.stroke();
@@ -268,13 +287,13 @@ var obstaclePole = {
   w: 100,
   h: -100
 };
-var explodingWallBricks = [];
-var obstacleExplodingWall = {
-  draw: function draw(x, y) {
+
+let explodingWallBricks = [];
+let obstacleExplodingWall = {
+  draw: function(x, y) {
     if (explodingWallBricks.length === 0) {
       ctx.strokeStyle = "black";
-
-      for (var i = 0; 35 * i < floorHeight; i++) {
+      for (let i = 0; 35 * i < floorHeight; i++) {
         ctx.beginPath();
         ctx.rect(x, 10 + 35 * i, 10, -30);
         ctx.stroke();
@@ -286,15 +305,63 @@ var obstacleExplodingWall = {
   w: 10,
   h: -canvas.height
 };
+
 /* Each obstacle in the level is given by two things:
  *
  * 1. The obstacle type
  * 2. The distance to the previous obstacle
  */
+let obstacles = [
+  [obstacleTrapdoor, 600],
+  [obstacleSpike, 500],
+  [obstacleSaw, 400],
+  [electricSign, 400],
+  [obstacleLaser, 500],
+  [obstacleThorns, 300],
+  [obstaclePole, 500],
+  [toxicSign, 300],
+  [obstacleSpike, 500],
+  [obstacleThorns, 300],
+  [obstacleExplodingWall, 200],
+  [electricSign, 400],
+  [toxicSign, 200],
+  [obstacleSpike, 300],
+  [obstacleLaser, 200],
+  [obstacleSpike, 400],
+  [obstacleSpike, 550],
+  [obstacleSpike, 320],
+  [obstacleSpike, 300],
+  [obstacleTrapdoor, 600],
+  [obstacleSpike, 500],
+  [obstacleThorns, 300],
+  [obstacleExplodingWall, 200],
+  [obstaclePole, 200],
+  [electricSign, 400],
+  [toxicSign, 200],
+  [obstacleSpike, 300],
+  [obstacleLaser, 200],
+  [obstacleSaw, 400],
+  [obstacleSpike, 400],
+  [obstacleSpike, 550],
+  [obstacleSpike, 320],
+  [obstacleSpike, 300],
+  [obstacleTrapdoor, 600],
+  [obstacleSpike, 500],
+  [obstacleThorns, 300],
+  [obstacleExplodingWall, 200],
+  [obstaclePole, 200],
+  [electricSign, 400],
+  [toxicSign, 200],
+  [obstacleSpike, 300],
+  [obstacleLaser, 200],
+  [obstacleSaw, 400],
+  [obstacleSpike, 400],
+  [obstacleSpike, 550],
+  [obstacleSpike, 320],
+  [obstacleSpike, 300]
+];
 
-var obstacles = [[obstacleTrapdoor, 600], [obstacleSpike, 500], [obstacleSaw, 400], [electricSign, 400], [obstacleLaser, 500], [obstacleThorns, 300], [obstaclePole, 500], [toxicSign, 300], [obstacleSpike, 500], [obstacleThorns, 300], [obstacleExplodingWall, 200], [electricSign, 400], [toxicSign, 200], [obstacleSpike, 300], [obstacleLaser, 200], [obstacleSpike, 400], [obstacleSpike, 550], [obstacleSpike, 320], [obstacleSpike, 300], [obstacleTrapdoor, 600], [obstacleSpike, 500], [obstacleThorns, 300], [obstacleExplodingWall, 200], [obstaclePole, 200], [electricSign, 400], [toxicSign, 200], [obstacleSpike, 300], [obstacleLaser, 200], [obstacleSaw, 400], [obstacleSpike, 400], [obstacleSpike, 550], [obstacleSpike, 320], [obstacleSpike, 300], [obstacleTrapdoor, 600], [obstacleSpike, 500], [obstacleThorns, 300], [obstacleExplodingWall, 200], [obstaclePole, 200], [electricSign, 400], [toxicSign, 200], [obstacleSpike, 300], [obstacleLaser, 200], [obstacleSaw, 400], [obstacleSpike, 400], [obstacleSpike, 550], [obstacleSpike, 320], [obstacleSpike, 300]];
-
-var background = function background(color) {
+let background = function(color) {
   ctx.fillStyle = color;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.strokeStyle = 'black';
@@ -302,17 +369,18 @@ var background = function background(color) {
   ctx.strokeRect(0, 0, canvas.width, canvas.height);
 };
 
-var resetGame = function resetGame() {
+let resetGame = function() {
   time = 0;
   time_last = 0;
   obs_offset = 0;
 };
 
-var drawStats = function drawStats() {
+let drawStats = function() {
   ctx.fillStyle = "white";
   ctx.font = '20px monospace';
   ctx.fillText("time           = " + time, 10, 20);
-  ctx.fillText("hero position  = [" + hero.x.toFixed(0) + ", " + hero.y.toFixed(0) + "]", 10, 40);
+  ctx.fillText("hero position  = [" + hero.x.toFixed(0) +
+    ", " + hero.y.toFixed(0) + "]", 10, 40);
   ctx.fillText("hero velocity  = " + hero.velocity.toFixed(2), 10, 60);
   ctx.fillText("booster (CTRL) = " + (hero.is_boosting ? "on" : "off"), 10, 80);
   ctx.fillText("debug (d)      = " + (debugMode ? "on" : "off"), 10, 100);
@@ -324,14 +392,13 @@ var drawStats = function drawStats() {
   ctx.fillText("G make gravity bigger", 10, 220);
   ctx.fillText("g make gravity smaller", 10, 240);
   ctx.fillText("obs speed  = " + obs_speed, 10, 260);
-
   if (debugMode) {
     ctx.fillText("step debug (s) = " + (debugMode ? "enabled" : "disabled"), 10, 280);
     ctx.fillText("step back (S)  = " + (debugMode ? "enabled" : "disabled"), 10, 300);
   }
 };
 
-var drawGameOverSign = function drawGameOverSign() {
+let drawGameOverSign = function() {
   ctx.fillStyle = "red";
   ctx.beginPath();
   ctx.rect(0.5 * canvas.width - 150, 0.5 * canvas.height - 100, 300, 60);
@@ -339,22 +406,25 @@ var drawGameOverSign = function drawGameOverSign() {
   ctx.fillStyle = "black";
   ctx.lineWidth = 4;
   ctx.stroke();
+
   ctx.font = '48px serif';
   ctx.fillText("GAME OVER", 0.5 * canvas.width - 140, 0.5 * canvas.height - 55);
 };
 
-var drawBackground = function drawBackground() {};
+let drawBackground = function() {};
 
-var drawFloor = function drawFloor() {
-  var strokeColors = ["black", "black"];
-  var fillColors = ["darkblue", "yellow"];
-  var floorSpeed = 1;
+let drawFloor = function() {
+  let strokeColors = ["black", "black"];
+  let fillColors = ["darkblue", "yellow"];
 
-  for (var i = 0; -floorSpeed * time % 400 + 400 * i < canvas.width; i++) {
-    for (var j = 0; j < 2; j++) {
+  let floorSpeed = 1;
+
+  for (let i = 0; - floorSpeed * time % 400 + 400 * i < canvas.width; i++) {
+    for (let j = 0; j < 2; j++) {
       ctx.beginPath();
       ctx.rect(-floorSpeed * time % 400 + 400 * i + 200 * j, floorHeight, 200, 50);
       ctx.closePath();
+
       ctx.strokeStyle = strokeColors[j];
       ctx.fillStyle = fillColors[j];
       ctx.fill();
@@ -363,10 +433,11 @@ var drawFloor = function drawFloor() {
   }
 };
 
-var drawBoundingBox = function drawBoundingBox(obstacle) {
+let drawBoundingBox = function(obstacle) {
   ctx.strokeStyle = "orangered";
   ctx.lineWidth = 1;
   ctx.strokeRect(obstacle.x, obstacle.y, obstacle.w, obstacle.h);
+
   ctx.font = '14px monospace';
   ctx.fillStyle = "white";
   ctx.textAlign = "right";
@@ -381,11 +452,12 @@ var drawBoundingBox = function drawBoundingBox(obstacle) {
   ctx.textAlign = "right";
   ctx.textBaseline = "bottom";
   ctx.fillText("(x, y + h)", obstacle.x, obstacle.y + obstacle.h);
+
   ctx.textAlign = "left";
   ctx.textBaseline = "alphabetic";
 };
 
-var drawObstacleBoundingBox = function drawObstacleBoundingBox(obstacle) {
+let drawObstacleBoundingBox = function(obstacle) {
   if (debugMode) {
     if (obstacle.hasOwnProperty("drawBoundingBox")) {
       obstacles.drawBoundingBox();
@@ -395,38 +467,43 @@ var drawObstacleBoundingBox = function drawObstacleBoundingBox(obstacle) {
   }
 };
 
-var is_overlapping = function is_overlapping(object1, object2) {
+let is_overlapping = function(object1, object2) {
   if (object2.ignore_me) {
     return false;
   }
-
-  if (object1.x + object1.w > object2.x && object1.y > object2.y + object2.h && object1.x < object2.x + object2.w && object1.y + object1.h < object2.y) {
+  if (object1.x + object1.w > object2.x &&
+    object1.y > object2.y + object2.h &&
+    object1.x < object2.x + object2.w &&
+    object1.y + object1.h < object2.y) {
     return true;
   }
-
   return false;
 };
 
-var drawObstacles = function drawObstacles() {
-  var obs_listPosition = 0;
+let drawObstacles = function() {
+  let obs_listPosition = 0;
+
   /* Calculate the offset of the obstacles. This is the amount by
    * which we shift the obstacles to the left. */
-
   obs_offset += obs_speed * time_difference;
 
-  for (var i = 0; i < obstacles.length; i++) {
+  for (let i = 0; i < obstacles.length; i++) {
     // x-position summed from list.
     obs_listPosition += obstacles[i][1];
-    var obs_x = obs_listPosition - obs_offset;
-    var obs_y = floorHeight;
-    var obs_right = obs_x + obstacles[i][0].w; // Draw if coordinates are within the canvas.
 
+    let obs_x = obs_listPosition - obs_offset;
+    let obs_y = floorHeight;
+    let obs_right = obs_x + obstacles[i][0].w;
+
+    // Draw if coordinates are within the canvas.
     if (obs_right > 0 && obs_x < canvas.width) {
       obstacles[i][0].x = obs_x;
       obstacles[i][0].y = obs_y;
-      obstacles[i][0].draw(obs_x, obs_y);
-      drawObstacleBoundingBox(obstacles[i][0]); // Detect collision.
 
+      obstacles[i][0].draw(obs_x, obs_y);
+      drawObstacleBoundingBox(obstacles[i][0]);
+
+      // Detect collision.
       if (is_overlapping(hero, obstacles[i][0])) {
         drawGameOverSign();
       }
@@ -438,12 +515,12 @@ var drawObstacles = function drawObstacles() {
   }
 };
 
-var drawSoundButton = function drawSoundButton() {
+let drawSoundButton = function() {
   ctx.fillStyle = "yellow";
   ctx.fillRect(canvas.width - 230, 10, 220, 100);
+
   ctx.fillStyle = "black";
   ctx.font = '48px serif';
-
   if (lightningSound.muted) {
     ctx.fillText("Sound On", canvas.width - 220, 80);
   } else {
@@ -451,8 +528,9 @@ var drawSoundButton = function drawSoundButton() {
   }
 };
 
-var mouseClickedSoundButton = function mouseClickedSoundButton(event) {
-  if (event.clientX > canvas.width - 230 && event.clientX < canvas.width - 10 && event.clientY > 10 && event.clientY < 110) {
+let mouseClickedSoundButton = function(event) {
+  if (event.clientX > canvas.width - 230 && event.clientX < canvas.width - 10 &&
+    event.clientY > 10 && event.clientY < 110) {
     if (lightningSound.muted) {
       console.log("turn sound on");
       lightningSound.muted = false;
@@ -463,10 +541,11 @@ var mouseClickedSoundButton = function mouseClickedSoundButton(event) {
   }
 };
 
-var drawHeroBoundingBox = function drawHeroBoundingBox(object) {
+let drawHeroBoundingBox = function(object) {
   ctx.strokeStyle = "lightblue";
   ctx.lineWidth = "1";
   ctx.strokeRect(object.x, object.y, object.w, object.h);
+
   ctx.font = '14px monospace';
   ctx.fillStyle = "white";
   ctx.textAlign = "right";
@@ -481,18 +560,22 @@ var drawHeroBoundingBox = function drawHeroBoundingBox(object) {
   ctx.textAlign = "right";
   ctx.textBaseline = "bottom";
   ctx.fillText("(x, y + h)", object.x, object.y + object.h);
+
   ctx.textAlign = "left";
   ctx.textBaseline = "alphabetic";
 };
 
-var hero = {
-  draw: function draw() {
+let hero = {
+  draw: function() {
+
     /* body and color */
+
     ctx.beginPath();
     ctx.ellipse(this.x + 50, this.y - 50, 50, 50, 0, 0, 2 * Math.PI);
     ctx.closePath();
     ctx.fillStyle = "rgb(105, 73, 75)";
     ctx.fill();
+
     /* big smile */
 
     ctx.fillStyle = "rgb(245, 240, 240)";
@@ -500,25 +583,30 @@ var hero = {
     ctx.arc(this.x + 50, this.y - 50, 35, 0, Math.PI);
     ctx.closePath();
     ctx.fill();
+
     /* eyes and pupils */
 
     ctx.beginPath();
     ctx.ellipse(this.x + 30, this.y - 70, 12, 12, 0, 0, 2 * Math.PI);
     ctx.closePath();
     ctx.fill();
+
     ctx.beginPath();
     ctx.ellipse(this.x + 70, this.y - 70, 12, 12, 0, 0, 2 * Math.PI);
     ctx.closePath();
     ctx.fill();
+
     ctx.fillStyle = "blue";
     ctx.beginPath();
     ctx.ellipse(this.x + 30, this.y - 66, 6, 6, 0, 0, 2 * Math.PI);
     ctx.closePath();
     ctx.fill();
+
     ctx.beginPath();
     ctx.ellipse(this.x + 70, this.y - 66, 6, 6, 0, 0, 2 * Math.PI);
     ctx.closePath();
     ctx.fill();
+
     /* arms and fists */
 
     ctx.strokeStyle = "black";
@@ -527,16 +615,19 @@ var hero = {
     ctx.lineTo(this.x - 20, this.y - 90);
     ctx.closePath();
     ctx.stroke();
+
     ctx.beginPath();
     ctx.moveTo(this.x + 100, this.y - 60);
     ctx.lineTo(this.x + 120, this.y - 90);
     ctx.closePath();
     ctx.stroke();
+
     ctx.fillStyle = "red";
     ctx.beginPath();
     ctx.ellipse(this.x - 20, this.y - 90, 10, 10, 0, 0, 2 * Math.PI);
     ctx.closePath();
     ctx.fill();
+
     ctx.beginPath();
     ctx.ellipse(this.x + 120, this.y - 90, 10, 10, 0, 0, 2 * Math.PI);
     ctx.closePath();
@@ -545,17 +636,15 @@ var hero = {
   is_jumping: false,
   is_boosting: false,
   velocity: 0,
-  jump_velocity: 15,
-  // The jump velocity.
-  g: -0.3,
-  // "gravity" acceleration term
+  jump_velocity: 15, // The jump velocity.
+  g: -0.3, // "gravity" acceleration term
   x: 190 - 50,
   y: floorHeight,
   w: 100,
   h: -100
 };
 
-var drawHero = function drawHero() {
+let drawHero = function() {
   if (debugMode) {
     hero.x = mousePosition.x;
     hero.y = mousePosition.y;
@@ -574,15 +663,13 @@ var drawHero = function drawHero() {
       hero.is_jumping = false;
     }
   }
-
   hero.draw();
-
   if (debugMode) {
     drawHeroBoundingBox(hero);
   }
 };
 
-var jumpHero = function jumpHero() {
+let jumpHero = function() {
   if (!debugMode) {
     if (!hero.is_jumping) {
       console.log("jump hero");
@@ -592,65 +679,64 @@ var jumpHero = function jumpHero() {
   }
 };
 
-var mouseClickedMoveHero = function mouseClickedMoveHero(event) {
+let mouseClickedMoveHero = function(event) {
   jumpHero();
 };
 
-var mouseMoved = function mouseMoved(event) {
+let mouseMoved = function(event) {
   mousePosition.x = event.clientX;
   mousePosition.y = event.clientY;
 };
 
-var powerkeyPressedMoveHero = function powerkeyPressedMoveHero(event) {
+let powerkeyPressedMoveHero = function(event) {
   if (event.code === "ControlLeft" || event.code == "ControlRight") {
     console.log("boosting hero");
     hero.is_boosting = true;
   }
 };
 
-var debugKeyPressed = function debugKeyPressed(event) {
+let debugKeyPressed = function(event) {
   if (event.code === "KeyD" && event.key === "d") {
     if (debugMode) {
       /* Reset x component of hero position. */
       hero.x = 190 - 50;
       hero.velocity = 0;
     }
-
     debugMode = !debugMode;
   }
 };
 
-var equalKeyPressed = function equalKeyPressed(event) {
+let equalKeyPressed = function(event) {
   if (event.code === "Equal") {
     hero.jump_velocity += 1;
   }
 };
 
-var lessKeyPressed = function lessKeyPressed(event) {
+let lessKeyPressed = function(event) {
   if (event.code === "Comma") {
     obs_speed -= 0.02;
   }
 };
 
-var minusKeyPressed = function minusKeyPressed(event) {
+let minusKeyPressed = function(event) {
   if (event.code === "Minus") {
     hero.jump_velocity -= 1;
   }
 };
 
-var greaterKeyPressed = function greaterKeyPressed(event) {
+let greaterKeyPressed = function(event) {
   if (event.code === "Period") {
     obs_speed += 0.02;
   }
 };
 
-var restartKeyPressed = function restartKeyPressed(event) {
+let restartKeyPressed = function(event) {
   if (event.code === "KeyR" && event.key === "r") {
     resetGame();
   }
 };
 
-var stepKeyPressed = function stepKeyPressed(event) {
+let stepKeyPressed = function(event) {
   if (event.code === "KeyS" && event.key === "s") {
     if (debugMode) {
       time++;
@@ -658,7 +744,7 @@ var stepKeyPressed = function stepKeyPressed(event) {
   }
 };
 
-var reverseStepKeyPressed = function reverseStepKeyPressed(event) {
+let reverseStepKeyPressed = function(event) {
   if (event.code === "KeyS" && event.key === "S") {
     if (debugMode) {
       time--;
@@ -666,61 +752,79 @@ var reverseStepKeyPressed = function reverseStepKeyPressed(event) {
   }
 };
 
-var powerkeyReleasedMoveHero = function powerkeyReleasedMoveHero(event) {
+let powerkeyReleasedMoveHero = function(event) {
   if (event.code === "ControlLeft" || event.code == "ControlRight") {
     console.log("turning hero booster off");
     hero.is_boosting = false;
   }
 };
 
-var spaceKeyPressed = function spaceKeyPressed(event) {
+let spaceKeyPressed = function(event) {
   if (event.code === "Space" && event.key === " ") {
     jumpHero();
   }
 };
 
-var mouseClickedListeners = [mouseClickedSoundButton, jumpHero];
-var mouseMoveListeners = [mouseMoved];
-var keyPressListeners = [powerkeyPressedMoveHero, debugKeyPressed, equalKeyPressed, lessKeyPressed, minusKeyPressed, greaterKeyPressed, restartKeyPressed, stepKeyPressed, reverseStepKeyPressed, spaceKeyPressed];
-var keyReleaseListeners = [powerkeyReleasedMoveHero];
+let mouseClickedListeners = [
+  mouseClickedSoundButton,
+  jumpHero
+];
 
-(function () {
-  var mouseClick = function mouseClick(event) {
+let mouseMoveListeners = [
+  mouseMoved
+];
+
+let keyPressListeners = [
+  powerkeyPressedMoveHero,
+  debugKeyPressed,
+  equalKeyPressed,
+  lessKeyPressed,
+  minusKeyPressed,
+  greaterKeyPressed,
+  restartKeyPressed,
+  stepKeyPressed,
+  reverseStepKeyPressed,
+  spaceKeyPressed
+];
+
+let keyReleaseListeners = [
+  powerkeyReleasedMoveHero
+];
+
+(function() {
+  let mouseClick = function(event) {
     console.log("mouse clicked");
-
-    for (var i = 0; i < mouseClickedListeners.length; i++) {
+    for (let i = 0; i < mouseClickedListeners.length; i++) {
       mouseClickedListeners[i](event);
     }
   };
 
-  var mouseMove = function mouseMove(event) {
+  let mouseMove = function(event) {
     console.log("mouse moved");
-
-    for (var i = 0; i < mouseMoveListeners.length; i++) {
+    for (let i = 0; i < mouseMoveListeners.length; i++) {
       mouseMoveListeners[i](event);
     }
   };
 
-  var keyPress = function keyPress(event) {
+  let keyPress = function(event) {
     console.log("pressed key '" + event.key + "', code " + event.code);
-
-    for (var i = 0; i < keyPressListeners.length; i++) {
+    for (let i = 0; i < keyPressListeners.length; i++) {
       keyPressListeners[i](event);
     }
   };
 
-  var keyRelease = function keyRelease(event) {
+  let keyRelease = function(event) {
     console.log("released key '" + event.key + "', code " + event.code);
-
-    for (var i = 0; i < keyReleaseListeners.length; i++) {
+    for (let i = 0; i < keyReleaseListeners.length; i++) {
       keyReleaseListeners[i](event);
     }
   };
 
-  var initialize = function initialize() {
+  let initialize = function() {
     /* The mousedown event is fired when a pointing device button is
        pressed on an element [1].
-        [1] https://developer.mozilla.org/en-US/docs/Web/Events/mousedown
+
+       [1] https://developer.mozilla.org/en-US/docs/Web/Events/mousedown
     */
     canvas.addEventListener('mousedown', mouseClick);
     canvas.addEventListener('touchstart', mouseClick);
@@ -732,29 +836,30 @@ var keyReleaseListeners = [powerkeyReleasedMoveHero];
   initialize();
 })();
 
-var draw = function draw() {
+let draw = function() {
   window.requestAnimationFrame(draw);
   background("blue");
+
   /* Calculate the time difference between the time in this call and
    * the time during the last call. */
-
   time_difference = time - time_last;
   time_last = time;
+
   drawStats();
   drawSoundButton();
   drawBackground();
   drawFloor();
   drawObstacles();
   drawHero();
-  /* Increment time. */
 
+  /* Increment time. */
   if (!debugMode) {
     time++;
   }
 };
 
-(function () {
-  var initialize = function initialize() {
+(function() {
+  let initialize = function() {
     window.addEventListener('resize', resizeCanvas);
     canvas.style.position = "absolute";
     canvas.style.left = "0px";
@@ -762,7 +867,7 @@ var draw = function draw() {
     resizeCanvas();
   };
 
-  var resizeCanvas = function resizeCanvas() {
+  let resizeCanvas = function() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     floorHeight = canvas.height - 50;
