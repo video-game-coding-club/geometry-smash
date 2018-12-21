@@ -324,7 +324,7 @@ var drawStats = function drawStats() {
   ctx.fillText("> make hero go faster", 10, 200);
 
   if (debugMode) {
-    ctx.fillText("step debug (s) = " + (debugMode ? "enabled" : "disabled"), 10, 220);
+    ctx.fillText("step debug (s) = " + (debugMode ? "enabled" : "disabled"), 10, 260);
     ctx.fillText("step back (S)  = " + (debugMode ? "enabled" : "disabled"), 10, 240);
   }
 };
