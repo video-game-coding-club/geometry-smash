@@ -11,6 +11,9 @@ let time_last = 0;
  * one. */
 let time_difference = 0;
 
+/* The floor speed. */
+let floorSpeed = 1;
+
 /* The obstacle speed. */
 let obs_speed = 1;
 
@@ -416,8 +419,6 @@ let drawBackground = function() {};
 let drawFloor = function() {
   let strokeColors = ["black", "black"];
   let fillColors = ["darkblue", "yellow"];
-
-  let floorSpeed = 1;
 
   for (let i = 0; - floorSpeed * time % 400 + 400 * i < canvas.width; i++) {
     for (let j = 0; j < 2; j++) {
