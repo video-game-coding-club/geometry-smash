@@ -392,7 +392,7 @@ let drawStats = function() {
   ctx.fillText("G make gravity bigger", 10, 220);
   ctx.fillText("g make gravity smaller", 10, 240);
   ctx.fillText("gravity  = " + hero.g, 380, 20);
-  ctx.fillText("obs speed  = " + obs_speed, 10, 260);
+  ctx.fillText("obs speed  = " + obs_speed.toFixed(2), 10, 260);
   if (debugMode) {
     ctx.fillText("step debug (s) = " + (debugMode ? "enabled" : "disabled"), 10, 280);
     ctx.fillText("step back (S)  = " + (debugMode ? "enabled" : "disabled"), 10, 300);
@@ -767,11 +767,15 @@ let spaceKeyPressed = function(event) {
 };
 
 let GKeyPressed = function(event) {
-  if (event.code === "KeyG" && event.key === "G") {}
+  if (event.code === "KeyG" && event.key === "G") {
+    hero.g = hero.g - 0.1;
+  }
 };
 
 let gKeyPressed = function(event) {
-  if (event.code === "KeyG" && event.key === "g") {}
+  if (event.code === "KeyG" && event.key === "g") {
+    hero.g = hero.g + 0.1;
+  }
 };
 
 let mouseClickedListeners = [
