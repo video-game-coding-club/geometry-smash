@@ -766,6 +766,14 @@ let spaceKeyPressed = function(event) {
   }
 };
 
+let GKeyPressed = function(event) {
+  if (event.code === "KeyG" && event.key === "G") {}
+};
+
+let gKeyPressed = function(event) {
+  if (event.code === "KeyG" && event.key === "g") {}
+};
+
 let mouseClickedListeners = [
   mouseClickedSoundButton,
   jumpHero
