@@ -680,6 +680,18 @@ var spaceKeyPressed = function spaceKeyPressed(event) {
   }
 };
 
+var GKeyPressed = function GKeyPressed(event) {
+  if (event.code === "KeyG" && event.key === "G") {
+    hero.g = hero.g - 0.1;
+  }
+};
+
+var gKeyPressed = function gKeyPressed(event) {
+  if (event.code === "KeyG" && event.key === "g") {
+    hero.g = hero.g + 0.1;
+  }
+};
+
 var mouseClickedListeners = [mouseClickedSoundButton, jumpHero];
 var mouseMoveListeners = [mouseMoved];
 var keyPressListeners = [powerkeyPressedMoveHero, debugKeyPressed, equalKeyPressed, lessKeyPressed, minusKeyPressed, greaterKeyPressed, restartKeyPressed, stepKeyPressed, reverseStepKeyPressed, spaceKeyPressed];
