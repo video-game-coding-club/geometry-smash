@@ -323,6 +323,7 @@ var drawStats = function drawStats() {
   ctx.fillText("> make hero go faster", 10, 200);
   ctx.fillText("G make gravity bigger", 10, 220);
   ctx.fillText("g make gravity smaller", 10, 240);
+  ctx.fillText("gravity  = " + hero.g, 380, 20);
   ctx.fillText("obs speed  = " + obs_speed, 10, 260);
 
   if (debugMode) {
