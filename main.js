@@ -681,15 +681,11 @@ var spaceKeyPressed = function spaceKeyPressed(event) {
 };
 
 var GKeyPressed = function GKeyPressed(event) {
-  if (event.code === "KeyG" && event.key === "G") {
-    hero.g = hero.g - 0.1;
-  }
+  if (event.code === "KeyG" && event.key === "G") {}
 };
 
 var gKeyPressed = function gKeyPressed(event) {
-  if (event.code === "KeyG" && event.key === "g") {
-    hero.g = hero.g + 0.1;
-  }
+  if (event.code === "KeyG" && event.key === "g") {}
 };
 
 var mouseClickedListeners = [mouseClickedSoundButton, jumpHero];
