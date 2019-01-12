@@ -324,12 +324,13 @@ var drawStats = function drawStats() {
   ctx.fillText("G make gravity bigger", 10, 220);
   ctx.fillText("g make gravity smaller", 10, 240);
   ctx.fillText("gravity  = " + hero.g, 380, 20);
-  ctx.fillText("obs speed  = " + obs_speed.toFixed(2), 10, 260);
 
   if (debugMode) {
     ctx.fillText("step debug (s) = " + (debugMode ? "enabled" : "disabled"), 10, 280);
     ctx.fillText("step back (S)  = " + (debugMode ? "enabled" : "disabled"), 10, 300);
   }
+
+  ctx.fillText("obs speed  = " + obs_speed.toFixed(2), 380, 40);
 };
 
 var drawGameOverSign = function drawGameOverSign() {
