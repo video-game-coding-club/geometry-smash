@@ -766,13 +766,13 @@ let spaceKeyPressed = function(event) {
   }
 };
 
-let GKeyPressed = function(event) {
+let upperCaseGKeyPressed = function(event) {
   if (event.code === "KeyG" && event.key === "G") {
     hero.g = hero.g - 0.1;
   }
 };
 
-let gKeyPressed = function(event) {
+let lowerCaseGKeyPressed = function(event) {
   if (event.code === "KeyG" && event.key === "g") {
     hero.g = hero.g + 0.1;
   }
@@ -788,16 +788,18 @@ let mouseMoveListeners = [
 ];
 
 let keyPressListeners = [
-  powerkeyPressedMoveHero,
   debugKeyPressed,
   equalKeyPressed,
-  lessKeyPressed,
-  minusKeyPressed,
   greaterKeyPressed,
+  lessKeyPressed,
+  lowerCaseGKeyPressed,
+  minusKeyPressed,
+  powerkeyPressedMoveHero,
   restartKeyPressed,
-  stepKeyPressed,
   reverseStepKeyPressed,
-  spaceKeyPressed
+  spaceKeyPressed,
+  stepKeyPressed,
+  upperCaseGKeyPressed
 ];
 
 let keyReleaseListeners = [

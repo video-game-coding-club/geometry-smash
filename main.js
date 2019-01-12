@@ -681,13 +681,13 @@ var spaceKeyPressed = function spaceKeyPressed(event) {
   }
 };
 
-var GKeyPressed = function GKeyPressed(event) {
+var upperCaseGKeyPressed = function upperCaseGKeyPressed(event) {
   if (event.code === "KeyG" && event.key === "G") {
     hero.g = hero.g - 0.1;
   }
 };
 
-var gKeyPressed = function gKeyPressed(event) {
+var lowerCaseGKeyPressed = function lowerCaseGKeyPressed(event) {
   if (event.code === "KeyG" && event.key === "g") {
     hero.g = hero.g + 0.1;
   }
@@ -695,7 +695,7 @@ var gKeyPressed = function gKeyPressed(event) {
 
 var mouseClickedListeners = [mouseClickedSoundButton, jumpHero];
 var mouseMoveListeners = [mouseMoved];
-var keyPressListeners = [powerkeyPressedMoveHero, debugKeyPressed, equalKeyPressed, lessKeyPressed, minusKeyPressed, greaterKeyPressed, restartKeyPressed, stepKeyPressed, reverseStepKeyPressed, spaceKeyPressed];
+var keyPressListeners = [debugKeyPressed, equalKeyPressed, greaterKeyPressed, lessKeyPressed, lowerCaseGKeyPressed, minusKeyPressed, powerkeyPressedMoveHero, restartKeyPressed, reverseStepKeyPressed, spaceKeyPressed, stepKeyPressed, upperCaseGKeyPressed];
 var keyReleaseListeners = [powerkeyReleasedMoveHero];
 
 (function () {
