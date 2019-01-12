@@ -11,8 +11,14 @@ let time_last = 0;
  * one. */
 let time_difference = 0;
 
+/* The floor speed. */
+let floorSpeed = 1;
+
 /* The obstacle speed. */
 let obs_speed = 1;
+
+/* The background speed. */
+let backgroundSpeed = 0.5 * obs_speed;
 
 /* The obstacle offset (when moving in time). */
 let obs_offset = 0;
@@ -36,6 +42,10 @@ toxicImage.src = "assets/toxic.jpg";
 /* The electric sign image. */
 let electricImage = new Image();
 electricImage.src = "assets/electric.jpg";
+
+/* The snowflage image. */
+let snowflakeImage = new Image();
+snowflakeImage.src = "assets/snowflake.jpg";
 
 /* The sound effect for the laser obstacle. */
 let lightningSound = new Audio("assets/flash.wav");
@@ -412,13 +422,15 @@ let drawGameOverSign = function() {
   ctx.fillText("GAME OVER", 0.5 * canvas.width - 140, 0.5 * canvas.height - 55);
 };
 
-let drawBackground = function() {};
+let drawBackground = function() {
+  let offset = -backgroundSpeed * time;
+
+  ctx.drawImage(snowflakeImage, offset + 300, floorHeight - 200, 100, 100);
+};
 
 let drawFloor = function() {
   let strokeColors = ["black", "black"];
   let fillColors = ["darkblue", "yellow"];
-
-  let floorSpeed = 1;
 
   for (let i = 0; - floorSpeed * time % 400 + 400 * i < canvas.width; i++) {
     for (let j = 0; j < 2; j++) {
