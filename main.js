@@ -433,6 +433,10 @@ let drawFloor = function() {
   let strokeColors = ["black", "black"];
   let fillColors = ["darkblue", "yellow"];
 
+  /* Calculate the offset of the obstacles. This is the amount by
+   * which we shift the obstacles to the left. */
+  floorOffset += floorSpeed * time_difference;
+
   for (let i = 0; - floorSpeed * time % 400 + 400 * i < canvas.width; i++) {
     for (let j = 0; j < 2; j++) {
       ctx.beginPath();
