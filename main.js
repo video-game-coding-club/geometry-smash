@@ -17,6 +17,9 @@ let floorSpeed = 1;
 /* The obstacle speed. */
 let obs_speed = 1;
 
+/* The booster effect. */
+let booster = 1.2;
+
 /* The background speed. */
 let backgroundSpeed = 0.5 * obs_speed;
 
@@ -664,8 +667,7 @@ let drawHero = function() {
     hero.y = mousePosition.y;
   } else {
     if (hero.is_boosting) {
-      hero.velocity -= 0.5;
-      hero.is_jumping = true;
+      hero.velocity += booster * hero.g;
     }
 
     hero.velocity -= hero.g;
@@ -706,6 +708,7 @@ let powerkeyPressedMoveHero = function(event) {
   if (event.code === "ControlLeft" || event.code == "ControlRight") {
     console.log("boosting hero");
     hero.is_boosting = true;
+    hero.is_jumping = true;
   }
 };
 
