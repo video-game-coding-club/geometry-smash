@@ -12,10 +12,10 @@ if git.commits.any? { |c| c.message =~ /^Merge branch/ }
 end
 
 # Ensure that labels have been used on the PR
-failure("Please add labels to this PR", sticky: false) if github.pr_labels.empty?
+warn("Please add labels to this PR", sticky: false) if github.pr_labels.empty?
 
 # Ensure there is a summary for a PR
-failure("Please provide a summary in the Pull Request description", sticky: false) if github.pr_body.length < 5
+warn("Please provide a summary in the Pull Request description", sticky: false) if github.pr_body.length < 5
 
 # Ensure that all PRs have an assignee
 warn("This PR does not have any assignees yet.", sticky: false) unless github.pr_json["assignee"]
