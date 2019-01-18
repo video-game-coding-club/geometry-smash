@@ -3,9 +3,14 @@
 version: 2.1
 
 jobs:
-  build:
+  lint:
     docker:
       - image: circleci/node
     steps:
       - checkout
-      - run: echo "First run"
+      - run: ./lint.sh
+
+workflows:
+  build_and_test:
+    jobs:
+      - lint
