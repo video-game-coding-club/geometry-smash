@@ -1,0 +1,16 @@
+---
+
+version: 2.1
+
+jobs:
+  lint:
+    docker:
+      - image: circleci/node
+    steps:
+      - checkout
+      - run: ./lint.sh
+
+workflows:
+  build_and_test:
+    jobs:
+      - lint
