@@ -3,12 +3,18 @@ layout: default
 title: "Welcome to Geometry Smash"
 ---
 
-[![Build Status](https://www.travis-ci.com/video-game-coding-club/geometry-smash.svg?branch=master)](https://www.travis-ci.com/video-game-coding-club/geometry-smash)
-[![CircleCI](https://circleci.com/gh/video-game-coding-club/geometry-smash/tree/master.svg?style=svg)](https://circleci.com/gh/video-game-coding-club/geometry-smash/tree/master)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/video-game-coding-club/geometry-smash.svg)](https://github.com/video-game-coding-club/geometry-smash/pulls)
-[![GitHub issues](https://img.shields.io/github/issues/video-game-coding-club/geometry-smash.svg)](https://github.com/video-game-coding-club/geometry-smash/issues)
-[![Join the chat at https://gitter.im/video-game-coding-club/geometry-smash](https://badges.gitter.im/video-game-coding-club/geometry-smash.svg)](https://gitter.im/video-game-coding-club/geometry-smash?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Maintainability](https://api.codeclimate.com/v1/badges/2b63bc13f257312435e9/maintainability)](https://codeclimate.com/github/video-game-coding-club/geometry-smash/maintainability)
+<table>
+  <tr>
+    <td markdown="span" align="center">[![Build Status](https://www.travis-ci.com/video-game-coding-club/geometry-smash.svg?branch=master)](https://www.travis-ci.com/video-game-coding-club/geometry-smash)</td>
+    <td markdown="span" align="center">[![CircleCI](https://circleci.com/gh/video-game-coding-club/geometry-smash/tree/master.svg?style=svg)](https://circleci.com/gh/video-game-coding-club/geometry-smash/tree/master)</td>
+    <td markdown="span" align="center">[![GitHub pull requests](https://img.shields.io/github/issues-pr/video-game-coding-club/geometry-smash.svg)](https://github.com/video-game-coding-club/geometry-smash/pulls)</td>
+  </tr>
+  <tr>
+    <td markdown="span" align="center">[![GitHub issues](https://img.shields.io/github/issues/video-game-coding-club/geometry-smash.svg)](https://github.com/video-game-coding-club/geometry-smash/issues)</td>
+    <td markdown="span" align="center">[![Join the chat at https://gitter.im/video-game-coding-club/geometry-smash](https://badges.gitter.im/video-game-coding-club/geometry-smash.svg)](https://gitter.im/video-game-coding-club/geometry-smash?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)</td>
+    <td markdown="span" align="center">[![Maintainability](https://api.codeclimate.com/v1/badges/2b63bc13f257312435e9/maintainability)](https://codeclimate.com/github/video-game-coding-club/geometry-smash/maintainability)</td>
+  </tr>
+</table>
 
 # The Game
 
