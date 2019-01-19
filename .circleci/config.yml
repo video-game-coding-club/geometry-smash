@@ -6,9 +6,14 @@ jobs:
   build:
     docker:
       - image: circleci/node
-    branches:
-      ignore:
-        - gh_pages
     steps:
       - checkout
       - run: ./lint.sh
+
+workflows:
+  version: 2
+  build:
+    - job1:
+        branches:
+          ignore:
+            - gh-pages
