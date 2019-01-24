@@ -441,7 +441,7 @@ let drawBackground = function() {
   ctx.drawImage(snowflakeImage, offset + 300, floorHeight - 200, 100, 100);
   ctx.drawImage(dragonImage, offset + 600, floorHeight - 200, 100, 100);
   ctx.drawImage(boneImage, offset + 900, floorHeight - 200, 100, 100);
-  ctx.drawImage(GriffinImage, offset + 1900, floorHeight - 200, 80, 80);
+  ctx.drawImage(GriffinImage, offset + 900, floorHeight - 200, 80, 80);
 };
 
 let drawFloor = function() {
