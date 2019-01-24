@@ -52,6 +52,10 @@ snowflakeImage.src = "assets/snowflake.jpg";
 
 var dragonImage = new Image();
 dragonImage.src = "assets/Dragon.jpg";
+/* The bone image. */
+
+var boneImage = new Image();
+boneImage.src = "assets/bone_dragon.jpg";
 /* The sound effect for the laser obstacle. */
 
 var lightningSound = new Audio("assets/flash.wav");
@@ -364,6 +368,7 @@ var drawBackground = function drawBackground() {
   var offset = -backgroundSpeed * time;
   ctx.drawImage(snowflakeImage, offset + 300, floorHeight - 200, 100, 100);
   ctx.drawImage(dragonImage, offset + 600, floorHeight - 200, 100, 100);
+  ctx.drawImage(boneImage, offset + 900, floorHeight - 200, 100, 100);
 };
 
 var drawFloor = function drawFloor() {
