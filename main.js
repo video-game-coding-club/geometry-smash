@@ -431,7 +431,7 @@ let drawBackground = function() {
   let offset = -backgroundSpeed * time;
 
   ctx.drawImage(snowflakeImage, offset + 300, floorHeight - 200, 100, 100);
-  ctx.drawImage(dragonImage, offset + 300, floorHeight - 200, 100, 100);
+  ctx.drawImage(dragonImage, offset + 600, floorHeight - 200, 100, 100);
 };
 
 let drawFloor = function() {
