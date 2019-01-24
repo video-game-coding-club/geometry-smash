@@ -43,7 +43,7 @@ toxicImage.src = "assets/toxic.jpg";
 let electricImage = new Image();
 electricImage.src = "assets/electric.jpg";
 
-/* The snowflage image. */
+/* The snowflake image. */
 let snowflakeImage = new Image();
 snowflakeImage.src = "assets/snowflake.jpg";
 
