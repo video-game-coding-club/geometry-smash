@@ -55,6 +55,10 @@ dragonImage.src = "assets/Dragon.jpg";
 let boneImage = new Image();
 boneImage.src = "assets/bone_dragon.jpg";
 
+/* The Griffin image. */
+let GriffinImage = new Image();
+GriffinImage.src = "assets/griffin.jpg";
+
 /* The sound effect for the laser obstacle. */
 let lightningSound = new Audio("assets/flash.wav");
 lightningSound.loop = true;
@@ -437,6 +441,7 @@ let drawBackground = function() {
   ctx.drawImage(snowflakeImage, offset + 300, floorHeight - 200, 100, 100);
   ctx.drawImage(dragonImage, offset + 600, floorHeight - 200, 100, 100);
   ctx.drawImage(boneImage, offset + 900, floorHeight - 200, 100, 100);
+  ctx.drawImage(GriffinImage, offset + 900, floorHeight - 200, 80, 80);
 };
 
 let drawFloor = function() {
