@@ -47,6 +47,10 @@ electricImage.src = "assets/electric.jpg";
 let snowflakeImage = new Image();
 snowflakeImage.src = "assets/snowflake.jpg";
 
+/* The dragon image. */
+let dragonImage = new Image();
+dragonImage.src = "assets/Dragon.jpg";
+
 /* The sound effect for the laser obstacle. */
 let lightningSound = new Audio("assets/flash.wav");
 lightningSound.loop = true;
@@ -427,6 +431,7 @@ let drawBackground = function() {
   let offset = -backgroundSpeed * time;
 
   ctx.drawImage(snowflakeImage, offset + 300, floorHeight - 200, 100, 100);
+  ctx.drawImage(dragonImage, offset + 600, floorHeight - 200, 100, 100);
 };
 
 let drawFloor = function() {
